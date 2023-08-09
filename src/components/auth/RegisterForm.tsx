@@ -102,6 +102,7 @@ const RegisterForm = () => {
         <Checkbox
           id='acceptTermsAndConditions'
           checked={formik.values.acceptTermsAndConditions}
+          className='text-left'
           onChange={() => {
             formik.setFieldTouched('acceptTermsAndConditions', true);
             formik.setFieldValue(

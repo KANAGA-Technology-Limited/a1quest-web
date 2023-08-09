@@ -84,6 +84,7 @@ textarea:focus {
 
 .error {
   color: #d9534f;
+  text-align: left !important;
   font-size: 0.75rem;
 }
 
