@@ -8,7 +8,6 @@ export type UserType = {
   phone: string;
   role: string;
   status: string;
-  token: string;
 };
 
 export type UncertainObjectType = {

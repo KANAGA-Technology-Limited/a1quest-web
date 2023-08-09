@@ -9,29 +9,29 @@ module.exports = {
   theme: {
     extend: {
       textColor: {
-        primary: '#8000D7',
-        success: '#17B28D',
+        primary: '#1D4ED8',
+        success: '#059669',
         secondary: '#F3EDFC',
         error: '#EB4335',
       },
       backgroundColor: {
-        primary: '#8000D7',
+        primary: '#1D4ED8',
+        success: '#059669',
         secondary: '#F3EDFC',
         error: '#EB4335',
       },
       borderColor: {},
       fontFamily: {
-        primary: 'Inter, sans-serif',
-        secondary: 'Open Sans, sans-serif',
+        primary: ['var(--font-primary)'],
       },
       padding: {
         primary: '5vw',
       },
       minHeight: {
-        main: 'calc(100vh - 80px)',
+        main: 'calc(100vh - 72px)',
       },
       outlineColor: {
-        primary: '#8000D7',
+        primary: '#1D4ED8',
       },
     },
   },
