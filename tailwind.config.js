@@ -21,8 +21,7 @@ module.exports = {
       },
       borderColor: {},
       fontFamily: {
-        primary: 'Inter, sans-serif',
-        secondary: 'Open Sans, sans-serif',
+        primary: ['var(--font-primary)'],
       },
       padding: {
         primary: '5vw',

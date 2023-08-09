@@ -1,12 +1,10 @@
 import { Providers } from '@/store/provider';
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import ToastProvider from '@/common/ToastProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import 'reactjs-popup/dist/index.css';
-
-const inter = Inter({ subsets: ['latin'] });
+import { SFPro } from './fonts';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -16,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang='en'>
-      <body className={inter.className}>
+      <body className={SFPro.className}>
         <Providers>
           <ToastProvider>{children}</ToastProvider>
         </Providers>
