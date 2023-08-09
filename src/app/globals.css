@@ -6,7 +6,7 @@
 @tailwind utilities;
 
 :root {
-  --primary: #8000D7;
+  --primary: #1D4ED8;
   --white: #ffffff;
   --black: #000000;
   --accent: #F3EDFC;
@@ -19,7 +19,7 @@ body {
   margin: 0;
   font-family: var(--font-primary);
   font-weight: 400;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--black);
 }
 
@@ -75,7 +75,7 @@ textarea::placeholder {
 
 .inputContainer>* input:focus,
 textarea:focus {
-  outline: 1px solid #8000D7;
+  outline: 1px solid #1D4ED8;
 }
 
 .inputError {
@@ -116,11 +116,11 @@ textarea:focus {
 
 /* Handle */
 .customized-scrollbar::-webkit-scrollbar-thumb {
-  background: #8000D7;
+  background: #1D4ED8;
   border-radius: 15px;
 }
 
 /* Handle on hover */
 .customized-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: #5200AD;
+  background: #15348B;
 }

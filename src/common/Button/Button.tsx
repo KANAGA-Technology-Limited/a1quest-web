@@ -1,5 +1,4 @@
-import React, { ButtonHTMLAttributes, CSSProperties } from 'react';
-import styles from './styles.module.css';
+import React, { ButtonHTMLAttributes } from 'react';
 import LoadingIndicator from '../LoadingIndicator';
 
 function Button({
@@ -18,7 +17,7 @@ function Button({
     <button
       type={type}
       className={
-        (variant === 'outlined' ? styles.button : styles.buttonContained) +
+        'w-fit h-[50px] bg-primary text-white rounded-lg py-3 px-8 hover:brightness-110 duration-300 font-medium' +
         ' ' +
         className
       }
