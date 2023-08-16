@@ -20,7 +20,7 @@ const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
     } else {
       sendFeedback('Login to continue', 'error');
 
-      redirect('/login');
+      redirect('/auth/login');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

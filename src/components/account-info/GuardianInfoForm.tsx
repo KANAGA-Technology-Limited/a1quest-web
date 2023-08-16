@@ -65,7 +65,7 @@ const GuardianInfoForm = () => {
       style={{
         // Check to know when to disable form
         pointerEvents: !user?.school || user.guardianFullName ? 'none' : 'auto',
-        opacity: !user?.school || user.guardianFullName ? 0.5 : 1,
+        opacity: !user?.school || user.guardianFullName ? 0.3 : 1,
       }}
       className='w-full'
     >
