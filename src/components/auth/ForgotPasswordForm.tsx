@@ -27,19 +27,19 @@ const ForgotPasswordForm = () => {
     }),
   });
   const submitValues = async () => {
-    // try {
-    //   setLoading(true);
-    //   const response = await appAxios.post('/auth/forgot-password', {
-    //     email: formik.values.email,
-    //   });
-    //   sendFeedback(response.data?.message, 'success');
-    //   formik.resetForm();
-    //   router.push(`/auth/reset-password/${formik.values.email}`);
-    // } catch (error: any) {
-    //   sendCatchFeedback(error);
-    // } finally {
-    //   setLoading(false);
-    // }
+    try {
+      setLoading(true);
+      const response = await appAxios.post('/auth/forgot-password', {
+        email: formik.values.email,
+      });
+      sendFeedback(response.data?.message, 'success');
+      formik.resetForm();
+      router.push(`/auth/reset-password/${formik.values.email}`);
+    } catch (error: any) {
+      sendCatchFeedback(error);
+    } finally {
+      setLoading(false);
+    }
     return router.push(`/auth/reset-password/${formik.values.email}`);
   };
 

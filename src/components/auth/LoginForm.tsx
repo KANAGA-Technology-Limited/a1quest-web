@@ -9,8 +9,9 @@ import LabelInput from '@/common/LabelInput';
 import Button from '@/common/Button/Button';
 import Link from 'next/link';
 import { appAxios } from '@/api/axios';
-import { updateToken } from '@/store/features/user';
+import { updateToken, updateUser } from '@/store/features/user';
 import { sendCatchFeedback, sendFeedback } from '@/functions/feedback';
+import { UserType } from '@/types/user';
 
 const LoginForm = () => {
   const dispatch = useAppDispatch();
@@ -31,30 +32,41 @@ const LoginForm = () => {
     }),
   });
   const submitValues = async () => {
-    // try {
-    //   setLoading(true);
-    //   const response = await appAxios.post('/auth/login', {
-    //     email: formik.values.email,
-    //     password: formik.values.password,
-    //   });
-    //   const userToken = response.data?.data;
-    //   dispatch(updateToken({ token: userToken }));
-    //   // if (!userObject.isVerified) {
-    //   //   // Send verification code
-    //   //   sendFeedback('Verify your account to continue', 'info');
-    //   //   await appAxios.post('/auth/resend-code');
-    //   //   return router.push('/auth/verify-email');
-    //   // }
+    try {
+      setLoading(true);
+      const response = await appAxios.post('/auth/login', {
+        email: formik.values.email,
+        password: formik.values.password,
+      });
+      const userToken = response.data?.data;
+      dispatch(updateToken({ token: userToken }));
 
-    //   sendFeedback(response.data?.message, 'success');
-    //   formik.resetForm();
-    //   return router.push('/dashboard');
-    // } catch (error: any) {
-    //   sendCatchFeedback(error);
-    // } finally {
-    //   setLoading(false);
-    // }
-    return router.push('/dashboard');
+      const accountResponse = await appAxios.get('/auth/profile');
+      const accountInfo: UserType = accountResponse.data.data;
+      dispatch(updateUser({ user: accountInfo }));
+
+      // Check if account is verified
+      if (!accountInfo.isVerified) {
+        // Send verification code
+        sendFeedback('Verify your account to continue', 'info');
+        await appAxios.post('/auth/resend-code');
+        return router.push('/auth/verify-email');
+      }
+
+      // Check if any of the account info is missing
+      if (!accountInfo.goal || !accountInfo.school || !accountInfo.guardianFullName) {
+        // Send verification code
+        return router.push('/auth/account-info');
+      }
+
+      sendFeedback(response.data?.message, 'success');
+      formik.resetForm();
+      return router.push('/dashboard');
+    } catch (error: any) {
+      sendCatchFeedback(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

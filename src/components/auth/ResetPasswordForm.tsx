@@ -37,23 +37,23 @@ const ResetPasswordForm = () => {
     enableReinitialize: true,
   });
   const submitValues = async () => {
-    // try {
-    //   setLoading(true);
-    //   const response = await appAxios.post('/auth/reset-password', {
-    //     // email: formik.values.email,
-    //     password: formik.values.password,
-    //     confirmPassword: formik.values.confirmPassword,
-    //     token: formik.values.verificationCode,
-    //   });
-    //   sendFeedback(response.data?.message, 'success');
-    //   formik.resetForm();
+    try {
+      setLoading(true);
+      const response = await appAxios.post('/auth/reset-password', {
+        // email: formik.values.email,
+        password: formik.values.password,
+        confirmPassword: formik.values.confirmPassword,
+        token: formik.values.verificationCode,
+      });
+      sendFeedback(response.data?.message, 'success');
+      formik.resetForm();
 
-    //   router.push('/auth/login');
-    // } catch (error: any) {
-    //   sendCatchFeedback(error);
-    // } finally {
-    //   setLoading(false);
-    // }
+      router.push('/auth/login');
+    } catch (error: any) {
+      sendCatchFeedback(error);
+    } finally {
+      setLoading(false);
+    }
 
     router.push('/auth/login');
   };

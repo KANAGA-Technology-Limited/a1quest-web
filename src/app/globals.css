@@ -62,7 +62,7 @@ textarea {
   padding: 12px;
   font-size: 1rem;
   font-family: var(--font-primary);
-  border: 1px solid #00000038;
+  border: 1px solid #D0D5DD;
   border-radius: 5px;
   width: 100%;
   color: var(--black);
@@ -70,12 +70,13 @@ textarea {
 
 .inputContainer>* input::placeholder,
 textarea::placeholder {
-  color: #acadb4;
+  color: #B8C0CC;
 }
 
 .inputContainer>* input:focus,
 textarea:focus {
-  outline: 1px solid #1D4ED8;
+  outline: 1px solid var(--primary);
+  border: 1px solid var(--primary);
 }
 
 .inputError {

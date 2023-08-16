@@ -20,7 +20,9 @@ module.exports = {
         secondary: '#F3EDFC',
         error: '#EB4335',
       },
-      borderColor: {},
+      borderColor: {
+        primary: '#B8C0CC',
+      },
       fontFamily: {
         primary: ['var(--font-primary)'],
       },
@@ -36,4 +38,4 @@ module.exports = {
     },
   },
   plugins: [],
-}
+};

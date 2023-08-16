@@ -4,7 +4,7 @@ import type { Metadata } from 'next';
 import ToastProvider from '@/common/ToastProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import 'reactjs-popup/dist/index.css';
-import { SFPro } from './fonts';
+import { SFPro } from '@/assets/fonts';
 
 export const metadata: Metadata = {
   title: 'A1Quest',
