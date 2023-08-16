@@ -49,13 +49,14 @@ const LoginForm = () => {
       if (!accountInfo.isVerified) {
         // Send verification code
         sendFeedback('Verify your account to continue', 'info');
-        await appAxios.post('/auth/resend-code');
+        await appAxios.post('/auth/resend-code', {
+          email: accountInfo.email,
+        });
         return router.push('/auth/verify-email');
       }
 
       // Check if any of the account info is missing
       if (!accountInfo.goal || !accountInfo.school || !accountInfo.guardianFullName) {
-        // Send verification code
         return router.push('/auth/account-info');
       }
 

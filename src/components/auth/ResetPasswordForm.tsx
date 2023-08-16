@@ -54,8 +54,6 @@ const ResetPasswordForm = () => {
     } finally {
       setLoading(false);
     }
-
-    router.push('/auth/login');
   };
 
   const sendVerificationCode = async () => {

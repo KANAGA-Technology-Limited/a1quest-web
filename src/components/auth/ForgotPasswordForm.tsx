@@ -40,7 +40,6 @@ const ForgotPasswordForm = () => {
     } finally {
       setLoading(false);
     }
-    return router.push(`/auth/reset-password/${formik.values.email}`);
   };
 
   return (

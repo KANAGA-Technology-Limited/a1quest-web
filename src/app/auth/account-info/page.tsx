@@ -3,10 +3,11 @@ import AccountImage from '@/assets/backgrounds/account.svg';
 import Image from 'next/image';
 import AccountInfoForm from '@/components/account-info/AccountInfoForm';
 import WelcomeTag from '@/components/account-info/WelcomeTag';
+import PrivateRoute from '@/components/auth/routeChecker/PrivateRoute';
 
 const AccountInfoPage = () => {
   return (
-    <>
+    <PrivateRoute>
       <div className='px-primary py-[60px] w-full h-[219.75px] relative'>
         <Image
           src={AccountImage}
@@ -19,7 +20,7 @@ const AccountInfoPage = () => {
         </div>
       </div>
       <AccountInfoForm />
-    </>
+    </PrivateRoute>
   );
 };
 
