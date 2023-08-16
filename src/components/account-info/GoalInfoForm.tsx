@@ -56,7 +56,7 @@ const GoalInfoForm = () => {
         // Check to know when to disable form
         pointerEvents:
           !user?.guardianFullName || !user.school || user.goal ? 'none' : 'auto',
-        opacity: !user?.guardianFullName || !user.school || user.goal ? 0.5 : 1,
+        opacity: !user?.guardianFullName || !user.school || user.goal ? 0.3 : 1,
       }}
       className='w-full'
     >
@@ -81,6 +81,10 @@ const GoalInfoForm = () => {
         {formik.touched.goal && formik.errors.goal && (
           <div className='text-error mt-2'>{formik.errors.goal}</div>
         )}
+        <p className='text-[#F59E0B] font-medium text-xs px-3 py-[9px] bg-[#FEF3C7] mt-4 max-w-fit rounded-[10px]'>
+          This sets the tone for your streak i.e Daily streak will be awarded after
+          meeting your set goal.
+        </p>
         <Button type='submit' loading={loading} className='!w-[134px] mt-[25px]'>
           Save
         </Button>
