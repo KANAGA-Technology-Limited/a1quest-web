@@ -51,25 +51,24 @@ const RegisterForm = () => {
     enableReinitialize: true,
   });
   const submitValues = async () => {
-    // try {
-    //   setLoading(true);
-    //   const response = await appAxios.post('/auth/register', {
-    //     email: formik.values.email,
-    //     password: formik.values.password,
-    //     firstName: formik.values.firstName,
-    //     lastName: formik.values.lastName,
-    //     acceptTermsAndConditions: formik.values.acceptTermsAndConditions,
-    //     userName: formik.values.userName,
-    //   });
-    //   sendFeedback(response.data?.message, 'success');
-    //   formik.resetForm();
-    //   return router.push('/auth/verify-email');
-    // } catch (error: any) {
-    //   sendCatchFeedback(error);
-    // } finally {
-    //   setLoading(false);
-    // }
-    return router.push('/auth/verify-email');
+    try {
+      setLoading(true);
+      const response = await appAxios.post('/auth/register', {
+        email: formik.values.email,
+        password: formik.values.password,
+        firstName: formik.values.firstName,
+        lastName: formik.values.lastName,
+        acceptTermsAndConditions: formik.values.acceptTermsAndConditions,
+        userName: formik.values.userName,
+      });
+      sendFeedback(response.data?.message, 'success');
+      formik.resetForm();
+      return router.push('/auth/verify-email');
+    } catch (error: any) {
+      sendCatchFeedback(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (

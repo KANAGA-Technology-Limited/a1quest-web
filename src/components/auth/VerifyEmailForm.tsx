@@ -28,20 +28,19 @@ const VerifyEmailForm = () => {
   });
 
   const submitValues = async () => {
-    // try {
-    //   setLoading(true);
-    //   const response = await appAxios.post('/auth/verify-code', {
-    //     verificationCode: formik.values.code,
-    //   });
-    //   sendFeedback(response.data?.message, 'success');
-    //   formik.resetForm();
-    //   router.push('/dashboard');
-    // } catch (error: any) {
-    //   sendCatchFeedback(error);
-    // } finally {
-    //   setLoading(false);
-    // }
-    router.push('/auth/login');
+    try {
+      setLoading(true);
+      const response = await appAxios.post('/auth/verify-code', {
+        verificationCode: formik.values.code,
+      });
+      sendFeedback(response.data?.message, 'success');
+      formik.resetForm();
+      router.push('/auth/login');
+    } catch (error: any) {
+      sendCatchFeedback(error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const sendVerificationCode = async () => {
@@ -71,6 +70,18 @@ const VerifyEmailForm = () => {
           label='Verification code'
           className='mb-[22px]'
         />
+        <div className='mb-[66px]'>
+          <span className='text-sm font-normal '>
+            Didn&apos;t receive a verification code?{' '}
+            <button
+              className='text-primary font-semibold'
+              type='button'
+              onClick={sendVerificationCode}
+            >
+              Resend
+            </button>
+          </span>
+        </div>
 
         <Button type='submit' loading={loading} className='w-full'>
           Verify Email
