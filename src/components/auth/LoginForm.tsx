@@ -9,7 +9,7 @@ import LabelInput from '@/common/LabelInput';
 import Button from '@/common/Button/Button';
 import Link from 'next/link';
 import { appAxios } from '@/api/axios';
-import { updateToken, updateUser } from '@/store/features/user';
+import { signOut, updateToken, updateUser } from '@/store/features/user';
 import { sendCatchFeedback, sendFeedback } from '@/functions/feedback';
 import { UserType } from '@/types/user';
 
@@ -47,6 +47,9 @@ const LoginForm = () => {
 
       // Check if account is verified
       if (!accountInfo.isVerified) {
+        // Sign the user out so they can verify their email first
+        dispatch(signOut());
+
         // Send verification code
         sendFeedback('Verify your account to continue', 'info');
         await appAxios.post('/auth/resend-code', {
