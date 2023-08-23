@@ -3,11 +3,7 @@ import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
 import React from 'react';
 
 const DashboardBaseLayout = ({ children }: { children: React.ReactNode }) => {
-  return (
-    <PrivateRoute>
-      <DashboardLayout>{children}</DashboardLayout>
-    </PrivateRoute>
-  );
+  return <PrivateRoute>{children}</PrivateRoute>;
 };
 
 export default DashboardBaseLayout;

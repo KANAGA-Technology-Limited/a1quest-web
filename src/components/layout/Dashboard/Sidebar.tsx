@@ -10,12 +10,14 @@ const Sidebar = () => {
   const pathname = usePathname();
 
   return (
-    <aside className='bg-white shadow border-r-[#B8C0CC] w-[30vw] lg:w-[20vw] px-5 py-8 h-screen overflow-y-auto customized-scrollbar sticky top-0 rounded-br-[16px] hidden md:block'>
-      <Image
-        src={Logo}
-        alt='A1 Quest Logo'
-        className='max-w-[80%] h-auto object-contain mb-5'
-      />
+    <aside className='bg-white border-[0.6px] rounded-br-[16px] border-[#B8C0CC] w-[30vw] lg:w-[20vw] px-5 py-8 h-screen overflow-y-auto customized-scrollbar sticky top-0 hidden md:block'>
+      <Link href='/dashboard'>
+        <Image
+          src={Logo}
+          alt='A1 Quest Logo'
+          className='max-w-[80%] h-auto object-contain mb-5'
+        />
+      </Link>
       <nav className='flex flex-col gap-3'>
         {navLinks.map((link, index) =>
           link.type === 'divider' ? (

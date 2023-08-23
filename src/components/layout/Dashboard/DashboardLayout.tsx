@@ -12,13 +12,11 @@ const DashboardLayout = ({
 }) => {
   return (
     <div>
-      <div className='flex'>
+      <div className='flex bg-[#F3F3F3]'>
         <Sidebar />
         <div className='w-full'>
-          <Navbar />
-          <main className='min-h-screen w-full bg-[#F3F3F3] px-secondary py-10'>
-            {children}
-          </main>
+          <Navbar pageTitle={pageTitle} />
+          <main className='min-h-screen w-full px-secondary py-10'>{children}</main>
         </div>
       </div>
       <Footer />
