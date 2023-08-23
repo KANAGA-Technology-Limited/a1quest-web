@@ -22,6 +22,20 @@ export type UserType = {
   reportToGuardian: string;
   goal: number;
   isNotFreezed: boolean;
+  numOfReferrals: number;
+  referralActivity: [
+    {
+      userId: string;
+      fullName: string;
+      subscriptionAmount: number;
+      subscriptionPlan: string;
+      amountEarned: number;
+      createdAt: string;
+      _id: string;
+    }
+  ];
+  referralEarnings: number;
+  personalReferralCode: string;
 };
 
 export type UncertainObjectType = {

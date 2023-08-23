@@ -3,13 +3,11 @@
 import React from 'react';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { useAppDispatch } from '@/store/hooks';
 import { useRouter } from 'next/navigation';
 import LabelInput from '@/common/LabelInput';
 import Button from '@/common/Button/Button';
 import Link from 'next/link';
 import { appAxios } from '@/api/axios';
-import { updateToken } from '@/store/features/user';
 import { sendCatchFeedback, sendFeedback } from '@/functions/feedback';
 import Checkbox from '@/common/Checkbox';
 import YupPassword from 'yup-password';
@@ -17,7 +15,6 @@ import PasswordRules from '@/common/PasswordRules';
 YupPassword(yup); // extend yup
 
 const RegisterForm = () => {
-  const dispatch = useAppDispatch();
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
 
@@ -29,6 +26,7 @@ const RegisterForm = () => {
       lastName: '',
       acceptTermsAndConditions: false,
       userName: '',
+      referralCode: '',
     },
     onSubmit: () => {
       submitValues();
@@ -60,6 +58,7 @@ const RegisterForm = () => {
         lastName: formik.values.lastName,
         acceptTermsAndConditions: formik.values.acceptTermsAndConditions,
         userName: formik.values.userName,
+        referralCode: formik.values.referralCode,
       });
       sendFeedback(response.data?.message, 'success');
       formik.resetForm();
@@ -87,6 +86,12 @@ const RegisterForm = () => {
           name='email'
           label='Email'
           type='email'
+          className='mb-6'
+        />
+        <LabelInput
+          formik={formik}
+          name='referralCode'
+          label='Referral Code(if any)'
           className='mb-6'
         />
         <LabelInput
