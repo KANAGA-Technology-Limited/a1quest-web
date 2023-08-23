@@ -10,18 +10,22 @@ module.exports = {
     extend: {
       textColor: {
         primary: '#1D4ED8',
+        secondary: '#F0AC27',
         success: '#059669',
-        secondary: '#F3EDFC',
         error: '#EB4335',
       },
       backgroundColor: {
         primary: '#1D4ED8',
+        secondary: '#F0AC27',
         success: '#059669',
-        secondary: '#F3EDFC',
         error: '#EB4335',
       },
       borderColor: {
         primary: '#B8C0CC',
+      },
+      fill: {
+        primary: '#1D4ED8',
+        secondary: '#F0AC27',
       },
       fontFamily: {
         primary: ['var(--font-primary)'],
@@ -34,6 +38,7 @@ module.exports = {
       },
       outlineColor: {
         primary: '#1D4ED8',
+        secondary: '#F0AC27',
       },
     },
   },
