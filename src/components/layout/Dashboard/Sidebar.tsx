@@ -16,7 +16,7 @@ const Sidebar = () => {
         alt='A1 Quest Logo'
         className='max-w-[80%] h-auto object-contain mb-5'
       />
-      <div className='flex flex-col gap-3'>
+      <nav className='flex flex-col gap-3'>
         {navLinks.map((link, index) =>
           link.type === 'divider' ? (
             <div key={index} className='h-[1px] w-full bg-[#B8C0CC] my-3' />
@@ -42,7 +42,7 @@ const Sidebar = () => {
             </Link>
           )
         )}
-      </div>
+      </nav>
     </aside>
   );
 };

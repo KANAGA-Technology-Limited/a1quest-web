@@ -1,4 +1,3 @@
-import { StaticImageData } from 'next/image';
 import {
   AccountIcon,
   AssignmentIcon,
@@ -12,7 +11,7 @@ import {
   ReportIcon,
 } from './navIcons';
 
-interface Link {
+interface NavLinkType {
   label: string;
   href: string;
   icon?: JSX.Element;
@@ -20,7 +19,7 @@ interface Link {
   disabled?: boolean;
 }
 
-const navLinks: Link[] = [
+const navLinks: NavLinkType[] = [
   { label: 'Home', href: '/dashboard/', icon: <HomeIcon /> },
   { label: 'Leaderboard', href: '/dashboard/leaderboard/', icon: <LeaderboardIcon /> },
   {

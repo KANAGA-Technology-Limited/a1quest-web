@@ -12,13 +12,13 @@ module.exports = {
         primary: '#1D4ED8',
         secondary: '#F0AC27',
         success: '#059669',
-        error: '#EB4335',
+        error: '#EF4444',
       },
       backgroundColor: {
         primary: '#1D4ED8',
         secondary: '#F0AC27',
         success: '#059669',
-        error: '#EB4335',
+        error: '#EF4444',
       },
       borderColor: {
         primary: '#B8C0CC',
@@ -32,6 +32,7 @@ module.exports = {
       },
       padding: {
         primary: '5vw',
+        secondary: '3vw',
       },
       minHeight: {
         main: 'calc(100vh - 72px)',
