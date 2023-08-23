@@ -19,6 +19,7 @@ const LogoutModal = ({ open, onClose }: { open: boolean; onClose: () => void }) 
       setLoading(true);
       const response = await appAxios.get('/auth/logout');
       sendFeedback(response.data.message, 'success');
+      onClose();
     } catch (error) {
       sendCatchFeedback(error);
     } finally {

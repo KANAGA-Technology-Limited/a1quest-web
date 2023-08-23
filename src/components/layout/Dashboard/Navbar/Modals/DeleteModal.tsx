@@ -20,6 +20,7 @@ const DeleteModal = ({ open, onClose }: { open: boolean; onClose: () => void }) 
       setLoading(true);
       const response = await appAxios.delete('/auth/delete-account');
       sendFeedback(response.data.message, 'success');
+      onClose();
     } catch (error) {
       sendCatchFeedback(error);
     } finally {
