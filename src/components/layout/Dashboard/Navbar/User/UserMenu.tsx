@@ -21,7 +21,7 @@ const UserMenu = () => {
 
   return (
     <>
-      <nav className='rounded-lg absolute right-0 top-14 bg-white w-60 z-10 drop-shadow-md'>
+      <nav className='rounded-lg absolute right-0 top-12 bg-white w-60 z-10 drop-shadow-md'>
         <div className='p-6 pb-0 flex flex-col gap-[6px]'>
           <div className='flex items-center gap-2'>
             <div className='w-10 h-10 bg-secondary flex items-center justify-center rounded-full font-semibold text-sm text-black uppercase'>
