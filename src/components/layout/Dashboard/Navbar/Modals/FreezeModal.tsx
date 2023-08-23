@@ -19,9 +19,9 @@ const FreezeModal = ({ open, onClose }: { open: boolean; onClose: () => void }) 
     try {
       setLoading(true);
       const response = await appAxios.patch('/auth/freeze-account');
-      onClose();
       sendFeedback(response.data.message, 'success');
       dispatch(updateUser({ user: { ...user, isNotFreezed: false } as UserType }));
+      onClose();
     } catch (error) {
       sendCatchFeedback(error);
     } finally {
