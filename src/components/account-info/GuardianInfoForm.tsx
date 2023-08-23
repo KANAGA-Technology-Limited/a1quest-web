@@ -89,14 +89,20 @@ const GuardianInfoForm = () => {
           />
 
           <Dropdown
-            values={['weekly', 'monthly', 'quarterly', 'yearly'].map((item) => ({
-              label: item,
-              value: item,
+            values={[
+              { label: 'Weekly', value: 'weekly' },
+              { label: 'Monthly', value: 'monthly' },
+              { label: 'Quarterly', value: 'quarterly' },
+              { label: 'Yearly', value: 'yearly' },
+            ].map((item) => ({
+              label: item.label,
+              value: item.value,
             }))}
-            placeholder='How often do you want report sent to them'
+            placeholder='How often do you want a report sent to them'
             name='report'
             formik={formik}
             label='Report Interval'
+            className='!min-w-full w-full'
           />
         </div>
 

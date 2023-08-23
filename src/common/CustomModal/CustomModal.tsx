@@ -4,7 +4,7 @@ import styles from './style.module.css';
 
 ReactModal.setAppElement('#modals');
 
-const customStyles = {
+const customStyles: ReactModal.Styles = {
   content: {
     top: '50%',
     left: '50%',
@@ -15,13 +15,14 @@ const customStyles = {
     overflow: 'auto',
     width: '900px',
     maxWidth: '90vw',
-    paddingInline: '3vw',
-    paddingBottom: 35,
+    padding: 32,
+    paddingTop: 16,
     maxHeight: '95vh',
     backgroundColor: '#fff',
     color: '#000',
     transition: 'all 0.3s',
     border: 'none',
+    borderRadius: 12,
   },
   overlay: {
     backgroundColor: 'rgba(0, 0, 0, 0.9)',
@@ -32,23 +33,26 @@ const customStyles = {
 
 function CustomModal({
   title,
-  modalState,
-  closeModal,
+  isOpen,
+  onRequestClose,
   children,
   shouldCloseOnOverlayClick = true,
+  width,
+  ...rest
 }: {
   title?: string;
-  modalState: boolean;
-  closeModal: () => void;
+  isOpen: boolean;
+  onRequestClose: () => void;
   children: React.ReactNode;
   shouldCloseOnOverlayClick?: boolean;
-}) {
+  width?: string;
+} & ReactModal.Props) {
   React.useEffect(() => {
     // Check if modal is open and prevent body from scrolling
     if (typeof window !== 'undefined') {
       const body = document.body;
 
-      if (modalState) {
+      if (isOpen) {
         // Disable scroll
         body.style.overflow = 'hidden';
         body.style.height = '100vh';
@@ -57,23 +61,25 @@ function CustomModal({
         body.style.height = 'auto';
       }
     }
-  }, [modalState]);
+  }, [isOpen]);
 
   return (
     <ReactModal
-      isOpen={modalState}
-      onRequestClose={closeModal}
+      isOpen={isOpen}
+      onRequestClose={onRequestClose}
       // appElement={document.getElementById('modals')!}
       style={{
         // @ts-ignore
         content: {
           ...customStyles.content,
-          opacity: modalState ? 1 : 0,
+          width: width || customStyles.content?.width,
+          opacity: isOpen ? 1 : 0,
         },
         overlay: customStyles.overlay,
       }}
       closeTimeoutMS={500}
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
+      {...rest}
     >
       <div
         className={styles.modalTitleContainer}
@@ -83,7 +89,7 @@ function CustomModal({
       >
         {title && <h1>{title}</h1>}
         <button
-          onClick={closeModal}
+          onClick={onRequestClose}
           style={{
             backgroundColor: 'transparent',
           }}

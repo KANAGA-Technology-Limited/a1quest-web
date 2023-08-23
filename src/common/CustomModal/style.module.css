@@ -4,7 +4,7 @@
 	align-items: center;
 	justify-content: space-between;
 	flex-wrap: nowrap;
-	margin-bottom: 38px;
+	margin-bottom: 6px;
 }
 
 .modalTitleContainer>h1 {
@@ -14,9 +14,9 @@
 }
 
 .modalTitleContainer>button {
-	height: 30px;
-	width: 30px;
-	font-size: 25px;
+	height: 24px;
+	width: 24px;
+	font-size: 20px;
 	background-color: #fff;
 	border: none;
 	transition: color 0.5s;
