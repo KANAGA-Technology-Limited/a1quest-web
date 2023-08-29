@@ -26,10 +26,10 @@ kind: Service
 metadata:
   name: a1quest-web
 spec:
-  type: NodePort
+  type: LoadBalancer
   ports:
     - port: 80
-      nodePort: 31100
+      nodePort: 31500
       targetPort: 3000
   selector:
     app: web
