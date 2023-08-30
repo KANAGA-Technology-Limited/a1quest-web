@@ -13,8 +13,10 @@ const AccountInfoForm = ({
   containerClass,
   contentClass,
   destination = '/dashboard',
+  showCancel = false,
 }: {
   conductCheck?: boolean;
+  showCancel?: boolean;
   containerClass?: string;
   contentClass?: string;
   destination?: string;
@@ -31,13 +33,22 @@ const AccountInfoForm = ({
         <SchoolInfoForm conductCheck={conductCheck} />
         <GuardianInfoForm conductCheck={conductCheck} />
         <GoalInfoForm conductCheck={conductCheck} />
-        <Button
-          className='self-end'
-          disabled={!user?.school || !user.guardianFullName || !user.goal}
-          onClick={() => router.replace(destination)}
-        >
-          Continue
-        </Button>
+        <div className='self-end flex items-center gap-6'>
+          {showCancel && (
+            <Button
+              className='!bg-transparent !text-primary !w-fit'
+              onClick={() => router.back()}
+            >
+              Cancel
+            </Button>
+          )}
+          <Button
+            disabled={!user?.school || !user.guardianFullName || !user.goal}
+            onClick={() => router.replace(destination)}
+          >
+            Continue
+          </Button>
+        </div>
       </div>
     </div>
   );

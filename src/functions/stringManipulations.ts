@@ -1,7 +1,9 @@
 export const formatNumberToNaira = (number: number) => {
-  return new Intl.NumberFormat('en-NG', { style: 'currency', currency: 'NGN' }).format(
-    Number(number)
-  );
+  return new Intl.NumberFormat('en-NG', {
+    style: 'currency',
+    currency: 'NGN',
+    maximumFractionDigits: 0,
+  }).format(Number(number));
 };
 
 export const getNameInitials = (name: string) => {

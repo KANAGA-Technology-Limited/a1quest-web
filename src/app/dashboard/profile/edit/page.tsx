@@ -10,6 +10,7 @@ const EditProfilePage = () => {
         contentClass='!max-w-full'
         conductCheck={false}
         destination='/dashboard/profile'
+        showCancel
       />
     </DashboardLayout>
   );
