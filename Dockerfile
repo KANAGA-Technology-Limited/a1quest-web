@@ -9,13 +9,13 @@ COPY package*.json ./
 COPY yarn.lock ./
 
 # Install dependencies
-RUN npm install
+RUN yarn install
 
 # Copy the rest of the application code to the container
 COPY . .
 
 # Build the Next.js application
-RUN npm run build
+RUN yarn run build
 RUN npm install -g serve
 # Expose the port that the application will run on
 EXPOSE 3000
