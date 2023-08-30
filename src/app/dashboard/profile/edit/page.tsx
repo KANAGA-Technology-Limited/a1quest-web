@@ -1,9 +1,18 @@
-import React from 'react'
+import AccountInfoForm from '@/components/account-info/AccountInfoForm';
+import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
+import React from 'react';
 
 const EditProfilePage = () => {
   return (
-    <div>EditProfilePage</div>
-  )
-}
+    <DashboardLayout pageTitle='Edit Profile' showBackButton>
+      <AccountInfoForm
+        containerClass='!px-0 !py-0'
+        contentClass='!max-w-full'
+        conductCheck={false}
+        destination='/dashboard/profile'
+      />
+    </DashboardLayout>
+  );
+};
 
-export default EditProfilePage
+export default EditProfilePage;

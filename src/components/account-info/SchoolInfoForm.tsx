@@ -12,7 +12,7 @@ import Dropdown from '@/common/Dropdown';
 import { updateUser } from '@/store/features/user';
 import { CountryType, StateType } from '@/types/data';
 
-const SchoolInfoForm = () => {
+const SchoolInfoForm = ({ conductCheck }: { conductCheck?: boolean }) => {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [classes, setClasses] = useState<string[]>([]);
@@ -25,11 +25,11 @@ const SchoolInfoForm = () => {
 
   const formik = useFormik({
     initialValues: {
-      schoolName: '',
-      studentClass: '',
-      gender: '',
-      country: '',
-      state: '',
+      schoolName: user?.school || '',
+      studentClass: user?.classLevel || '',
+      gender: user?.gender || '',
+      country: user?.country || '',
+      state: user?.countryState || '',
     },
     onSubmit: () => {
       submitValues();
@@ -41,7 +41,9 @@ const SchoolInfoForm = () => {
       country: yup.string().required('Required'),
       state: yup.string().required('Required'),
     }),
+    enableReinitialize: true,
   });
+
   const submitValues = async () => {
     try {
       setLoading(true);
@@ -131,8 +133,8 @@ const SchoolInfoForm = () => {
     <div
       style={{
         // Check to know when to disable form
-        pointerEvents: user?.school ? 'none' : 'auto',
-        opacity: user?.school ? 0.5 : 1,
+        pointerEvents: conductCheck ? (user?.school ? 'none' : 'auto') : 'auto',
+        opacity: conductCheck ? (user?.school ? 0.5 : 1) : 1,
       }}
       className='w-full'
     >
@@ -153,6 +155,10 @@ const SchoolInfoForm = () => {
             label='Class'
             name='studentClass'
             formik={formik}
+            value={{
+              label: formik.values.studentClass,
+              value: formik.values.studentClass,
+            }}
             placeholder='Your class'
             isLoading={classLoading}
           />
@@ -161,6 +167,10 @@ const SchoolInfoForm = () => {
             label='Gender'
             name='gender'
             formik={formik}
+            value={{
+              label: formik.values.gender,
+              value: formik.values.gender,
+            }}
             placeholder='Gender'
           />
           <Dropdown
@@ -171,6 +181,10 @@ const SchoolInfoForm = () => {
             label='Country'
             name='country'
             formik={formik}
+            value={{
+              label: formik.values.country,
+              value: formik.values.country,
+            }}
             isLoading={countryLoading}
             placeholder='Country'
           />
@@ -182,6 +196,10 @@ const SchoolInfoForm = () => {
             label='State'
             name='state'
             formik={formik}
+            value={{
+              label: formik.values.state,
+              value: formik.values.state,
+            }}
             placeholder='State'
             isLoading={stateLoading}
             isDisabled={!formik.values.country}
