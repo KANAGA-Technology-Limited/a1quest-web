@@ -11,16 +11,16 @@ import { useFormik } from 'formik';
 import React from 'react';
 import * as yup from 'yup';
 
-const GuardianInfoForm = () => {
+const GuardianInfoForm = ({ conductCheck }: { conductCheck?: boolean }) => {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [loading, setLoading] = React.useState(false);
 
   const formik = useFormik({
     initialValues: {
-      parentName: '',
-      parentEmail: '',
-      report: '',
+      parentName: user?.guardianFullName || '',
+      parentEmail: user?.guardianEmail || '',
+      report: user?.reportToGuardian || '',
     },
     onSubmit: () => {
       submitValues();
@@ -30,6 +30,7 @@ const GuardianInfoForm = () => {
       parentEmail: yup.string().email('Enter a valid email').required('Required'),
       report: yup.string().required('Required'),
     }),
+    enableReinitialize: true,
   });
   const submitValues = async () => {
     try {
@@ -64,8 +65,12 @@ const GuardianInfoForm = () => {
     <div
       style={{
         // Check to know when to disable form
-        pointerEvents: !user?.school || user.guardianFullName ? 'none' : 'auto',
-        opacity: !user?.school || user.guardianFullName ? 0.3 : 1,
+        pointerEvents: conductCheck
+          ? !user?.school || user.guardianFullName
+            ? 'none'
+            : 'auto'
+          : 'auto',
+        opacity: conductCheck ? (!user?.school || user.guardianFullName ? 0.3 : 1) : 1,
       }}
       className='w-full'
     >
@@ -101,6 +106,10 @@ const GuardianInfoForm = () => {
             placeholder='How often do you want a report sent to them'
             name='report'
             formik={formik}
+            value={{
+              label: formik.values.report,
+              value: formik.values.report,
+            }}
             label='Report Interval'
             className='!min-w-full w-full'
           />

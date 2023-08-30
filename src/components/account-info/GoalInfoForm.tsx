@@ -10,14 +10,14 @@ import React from 'react';
 import * as yup from 'yup';
 import GoalCard from './GoalCard';
 
-const GoalInfoForm = () => {
+const GoalInfoForm = ({ conductCheck }: { conductCheck?: boolean }) => {
   const { user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
   const [loading, setLoading] = React.useState(false);
 
   const formik = useFormik({
     initialValues: {
-      goal: undefined,
+      goal: user?.goal || undefined,
     },
     onSubmit: () => {
       submitValues();
@@ -25,7 +25,9 @@ const GoalInfoForm = () => {
     validationSchema: yup.object({
       goal: yup.number().required('Required'),
     }),
+    enableReinitialize: true,
   });
+
   const submitValues = async () => {
     try {
       setLoading(true);
@@ -54,9 +56,16 @@ const GoalInfoForm = () => {
     <div
       style={{
         // Check to know when to disable form
-        pointerEvents:
-          !user?.guardianFullName || !user.school || user.goal ? 'none' : 'auto',
-        opacity: !user?.guardianFullName || !user.school || user.goal ? 0.3 : 1,
+        pointerEvents: conductCheck
+          ? !user?.guardianFullName || !user.school || user.goal
+            ? 'none'
+            : 'auto'
+          : 'auto',
+        opacity: conductCheck
+          ? !user?.guardianFullName || !user.school || user.goal
+            ? 0.3
+            : 1
+          : 1,
       }}
       className='w-full'
     >
