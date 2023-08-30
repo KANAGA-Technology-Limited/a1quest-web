@@ -22,6 +22,7 @@ module.exports = {
       },
       borderColor: {
         primary: '#B8C0CC',
+        main: '#1D4ED8',
       },
       fill: {
         primary: '#1D4ED8',
