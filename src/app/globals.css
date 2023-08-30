@@ -76,8 +76,8 @@ textarea::placeholder {
 
 .inputContainer>* input:focus,
 textarea:focus {
-  outline: 1px solid var(--primary);
-  border: 1px solid var(--primary);
+  outline: 1px solid var(--primary) !important;
+  border: 1px solid var(--primary) !important;
 }
 
 .inputError {
@@ -126,4 +126,23 @@ textarea:focus {
 /* Handle on hover */
 .customized-scrollbar::-webkit-scrollbar-thumb:hover {
   background: #999999;
+}
+
+@media (max-width:1000px) {
+  .inputContainer>label {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .inputContainer>label>span {
+    font-size: 16px;
+  }
+
+  .formContainer>h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-top: 39.87px;
+    /* margin-bottom: 9px; */
+  }
 }

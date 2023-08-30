@@ -4,3 +4,10 @@
   background-size: cover;
   background-position: center;
 }
+
+.help-bg {
+  background-image: url(../assets/backgrounds/help.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}

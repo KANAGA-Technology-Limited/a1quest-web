@@ -5,9 +5,13 @@ import Image from 'next/image';
 import navLinks from './navLinks';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import SmallBrandIcon from '@/assets/brand/logo-small.svg';
+import LevelBadge from '@/common/LevelBadge';
+import { useAppSelector } from '@/store/hooks';
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const { user } = useAppSelector((state) => state.user);
 
   return (
     <aside className='bg-white border-[0.6px] rounded-br-[16px] border-[#B8C0CC] w-[30vw] lg:w-[20vw] px-5 py-8 h-screen overflow-y-auto customized-scrollbar sticky top-0 hidden md:block'>
@@ -45,6 +49,23 @@ const Sidebar = () => {
           )
         )}
       </nav>
+      {/* User Info */}
+      {user && (
+        <div className='flex items-center gap-3 mt-6 flex-wrap'>
+          <Image
+            src={SmallBrandIcon}
+            className='w-10 h-10 rounded-full'
+            alt='Your avatar'
+          />
+          <div className='flex flex-col'>
+            <span className='text-[#06102B] text-sm font-semibold'>
+              {user?.firstName + ' ' + user?.lastName}
+            </span>
+            <span className='text-[#A0ABBB] text-xs'>@{user.userName}</span>
+          </div>
+          <LevelBadge containerClass='!text-[12px] !px-2 !py-1' />
+        </div>
+      )}
     </aside>
   );
 };
