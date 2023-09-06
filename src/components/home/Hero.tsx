@@ -8,7 +8,7 @@ const Hero = () => {
   return (
     <div className='px-primary flex justify-between gap-5 hero-bg flex-wrap lg:flex-nowrap items-end 3xl:items-center'>
       <div className='pt-[210px] flex items-center md:items-start flex-col gap-6 pb-[178px] xl:flex-[65%] 2xl:flex-[65%]'>
-        <h1 className='font-extrabold text-center md:text-left text-[60px] md:text-[72px] lg:text-[96px]'>
+        <h1 className='font-extrabold text-center md:text-left text-[60px] md:text-[72px] lg:text-[96px] font-secondary'>
           Unlock the <span className='text-primary'>magic</span> of{' '}
           <span className='math-bg'>maths</span>
         </h1>

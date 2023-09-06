@@ -33,6 +33,7 @@ module.exports = {
       },
       fontFamily: {
         primary: ['var(--font-primary)'],
+        secondary: ['var(--font-mulish)'],
       },
       padding: {
         primary: '5vw',

@@ -1,4 +1,5 @@
 import { Providers } from '@/store/provider';
+import { Mulish } from 'next/font/google';
 import './globals.css';
 import type { Metadata } from 'next';
 import ToastProvider from '@/common/ToastProvider';
@@ -12,10 +13,17 @@ export const metadata: Metadata = {
   description: 'Learn challenging maths topics and take tests to assess your knowledge',
 };
 
+const MulishFont = Mulish({
+  variable: '--font-mulish',
+  weight: ['600', '700', '800'],
+  display: 'swap',
+  subsets: ['latin'],
+});
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang='en'>
-      <body className={SFPro.className}>
+    <html lang='en' className={`${SFPro.className} ${MulishFont.className}`}>
+      <body>
         <Providers>
           <ToastProvider>
             <GetUserSession />
