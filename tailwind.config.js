@@ -46,6 +46,9 @@ module.exports = {
         primaryDark: '#0C1F56',
         secondary: '#F0AC27',
       },
+      screens: {
+        '3xl': '1920px',
+      },
     },
   },
   plugins: [],

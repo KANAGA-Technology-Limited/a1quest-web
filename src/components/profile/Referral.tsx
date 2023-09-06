@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import ReferralImage from '@/assets/backgrounds/referral.svg';
+import ReferralImage from '@/assets/backgrounds/referral.webp';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useAppSelector } from '@/store/hooks';
