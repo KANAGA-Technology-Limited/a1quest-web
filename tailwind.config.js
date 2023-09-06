@@ -33,6 +33,7 @@ module.exports = {
       },
       fontFamily: {
         primary: ['var(--font-primary)'],
+        secondary: ['var(--font-mulish)'],
       },
       padding: {
         primary: '5vw',
@@ -45,6 +46,9 @@ module.exports = {
         primary: '#1D4ED8',
         primaryDark: '#0C1F56',
         secondary: '#F0AC27',
+      },
+      screens: {
+        '3xl': '1920px',
       },
     },
   },

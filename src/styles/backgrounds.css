@@ -1,13 +1,20 @@
 .hero-bg {
-  /* background-image: url(../assets/images/home/hero.webp); */
+  background-image: url(../assets/backgrounds/hero-alt.svg);
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: bottom;
 }
 
 .help-bg {
   background-image: url(../assets/backgrounds/help.svg);
   background-repeat: no-repeat;
   background-size: cover;
+  background-position: center;
+}
+
+.math-bg {
+  background-image: url(../assets/backgrounds/math.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
   background-position: center;
 }
