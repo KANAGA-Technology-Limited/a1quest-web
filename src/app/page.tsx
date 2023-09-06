@@ -1,10 +1,11 @@
 import Button from '@/common/Button/Button';
+import AppLayout from '@/components/layout/AppLayout';
 import Link from 'next/link';
 
 export default function HomePage() {
   return (
-    <main className='flex flex-col h-screen w-screen gap-5 items-center justify-center'>
-      <h1>Hi, Welcome to A1Quest</h1>
+    <AppLayout>
+      {/* <h1>Hi, Welcome to A1Quest</h1>
       <div className='flex items-center justify-center gap-3'>
         <Link href='/auth/login'>
           <Button>Login</Button>
@@ -12,7 +13,8 @@ export default function HomePage() {
         <Link href='/auth/register'>
           <Button>Register</Button>
         </Link>
-      </div>
-    </main>
+      </div> */}
+      Home
+    </AppLayout>
   );
 }

@@ -5,6 +5,7 @@ import ToastProvider from '@/common/ToastProvider';
 import 'react-toastify/dist/ReactToastify.css';
 import 'reactjs-popup/dist/index.css';
 import { SFPro } from '@/assets/fonts';
+import GetUserSession from '@/components/layout/AppLayout/GetUserSession';
 
 export const metadata: Metadata = {
   title: 'A1Quest',
@@ -16,7 +17,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang='en'>
       <body className={SFPro.className}>
         <Providers>
-          <ToastProvider>{children}</ToastProvider>
+          <ToastProvider>
+            <GetUserSession />
+            {children}
+          </ToastProvider>
         </Providers>
         <div id='modals' />
       </body>

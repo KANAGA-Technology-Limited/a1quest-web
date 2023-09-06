@@ -14,7 +14,7 @@ const Sidebar = () => {
   const { user } = useAppSelector((state) => state.user);
 
   return (
-    <aside className='bg-white border-[0.6px] rounded-br-[16px] border-[#B8C0CC] w-[30vw] lg:w-[20vw] px-5 py-8 h-screen overflow-y-auto customized-scrollbar sticky top-0 hidden md:block'>
+    <aside className='bg-white border-[0.6px] rounded-br-[16px] border-[#B8C0CC] md:w-[35vw] lg:w-[30vw] xl:w-[20vw] px-5 py-8 h-screen overflow-y-auto customized-scrollbar sticky top-0 hidden md:flex md:flex-col'>
       <Link href='/dashboard'>
         <Image
           src={Logo}
@@ -51,7 +51,7 @@ const Sidebar = () => {
       </nav>
       {/* User Info */}
       {user && (
-        <div className='flex items-center gap-3 mt-6 flex-wrap'>
+        <div className='flex items-center gap-3 pt-6 flex-wrap mt-auto'>
           <Image
             src={SmallBrandIcon}
             className='w-10 h-10 rounded-full'
