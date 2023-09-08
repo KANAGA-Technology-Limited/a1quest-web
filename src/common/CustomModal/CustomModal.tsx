@@ -2,8 +2,6 @@ import React from 'react';
 import ReactModal from 'react-modal';
 import styles from './style.module.css';
 
-ReactModal.setAppElement('#modals');
-
 const customStyles: ReactModal.Styles = {
   content: {
     top: '50%',
@@ -51,6 +49,7 @@ function CustomModal({
     // Check if modal is open and prevent body from scrolling
     if (typeof window !== 'undefined') {
       const body = document.body;
+      ReactModal.setAppElement('#modals');
 
       if (isOpen) {
         // Disable scroll
