@@ -18,3 +18,10 @@
   background-size: contain;
   background-position: center;
 }
+
+.app-bg {
+  background-image: url(../assets/backgrounds/app.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;
+}
