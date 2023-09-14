@@ -1,8 +1,8 @@
-export const formatNumberToNaira = (number: number) => {
+export const formatNumberToNaira = (number: number, fractionDigits?: number) => {
   return new Intl.NumberFormat('en-NG', {
     style: 'currency',
     currency: 'NGN',
-    maximumFractionDigits: 0,
+    maximumFractionDigits: fractionDigits || 0,
   }).format(Number(number));
 };
 

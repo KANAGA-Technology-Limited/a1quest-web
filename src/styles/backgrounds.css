@@ -25,3 +25,10 @@
   background-size: cover;
   background-position: left;
 }
+
+.account-bg {
+  background-image: url(../assets/backgrounds/account.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: left;
+}

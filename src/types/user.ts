@@ -36,6 +36,8 @@ export type UserType = {
   ];
   referralEarnings: number;
   personalReferralCode: string;
+  profilePicture: string;
+  profilePictureId: string;
 };
 
 export type UncertainObjectType = {

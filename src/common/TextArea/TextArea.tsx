@@ -1,7 +1,7 @@
 import { HTMLProps, useState } from 'react';
 
 interface Props {
-  label: string;
+  label?: string;
   formik?: any;
   name: string;
   className?: string;
@@ -35,14 +35,17 @@ function TextArea({
     <div className={'inputContainer ' + className}>
       {useFormik ? (
         <>
-          <label
-            htmlFor={name}
-            className={` ${
-              formik.touched[name] && formik.errors[name] ? 'errorText' : ''
-            }`}
-          >
-            {label}
-          </label>
+          {label && (
+            <label
+              htmlFor={name}
+              className={` ${
+                formik.touched[name] && formik.errors[name] ? 'errorText' : ''
+              }`}
+            >
+              {label}
+            </label>
+          )}
+
           {hint && <div className='font-light text-xs italic text-gray-400'>{hint}</div>}
           <div className='relative'>
             <textarea
