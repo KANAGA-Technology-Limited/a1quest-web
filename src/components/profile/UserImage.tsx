@@ -32,8 +32,8 @@ const UserImage = () => {
         updateUser({
           user: {
             ...user,
-            photoUrl: response.data.data?.photoUrl,
-            photoId: response.data.data?.photoId,
+            profilePicture: response.data.data?.profilePicture,
+            profilePictureId: response.data.data?.profilePictureId,
           } as UserType,
         })
       );
@@ -53,7 +53,7 @@ const UserImage = () => {
         </div>
       ) : (
         <Image
-          src={user?.photoUrl || DefaultImage}
+          src={user?.profilePicture || DefaultImage}
           width={105}
           height={105}
           className='h-[105px] w-[105px] object-cover border-[2px] border-main rounded-full'

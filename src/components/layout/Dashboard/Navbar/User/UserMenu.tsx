@@ -10,6 +10,7 @@ import { sendCatchFeedback } from '@/functions/feedback';
 import { signOut } from '@/store/features/user';
 import { DeleteIcon, FreezeIcon, LogoutIcon } from '../../navIcons';
 import Modals from '../Modals';
+import Image from 'next/image';
 
 const UserMenu = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -24,9 +25,19 @@ const UserMenu = () => {
       <nav className='rounded-lg absolute right-0 top-12 bg-white w-60 z-10 drop-shadow-md max-h-screen overflow-y-auto'>
         <div className='p-6 pb-0 flex flex-col gap-[6px]'>
           <div className='flex items-center gap-2'>
-            <div className='w-10 h-10 bg-secondary flex items-center justify-center rounded-full font-semibold text-sm text-black uppercase'>
-              {getNameInitials(user?.firstName + ' ' + user?.lastName || '')}
-            </div>
+            {user?.profilePicture ? (
+              <Image
+                src={user.profilePicture || ''}
+                width={40}
+                height={40}
+                className='object-cover rounded-full w-10 h-10'
+                alt='User Image'
+              />
+            ) : (
+              <div className='w-10 h-10 bg-secondary flex items-center justify-center rounded-full font-semibold text-sm text-black uppercase'>
+                {getNameInitials(user?.firstName + ' ' + user?.lastName || '')}
+              </div>
+            )}
             <span className='text-lg font-medium'>
               {user?.firstName + ' ' + user?.lastName || ''}
             </span>

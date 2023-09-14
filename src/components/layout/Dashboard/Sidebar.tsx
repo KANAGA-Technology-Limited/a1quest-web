@@ -53,7 +53,7 @@ const Sidebar = () => {
       {user && (
         <div className='flex items-center gap-3 pt-6 flex-wrap mt-auto'>
           <Image
-            src={user.photoUrl || DefaultImage}
+            src={user.profilePicture || DefaultImage}
             width={40}
             height={40}
             className='w-10 h-10 rounded-full object-cover'

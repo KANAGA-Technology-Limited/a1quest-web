@@ -5,6 +5,7 @@ import autoAnimate from '@formkit/auto-animate';
 import ClickAwayListener from 'react-click-away-listener';
 import { getNameInitials } from '@/functions/stringManipulations';
 import UserMenu from './UserMenu';
+import Image from 'next/image';
 
 const User = () => {
   const [open, setOpen] = useState(false);
@@ -21,9 +22,19 @@ const User = () => {
       <div className='flex items-center' ref={parentRef}>
         <div className='relative'>
           <button onClick={() => setOpen(true)} className='flex items-center relative'>
-            <div className='w-10 h-10 bg-secondary flex items-center justify-center rounded-full font-semibold text-sm text-black uppercase'>
-              {getNameInitials(user?.firstName + ' ' + user?.lastName || '')}
-            </div>
+            {user?.profilePicture ? (
+              <Image
+                src={user.profilePicture || ''}
+                width={40}
+                height={40}
+                className='object-cover rounded-full w-10 h-10'
+                alt='User Image'
+              />
+            ) : (
+              <div className='w-10 h-10 bg-secondary flex items-center justify-center rounded-full font-semibold text-sm text-black uppercase'>
+                {getNameInitials(user?.firstName + ' ' + user?.lastName || '')}
+              </div>
+            )}
           </button>
           {open && <UserMenu />}
         </div>
