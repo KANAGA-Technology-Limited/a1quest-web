@@ -196,7 +196,7 @@ const AccountWallet = () => {
               </div>
             ))
           ) : (
-            <p className='text-xl text-center md:text-left'>
+            <p className='text-xl text-center md:text-left text-[#4B5768]'>
               You’re yet to make any wallet transactions
             </p>
           )}

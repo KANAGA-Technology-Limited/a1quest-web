@@ -21,3 +21,11 @@ export type TransactionType = {
   gateway: 'paystack' | 'flutterwave';
   createdAt: string;
 };
+
+export type SubscriptionType = {
+  _id: string;
+  subscriptionAmount: number;
+  subscriptionPlan: string;
+  duration: number;
+  createdAt: string;
+};
