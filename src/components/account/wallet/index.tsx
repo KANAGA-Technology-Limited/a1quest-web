@@ -15,6 +15,7 @@ import { TransactionType } from '@/types/data';
 import { sendCatchFeedback } from '@/functions/feedback';
 import { appAxios } from '@/api/axios';
 import LoadingIndicator from '@/common/LoadingIndicator';
+import Link from 'next/link';
 
 const AccountWallet = () => {
   const [balanceLoading, setBalanceLoading] = useState(false);
@@ -133,12 +134,14 @@ const AccountWallet = () => {
             <span>Send</span>
           </p>
         </Button>
-        <Button className='!text-[#A0731A] !bg-[#F7D593]'>
-          <p className='flex items-center gap-2'>
-            <Image src={subscribeIcon} alt='subscribe Image' />
-            <span>Subscribe</span>
-          </p>
-        </Button>
+        <a href='/dashboard/account/?tab=2'>
+          <Button className='!text-[#A0731A] !bg-[#F7D593]'>
+            <p className='flex items-center gap-2'>
+              <Image src={subscribeIcon} alt='subscribe Image' />
+              <span>Subscribe</span>
+            </p>
+          </Button>
+        </a>
       </div>
 
       {/* Transactions */}

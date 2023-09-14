@@ -13,7 +13,8 @@ const StyledTabs = ({ panels, tabs }: Props) => {
   const params = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
-  const [selectedTab, setSelectedTab] = useState<number>(Number(params.get('tab')) || 0);
+  const paramTab = params.get('tab');
+  const [selectedTab, setSelectedTab] = useState<number>(Number(paramTab) || 0);
   const parentRef = useRef(null);
 
   useEffect(() => {
@@ -31,6 +32,7 @@ const StyledTabs = ({ panels, tabs }: Props) => {
     },
     [params]
   );
+
   return (
     <div>
       {/* Tabs */}
