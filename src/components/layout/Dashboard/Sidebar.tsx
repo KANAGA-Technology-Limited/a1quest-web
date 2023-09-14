@@ -5,9 +5,9 @@ import Image from 'next/image';
 import navLinks from './navLinks';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import SmallBrandIcon from '@/assets/brand/logo-small.svg';
 import LevelBadge from '@/common/LevelBadge';
 import { useAppSelector } from '@/store/hooks';
+import DefaultImage from '@/assets/icons/profile/default-image.svg';
 
 const Sidebar = () => {
   const pathname = usePathname();
@@ -53,8 +53,10 @@ const Sidebar = () => {
       {user && (
         <div className='flex items-center gap-3 pt-6 flex-wrap mt-auto'>
           <Image
-            src={SmallBrandIcon}
-            className='w-10 h-10 rounded-full'
+            src={user.photoUrl || DefaultImage}
+            width={40}
+            height={40}
+            className='w-10 h-10 rounded-full object-cover'
             alt='Your avatar'
           />
           <div className='flex flex-col'>

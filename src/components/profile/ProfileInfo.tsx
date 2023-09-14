@@ -3,17 +3,15 @@
 import LevelBadge from '@/common/LevelBadge';
 import { useAppSelector } from '@/store/hooks';
 import React, { useRef } from 'react';
-import BrandLogo from '@/assets/brand/logo-small.svg';
 import Image from 'next/image';
-import ImageIcon from '@/assets/icons/profile/image.svg';
 import Button from '@/common/Button/Button';
 import shareIcon from '@/assets/icons/profile/share.svg';
 import editIcon from '@/assets/icons/profile/edit.svg';
 import Link from 'next/link';
+import UserImage from './UserImage';
 
 const ProfileInfo = () => {
   const { user } = useAppSelector((state) => state.user);
-  const avatarFileRef = useRef<HTMLInputElement>(null);
 
   if (!user) return null;
   return (
@@ -21,32 +19,7 @@ const ProfileInfo = () => {
       {/* Header */}
       <div className='flex items-center justify-between flex-wrap gap-10'>
         <div className='flex gap-[22px] items-center'>
-          <div className='relative'>
-            {/* Avatar */}
-            <Image
-              src={BrandLogo}
-              width={105}
-              height={105}
-              className='h-[105px] w-[105px] object-cover border-[2px] border-main rounded-full'
-              alt='Your Avatar'
-            />
-            <Image
-              src={ImageIcon}
-              alt='Upload Avatar'
-              className='absolute right-0 bottom-[14px] cursor-pointer'
-              onClick={() => avatarFileRef.current?.click()}
-            />
-            {/* Avatar Input when camera is clicked */}
-
-            <input
-              type='file'
-              name='userAvatar'
-              id='userAvatar'
-              ref={avatarFileRef}
-              onChange={() => alert('User Avatar Changed')}
-              hidden
-            />
-          </div>
+          <UserImage />
           <div className='flex flex-col'>
             <span className='font-extrabold text-2xl text-[#06102B]'>
               {user?.firstName + ' ' + user?.lastName}
@@ -73,7 +46,7 @@ const ProfileInfo = () => {
         </div>
       </div>
       {/* Contents */}
-      <div className='flex flex-col gap-6 mt-10'>
+      <div className='flex flex-col gap-6 mt-10 break-words md:break-normal'>
         <h2 className='text-xl text-[#242424] font-semibold'>Personal Details</h2>
         <div className='grid grid-cols-2 gap-5 pl-6 md:w-[30%] items-center'>
           <div className='flex flex-col gap-[21px] text-[#3C3C3C] text-lg font-semibold'>
@@ -92,7 +65,7 @@ const ProfileInfo = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col gap-6 mt-[60px]'>
+      <div className='flex flex-col gap-6 mt-[60px] break-words md:break-normal'>
         <h2 className='text-xl text-[#242424] font-semibold'>
           Parent/Guardian Information
         </h2>
@@ -109,7 +82,7 @@ const ProfileInfo = () => {
           </div>
         </div>
       </div>
-      <div className='flex flex-col gap-6 mt-[60px]'>
+      <div className='flex flex-col gap-6 mt-[60px] break-words md:break-normal'>
         <h2 className='text-xl text-[#242424] font-semibold'>Your Goal</h2>
         <div className='grid grid-cols-2 gap-5 pl-6 md:w-[30%] items-center'>
           <div className='flex flex-col gap-[21px] text-[#3C3C3C] text-lg font-semibold'>
