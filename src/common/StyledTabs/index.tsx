@@ -1,7 +1,8 @@
 'use client';
 
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import autoAnimate from '@formkit/auto-animate';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 interface Props {
   tabs: string[];
@@ -9,7 +10,10 @@ interface Props {
 }
 
 const StyledTabs = ({ panels, tabs }: Props) => {
-  const [selectedTab, setSelectedTab] = useState(0);
+  const params = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const [selectedTab, setSelectedTab] = useState<number>(Number(params.get('tab')) || 0);
   const parentRef = useRef(null);
 
   useEffect(() => {
@@ -17,6 +21,16 @@ const StyledTabs = ({ panels, tabs }: Props) => {
       autoAnimate(parentRef.current);
     }
   }, [parentRef]);
+
+  const createQueryString = useCallback(
+    (name: string, value: string | number) => {
+      const newParams = new URLSearchParams(params.toString());
+      newParams.set(name, value.toString());
+
+      return newParams.toString();
+    },
+    [params]
+  );
   return (
     <div>
       {/* Tabs */}
@@ -33,7 +47,10 @@ const StyledTabs = ({ panels, tabs }: Props) => {
             <div
               key={index}
               className='w-fit bg-transparent p-3 text-[#323A46] rounded-lg font-normal cursor-pointer duration-500 transition-colors'
-              onClick={() => setSelectedTab(index)}
+              onClick={() => {
+                setSelectedTab(index);
+                router.push(pathname + '?' + createQueryString('tab', index));
+              }}
             >
               {tab}
             </div>
