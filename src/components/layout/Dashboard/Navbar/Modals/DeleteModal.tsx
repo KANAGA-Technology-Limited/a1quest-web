@@ -9,16 +9,22 @@ import { useAppDispatch } from '@/store/hooks';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
 import { CrossIcon } from '../../navIcons';
+import TextArea from '@/common/TextArea/TextArea';
 
 const DeleteModal = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [reason, setReason] = useState('');
 
   const deleteAccount = async () => {
     try {
       setLoading(true);
-      const response = await appAxios.delete('/auth/delete-account');
+      const response = await appAxios.delete('/auth/delete-account', {
+        data: {
+          reason: reason || undefined,
+        },
+      });
       sendFeedback(response.data.message, 'success');
       onClose();
     } catch (error) {
@@ -44,6 +50,20 @@ const DeleteModal = ({ open, onClose }: { open: boolean; onClose: () => void }) 
           <span>Delete all your information</span>
         </li>
       </ul>
+      <p className='text-[#4B5768] my-4'>
+        We&apos;re sorry to see you go. Could you kindly share the reason for deleting
+        your account? Your feedback helps us improve our services(optional).
+      </p>
+      <TextArea
+        useFormik={false}
+        name='reason'
+        value={reason}
+        onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) =>
+          setReason(e.target.value)
+        }
+        rows={4}
+        placeholder='Please provide your feedback here...'
+      />
       <div className='flex justify-center mt-9'>
         <Button className='bg-red-600' onClick={() => deleteAccount()} loading={loading}>
           Delete
