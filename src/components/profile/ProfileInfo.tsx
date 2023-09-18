@@ -9,6 +9,7 @@ import shareIcon from '@/assets/icons/profile/share.svg';
 import editIcon from '@/assets/icons/profile/edit.svg';
 import Link from 'next/link';
 import UserImage from './UserImage';
+import { DeleteIcon } from '../layout/Dashboard/navIcons';
 
 const ProfileInfo = () => {
   const { user } = useAppSelector((state) => state.user);
@@ -92,6 +93,14 @@ const ProfileInfo = () => {
             <span>{user?.goal} minutes per day</span>
           </div>
         </div>
+      </div>
+      <div className='w-full flex justify-end mt-20'>
+        <Link href='/dashboard/profile/delete'>
+          <button className='flex items-center gap-2 cursor-pointer'>
+            <DeleteIcon />
+            <span>Delete Account</span>
+          </button>
+        </Link>
       </div>
     </>
   );
