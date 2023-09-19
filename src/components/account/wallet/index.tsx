@@ -16,6 +16,7 @@ import { sendCatchFeedback } from '@/functions/feedback';
 import { appAxios } from '@/api/axios';
 import LoadingIndicator from '@/common/LoadingIndicator';
 import Link from 'next/link';
+import AddMoneyModal from './AddMoneyModal';
 
 const AccountWallet = () => {
   const [balanceLoading, setBalanceLoading] = useState(false);
@@ -24,6 +25,7 @@ const AccountWallet = () => {
   const [transactions, setTransactions] = useState<TransactionType[] | undefined>(
     undefined
   );
+  const [addModalState, setAddModalState] = useState(false);
 
   useEffect(() => {
     const getWalletBalance = async () => {
@@ -122,7 +124,10 @@ const AccountWallet = () => {
 
       {/* Control Buttons */}
       <div className='flex justify-center md:justify-start gap-6 flex-wrap items-center w-full my-10'>
-        <Button className='!text-[#A0731A] !bg-[#F7D593]'>
+        <Button
+          className='!text-[#A0731A] !bg-[#F7D593]'
+          onClick={() => setAddModalState(true)}
+        >
           <p className='flex items-center gap-2'>
             <Image src={addIcon} alt='add Image' />
             <span>Add money</span>
@@ -202,6 +207,9 @@ const AccountWallet = () => {
           )}
         </div>
       )}
+
+      {/* Modals */}
+      <AddMoneyModal onClose={() => setAddModalState(false)} open={addModalState} />
     </>
   );
 };

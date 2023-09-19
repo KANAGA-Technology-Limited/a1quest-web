@@ -2519,6 +2519,11 @@ react-modal@^3.16.1:
     react-lifecycles-compat "^3.0.0"
     warning "^4.0.3"
 
+react-paystack@^4.0.3:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/react-paystack/-/react-paystack-4.0.3.tgz#f4a38966295e990a5bcbf587966083a5f0b5f5ab"
+  integrity sha512-ruu94Qrvi7QHK1axrHRShUebka68G3UyGIndVFPCjs3rddBOkLiorF6GJ98FW9lq4ov5M4adh4g03F6aOuJmRA==
+
 react-redux@^8.1.2:
   version "8.1.2"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-8.1.2.tgz#9076bbc6b60f746659ad6d51cb05de9c5e1e9188"
