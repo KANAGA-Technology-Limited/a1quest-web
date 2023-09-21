@@ -10,6 +10,7 @@ interface Props {
   useFormik?: boolean;
   showError?: boolean;
   error?: string;
+  blurFunction?: () => void;
 }
 
 function LabelInput({
@@ -19,6 +20,7 @@ function LabelInput({
   useFormik = true,
   showError = false,
   error,
+  blurFunction,
   ...rest
 }: Props & React.HTMLProps<HTMLInputElement>) {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -49,7 +51,10 @@ function LabelInput({
               id={name}
               value={formik.values[name]}
               onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
+              onBlur={(e) => {
+                formik.handleBlur(e);
+                blurFunction?.();
+              }}
               type={passwordShown ? 'text' : rest.type}
               className={formik.touched[name] && formik.errors[name] ? 'inputError' : ''}
             />
