@@ -13,6 +13,7 @@ function Dropdown({
   onChange,
   showError,
   error,
+  blurFunction,
   ...props
 }: {
   containerStyle?: React.CSSProperties;
@@ -27,6 +28,8 @@ function Dropdown({
   useFormik?: boolean;
   onChange?: (e: any) => void;
   className?: string;
+  blurFunction?: () => void;
+
   [x: string]: any;
 }) {
   return (
@@ -35,11 +38,12 @@ function Dropdown({
         <>
           <label
             htmlFor={name}
-            className={`text-lg font-medium ${
+            className={`text-sm text-[#64748B] font-medium flex gap-[2px] items-center ${
               formik.touched[name] && formik.errors[name] ? 'errorText' : ''
             }`}
           >
             {label}
+            {props.required && <span>*</span>}
           </label>
 
           <Select
@@ -52,6 +56,7 @@ function Dropdown({
             }}
             onBlur={() => {
               formik.setFieldTouched(name, true);
+              blurFunction?.();
             }}
             id={name}
             styles={{

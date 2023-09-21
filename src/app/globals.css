@@ -12,6 +12,7 @@
   --black: #000000;
   --accent: #F3EDFC;
   --accent-light: #DFBFF554;
+  --success: '#059669';
 }
 
 html,
@@ -33,21 +34,21 @@ body {
 }
 
 .inputContainer>label {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 500;
   display: flex;
   align-items: center;
   gap: 2px;
-  color: #000E24;
+  color: #64748B;
 }
 
 .inputContainer>label>span {
-  font-style: italic;
+
   font-weight: 500;
-  font-size: 18px;
+  font-size: 14px;
   /* identical to box height, or 200% */
 
-  color: #000E24;
+  color: #64748B;
 }
 
 .formContainer>h2 {

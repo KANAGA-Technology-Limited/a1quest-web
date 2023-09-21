@@ -17,6 +17,7 @@ import { appAxios } from '@/api/axios';
 import LoadingIndicator from '@/common/LoadingIndicator';
 import Link from 'next/link';
 import AddMoneyModal from './AddMoneyModal';
+import SendMoneyModal from './SendMoneyModal';
 
 const AccountWallet = () => {
   const [balanceLoading, setBalanceLoading] = useState(true);
@@ -26,6 +27,7 @@ const AccountWallet = () => {
     undefined
   );
   const [addModalState, setAddModalState] = useState(false);
+  const [sendModalState, setSendModalState] = useState(false);
 
   const getWalletBalance = async () => {
     try {
@@ -58,7 +60,9 @@ const AccountWallet = () => {
   const getTotalValues = useCallback(
     (type: 'credit' | 'debit') => {
       const value = transactions?.reduce(
-        (prev, curr) => prev + (curr.txnType === type ? curr.amount : 0),
+        (prev, curr) =>
+          prev +
+          (curr.txnType === type && curr.status === 'successful' ? curr.amount : 0),
         0
       );
       return value;
@@ -133,7 +137,10 @@ const AccountWallet = () => {
             <span>Add money</span>
           </p>
         </Button>
-        <Button className='!text-[#A0731A] !bg-[#F7D593]'>
+        <Button
+          className='!text-[#A0731A] !bg-[#F7D593]'
+          onClick={() => setSendModalState(true)}
+        >
           <p className='flex items-center gap-2'>
             <Image src={sendIcon} alt='send Image' />
             <span>Send</span>
@@ -212,6 +219,14 @@ const AccountWallet = () => {
       <AddMoneyModal
         onClose={() => setAddModalState(false)}
         open={addModalState}
+        refetch={() => {
+          getWalletBalance();
+          getTransactionHistory();
+        }}
+      />
+      <SendMoneyModal
+        onClose={() => setSendModalState(false)}
+        open={sendModalState}
         refetch={() => {
           getWalletBalance();
           getTransactionHistory();
