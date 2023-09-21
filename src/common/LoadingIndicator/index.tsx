@@ -10,7 +10,7 @@ const LoadingIndicator = ({ text, size = 30 }: { text?: string; size?: number })
           height: size,
           width: size,
         }}
-      ></div>
+      />
       {text && <span>{text}</span>}
     </div>
   );

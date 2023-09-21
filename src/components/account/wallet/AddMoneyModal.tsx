@@ -1,7 +1,7 @@
 'use client';
 import CustomModal from '@/common/CustomModal/CustomModal';
 import { usePaystackPayment } from 'react-paystack';
-import React from 'react';
+import React, { useEffect } from 'react';
 import AddIcon from '@/assets/icons/account/add-modal.svg';
 import Image from 'next/image';
 import { useFormik } from 'formik';
@@ -13,12 +13,22 @@ import Button from '@/common/Button/Button';
 import PaystackIcon from '@/assets/icons/payment/paystack.svg';
 import usePaystackHook from '@/hooks/usePaystackHook';
 
-const AddMoneyModal = ({ open, onClose }: { open: boolean; onClose: () => void }) => {
+const AddMoneyModal = ({
+  open,
+  onClose,
+  refetch,
+}: {
+  open: boolean;
+  onClose: () => void;
+  refetch: () => void;
+}) => {
   const [loading, setLoading] = React.useState(false);
-  const { initializePayment, onClose: closeFunction, onSuccess } = usePaystackHook({});
+  const [reference, setReference] = React.useState('');
+
   const formik = useFormik({
     initialValues: {
-      amount: '',
+      amount: 0,
+      paymentMethod: '',
     },
     onSubmit: () => {
       submitValues();
@@ -27,30 +37,44 @@ const AddMoneyModal = ({ open, onClose }: { open: boolean; onClose: () => void }
       amount: yup.number().typeError('Enter a valid number').required('Required'),
     }),
   });
+  const { beginPaystackTransaction } = usePaystackHook({
+    amount: formik.values.amount * 100, // converting to kobo
+    reference,
+    callback: () => {
+      onClose();
+      refetch();
+    },
+  });
 
   const submitValues = async () => {
+    if (!formik.values.paymentMethod) {
+      return sendFeedback('Please select a payment method', 'error');
+    }
     try {
-      // @ts-ignore
-      initializePayment(onSuccess, closeFunction);
+      setLoading(true);
+      const response = await appAxios.post('/payment/transaction', {
+        amount: formik.values.amount,
+        gateway: formik.values.paymentMethod,
+        txnName: 'Wallet Top Up',
+      });
 
-      console.log('came');
+      setReference(() => response.data.data);
     } catch (error) {
       sendCatchFeedback(error);
+    } finally {
+      setLoading(false);
     }
-
-    // try {
-    //   setLoading(true);
-    //   const response = await appAxios.post('/auth/login', {
-    //     amount: formik.values.amount,
-    //   });
-    //   sendFeedback(response.data?.message, 'success');
-    //   formik.resetForm();
-    // } catch (error: any) {
-    //   sendCatchFeedback(error);
-    // } finally {
-    //   setLoading(false);
-    // }
   };
+
+  useEffect(() => {
+    if (reference) {
+      if (formik.values.paymentMethod === 'paystack') {
+        return beginPaystackTransaction();
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reference]);
+
   return (
     <CustomModal
       isOpen={open}
@@ -75,10 +99,13 @@ const AddMoneyModal = ({ open, onClose }: { open: boolean; onClose: () => void }
         {[{ value: 'paystack', image: PaystackIcon }].map((item) => (
           <div
             key={item.value}
-            className='px-[26px] py-[13px] rounded-md border-[#D0D5DD] border-[2px] w-fit'
+            className='px-[26px] py-[13px] rounded-md border-[#D0D5DD] border-[2px] w-fit duration-300 cursor-pointer'
             style={{
-              boxShadow: ' 0px 4px 8px 0px rgba(0, 0, 0, 0.10)',
+              boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.10)',
+              borderColor:
+                formik.values.paymentMethod === item.value ? '#1D4ED8' : '#D0D5DD',
             }}
+            onClick={() => formik.setFieldValue('paymentMethod', item.value)}
           >
             <Image src={item.image} alt='Payment' />
           </div>

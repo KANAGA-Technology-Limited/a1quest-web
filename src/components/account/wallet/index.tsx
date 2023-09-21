@@ -19,38 +19,38 @@ import Link from 'next/link';
 import AddMoneyModal from './AddMoneyModal';
 
 const AccountWallet = () => {
-  const [balanceLoading, setBalanceLoading] = useState(false);
+  const [balanceLoading, setBalanceLoading] = useState(true);
   const [walletBalance, setWalletBalance] = useState<number | undefined>(undefined);
-  const [transactionsLoading, setTransactionsLoading] = useState(false);
+  const [transactionsLoading, setTransactionsLoading] = useState(true);
   const [transactions, setTransactions] = useState<TransactionType[] | undefined>(
     undefined
   );
   const [addModalState, setAddModalState] = useState(false);
 
-  useEffect(() => {
-    const getWalletBalance = async () => {
-      try {
-        setBalanceLoading(true);
-        const response = await appAxios.get('/payment/wallet-balance');
-        setWalletBalance(response.data.data);
-      } catch (error) {
-        sendCatchFeedback(error);
-      } finally {
-        setBalanceLoading(false);
-      }
-    };
-    const getTransactionHistory = async () => {
-      try {
-        setTransactionsLoading(true);
-        const response = await appAxios.get('/payment/transaction-history');
-        setTransactions(response.data.data);
-      } catch (error) {
-        sendCatchFeedback(error);
-      } finally {
-        setTransactionsLoading(false);
-      }
-    };
+  const getWalletBalance = async () => {
+    try {
+      setBalanceLoading(true);
+      const response = await appAxios.get('/payment/wallet-balance');
+      setWalletBalance(response.data.data);
+    } catch (error) {
+      sendCatchFeedback(error);
+    } finally {
+      setBalanceLoading(false);
+    }
+  };
+  const getTransactionHistory = async () => {
+    try {
+      setTransactionsLoading(true);
+      const response = await appAxios.get('/payment/transaction-history');
+      setTransactions(response.data.data);
+    } catch (error) {
+      sendCatchFeedback(error);
+    } finally {
+      setTransactionsLoading(false);
+    }
+  };
 
+  useEffect(() => {
     getWalletBalance();
     getTransactionHistory();
   }, []);
@@ -91,13 +91,13 @@ const AccountWallet = () => {
       {/* Balance Info */}
       <div className='account-bg w-full flex flex-col items-center md:items-start px-5 md:px-10 lg:px-[60px] text-white text-center md:text-left rounded-lg py-12'>
         <h3 className='font-semibold text-lg md:text-xl'>Current Balance</h3>
-        <p className='text-[26px] font-extrabold md:text-[32px] mt-[14px] mb-6'>
+        <div className='text-[26px] font-extrabold md:text-[32px] mt-[14px] mb-6'>
           {balanceLoading ? (
             <LoadingIndicator size={20} />
           ) : (
             formatNumberToNaira(walletBalance || 0)
           )}
-        </p>
+        </div>
         <div className='flex item-center gap-10 justify-center md:justify-start font-semibold'>
           <div className='flex item-center gap-3'>
             <Image src={creditIcon} alt='Credit' />
@@ -209,7 +209,14 @@ const AccountWallet = () => {
       )}
 
       {/* Modals */}
-      <AddMoneyModal onClose={() => setAddModalState(false)} open={addModalState} />
+      <AddMoneyModal
+        onClose={() => setAddModalState(false)}
+        open={addModalState}
+        refetch={() => {
+          getWalletBalance();
+          getTransactionHistory();
+        }}
+      />
     </>
   );
 };
