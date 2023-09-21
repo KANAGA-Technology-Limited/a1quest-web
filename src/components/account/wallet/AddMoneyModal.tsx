@@ -1,6 +1,5 @@
 'use client';
 import CustomModal from '@/common/CustomModal/CustomModal';
-import { usePaystackPayment } from 'react-paystack';
 import React, { useEffect } from 'react';
 import AddIcon from '@/assets/icons/account/add-modal.svg';
 import Image from 'next/image';
@@ -11,7 +10,9 @@ import { sendCatchFeedback, sendFeedback } from '@/functions/feedback';
 import LabelInput from '@/common/LabelInput';
 import Button from '@/common/Button/Button';
 import PaystackIcon from '@/assets/icons/payment/paystack.svg';
+import FlutterwaveIcon from '@/assets/icons/payment/flutterwave.svg';
 import usePaystackHook from '@/hooks/usePaystackHook';
+import useFlutterwaveHook from '@/hooks/useFlutterwaveHook';
 
 const AddMoneyModal = ({
   open,
@@ -37,6 +38,7 @@ const AddMoneyModal = ({
       amount: yup.number().typeError('Enter a valid number').required('Required'),
     }),
   });
+
   const { beginPaystackTransaction } = usePaystackHook({
     amount: formik.values.amount * 100, // converting to kobo
     reference,
@@ -44,6 +46,16 @@ const AddMoneyModal = ({
       onClose();
       refetch();
     },
+  });
+
+  const { beginFlutterwaveTransaction } = useFlutterwaveHook({
+    amount: formik.values.amount,
+    reference,
+    callback: () => {
+      onClose();
+      refetch();
+    },
+    description: 'Wallet Top Up',
   });
 
   const submitValues = async () => {
@@ -69,7 +81,10 @@ const AddMoneyModal = ({
   useEffect(() => {
     if (reference) {
       if (formik.values.paymentMethod === 'paystack') {
-        return beginPaystackTransaction();
+        beginPaystackTransaction();
+      }
+      if (formik.values.paymentMethod === 'flutterwave') {
+        beginFlutterwaveTransaction();
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -96,20 +111,26 @@ const AddMoneyModal = ({
         <p className='text-[#4B5768] text-sm mb-[23px]'>
           How would you like to top up your wallet?
         </p>
-        {[{ value: 'paystack', image: PaystackIcon }].map((item) => (
-          <div
-            key={item.value}
-            className='px-[26px] py-[13px] rounded-md border-[#D0D5DD] border-[2px] w-fit duration-300 cursor-pointer'
-            style={{
-              boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.10)',
-              borderColor:
-                formik.values.paymentMethod === item.value ? '#1D4ED8' : '#D0D5DD',
-            }}
-            onClick={() => formik.setFieldValue('paymentMethod', item.value)}
-          >
-            <Image src={item.image} alt='Payment' />
-          </div>
-        ))}
+        <div className='flex gap-4 items-center'>
+          {[
+            { value: 'paystack', image: PaystackIcon },
+            { value: 'flutterwave', image: FlutterwaveIcon },
+          ].map((item) => (
+            <div
+              key={item.value}
+              className='px-[26px] py-[13px] rounded-md border-[#D0D5DD] border-[2px] w-fit duration-300 cursor-pointer'
+              style={{
+                boxShadow: '0px 4px 8px 0px rgba(0, 0, 0, 0.10)',
+                borderColor:
+                  formik.values.paymentMethod === item.value ? '#1D4ED8' : '#D0D5DD',
+              }}
+              onClick={() => formik.setFieldValue('paymentMethod', item.value)}
+            >
+              <Image src={item.image} alt='Payment' />
+            </div>
+          ))}
+        </div>
+
         <div className='flex justify-end mt-[43px]'>
           <Button type='submit' loading={loading}>
             Fund wallet
