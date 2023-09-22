@@ -32,7 +32,7 @@ const useFlutterwaveHook = ({
     customizations: {
       title: 'A1Quest',
       description: description || '',
-      logo: '/logo-small.svg', // TODO: add cloudinary link for brand logo
+      logo: 'https://res.cloudinary.com/dtnrisb98/image/upload/v1695371317/brand/a1quest_logo-small_png.png',
     },
   };
 
