@@ -32,3 +32,10 @@
   background-size: cover;
   background-position: left;
 }
+
+.subscribe-bg {
+  background-image: url(../assets/backgrounds/subscribe.webp);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
