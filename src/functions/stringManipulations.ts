@@ -16,3 +16,23 @@ export const getNameInitials = (name: string) => {
 export const splitCamelCase = (str: string) => {
   return str.replace(/([a-z])([A-Z])/g, '$1 $2');
 };
+
+export const getDateDifferenceInDays = (date2: string, date1: string) => {
+  const convertedDate2 = new Date(date2);
+  const convertedDate1 = new Date(date1);
+
+  const millisecondsInOneDay = 1000 * 60 * 60 * 24;
+  // Discard the time and time-zone information.
+  const utc2 = Date.UTC(
+    convertedDate2.getFullYear(),
+    convertedDate2.getMonth(),
+    convertedDate2.getDate()
+  );
+  const utc1 = Date.UTC(
+    convertedDate1.getFullYear(),
+    convertedDate1.getMonth(),
+    convertedDate1.getDate()
+  );
+
+  return Math.floor((utc2 - utc1) / millisecondsInOneDay);
+};

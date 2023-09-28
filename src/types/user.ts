@@ -38,6 +38,18 @@ export type UserType = {
   personalReferralCode: string;
   profilePicture: string;
   profilePictureId: string;
+  createdAt: string;
+  role: string;
+  subscription?: {
+    plan: string;
+    active: boolean;
+    running: boolean;
+    settledReferrer: boolean;
+    gateway: 'paystack' | 'flutterwave';
+    lastPaymentDate: string;
+    nextPaymentDate: string;
+    token: string;
+  };
 };
 
 export type UncertainObjectType = {
