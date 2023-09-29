@@ -50,7 +50,8 @@ const TimeCard = ({ plan }: { plan: SubscriptionType | undefined }) => {
           {' '}
           {/* Date Difference */}
           <p className='mb-2 text-[#F7F8F9] font-medium'>
-            {dateDifference} of {plan.duration} days
+            {dateDifference} of{' '}
+            {dateDifference > plan.duration ? dateDifference : plan.duration} days
           </p>
           <div className='w-[70%] rounded bg-[#FCEED4] max-w-full h-2'>
             <div
