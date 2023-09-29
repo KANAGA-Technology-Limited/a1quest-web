@@ -22,7 +22,11 @@ const TimeCard = ({ plan }: { plan: SubscriptionType | undefined }) => {
   );
 
   const percentageDifference = useMemo(
-    () => (dateDifference / (plan?.duration || 1)) * 100,
+    () =>
+      (dateDifference /
+        ((dateDifference > (plan?.duration || 1) ? dateDifference : plan?.duration) ||
+          1)) *
+      100,
     [plan, dateDifference]
   );
 
