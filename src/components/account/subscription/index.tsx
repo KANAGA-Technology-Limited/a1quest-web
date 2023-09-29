@@ -20,7 +20,7 @@ const AccountSubscription = () => {
   if (!user) return null;
   return (
     <>
-      {user?.subscription?.plan ? (
+      {user?.subscription?.active ? (
         <ExistingSubscription />
       ) : (
         <>
