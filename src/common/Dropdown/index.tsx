@@ -52,7 +52,7 @@ function Dropdown({
               value: value.value,
             }))}
             onChange={(e: any) => {
-              formik.setFieldValue(name, e ? e.value : undefined);
+              formik.setFieldValue(name, e ? (isMulti ? e : e.value) : undefined);
             }}
             onBlur={() => {
               formik.setFieldTouched(name, true);
@@ -76,6 +76,7 @@ function Dropdown({
               placeholder: (provided) => ({
                 ...provided,
                 color: '#B8C0CC',
+                textAlign: 'left',
               }),
             }}
             isClearable
