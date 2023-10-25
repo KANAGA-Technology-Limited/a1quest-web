@@ -1,3 +1,5 @@
+import MailText from '@/common/MailText';
+
 /* eslint-disable react/no-unescaped-entities */
 interface PolicyType {
   title: string;
@@ -44,15 +46,7 @@ export const Policies: PolicyType[] = [
       <>
         By using or accessing our Services, you agree to the you agree to the terms and
         conditions of this Privacy Policy. You have the option of withdrawing your consent
-        at any time by contacting us at{' '}
-        <a
-          href='mailto:kanagatech.it@gmail.com'
-          target='_blank'
-          className='text-primary underline underline-offset-2'
-        >
-          kanagatech.it@gmail.com
-        </a>
-        .
+        at any time by contacting us at <MailText />.
       </>
     ),
   },
@@ -66,7 +60,7 @@ export const Policies: PolicyType[] = [
     content: (
       <>
         We collect your personal information for the following reasons:
-        <ol type='a'>
+        <ol type='a' className='list-[lower-alpha] list-inside'>
           <li>To provide you with our Services.</li>
           <li>To create and manage your account.</li>
           <li>For user authentication.</li>
@@ -117,7 +111,7 @@ export const Policies: PolicyType[] = [
     content: (
       <>
         Your personal information will be processed on the following lawful grounds:
-        <ol type='a'>
+        <ol type='a' className='list-[lower-alpha] list-inside'>
           <li>
             You have given consent to the processing of your personal information for one
             or more specific purposes.
@@ -171,7 +165,7 @@ export const Policies: PolicyType[] = [
         certification mechanisms that provides adequate level of protection. If we need to
         transfer your personal information to a country without adequate data protection
         laws, we will do so under the following conditions:
-        <ol type='a'>
+        <ol type='a' className='list-[lower-alpha] list-inside'>
           <li>If you agree to the transfer.</li>
           <li>
             If the transfer is necessary for a contract between you and Kanaga, or for
@@ -242,7 +236,7 @@ export const Policies: PolicyType[] = [
     title: 'Information automatically collected from your computer',
     content: (
       <>
-        <ol type='a'>
+        <ol type='a' className='list-[lower-alpha] list-inside'>
           <li>
             Log files/IP addresses: When you visit the Site, our web server automatically
             records your IP address. This IP address is not linked to any of your personal
@@ -285,7 +279,7 @@ export const Policies: PolicyType[] = [
         You are entitled to a confirmation from us if we are storing or processing your
         personal information. If your personal information is being stored or processed by
         us, you can exercise the following rights:
-        <ol type='a'>
+        <ol type='a' className='list-[lower-alpha] list-inside'>
           <li>
             To request information about the processing of your personal data, such as the
             purposes of processing, categories of personal information concerned,
@@ -343,13 +337,7 @@ export const Policies: PolicyType[] = [
         or your privacy rights have been violated or if your access to our services have
         been compromised, to enable us to take the necessary steps towards ensuring the
         security of your personal data. All complaints should be emailed to
-        <a
-          href='mailto:kanagatech.it@gmail.com'
-          target='_blank'
-          className='text-primary underline underline-offset-2'
-        >
-          kanagatech.it@gmail.com
-        </a>
+        <MailText />
         . Please note that you can also file a complaint at Nigeria Data Protection
         Commission.
         <br />
@@ -359,14 +347,7 @@ export const Policies: PolicyType[] = [
         redress in a court of competent jurisdiction. We would, however, appreciate the
         chance to deal with your concerns before you approach the data protection
         authorities. Kindly contact us in the first instance by sending an email to
-        <a
-          href='mailto:kanagatech.it@gmail.com'
-          target='_blank'
-          className='text-primary underline underline-offset-2'
-        >
-          kanagatech.it@gmail.com
-        </a>
-        .
+        <MailText />.
       </>
     ),
   },
@@ -391,15 +372,7 @@ export const Policies: PolicyType[] = [
     content: (
       <>
         If you have any questions regarding this Policy or how we handle your personal
-        information, please email us at{' '}
-        <a
-          href='mailto:kanagatech.it@gmail.com'
-          target='_blank'
-          className='text-primary underline underline-offset-2'
-        >
-          kanagatech.it@gmail.com
-        </a>
-        .
+        information, please email us at <MailText />.
       </>
     ),
   },

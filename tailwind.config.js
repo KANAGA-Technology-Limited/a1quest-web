@@ -50,6 +50,9 @@ module.exports = {
       screens: {
         '3xl': '1920px',
       },
+      listStyleType: {
+        'lower-alpha': 'lower-alpha',
+      },
     },
   },
   plugins: [],
