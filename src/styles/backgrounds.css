@@ -39,3 +39,10 @@
   background-size: cover;
   background-position: center;
 }
+
+.legal-header-bg {
+  background-image: url(../assets/backgrounds/legal-header.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
