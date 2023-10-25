@@ -11,7 +11,7 @@ import { useAppSelector } from '@/store/hooks';
 import User from '../Dashboard/Navbar/User';
 import MobileMenu from './MobileMenu';
 
-const Navbar = () => {
+const Navbar = ({ staticHeader = false }: { staticHeader?: boolean }) => {
   const [isScrolled, setIsScrolled] = React.useState(false);
   const { user } = useAppSelector((state) => state.user);
 
@@ -38,7 +38,8 @@ const Navbar = () => {
     <nav
       className='w-full fixed top-0 left-0 right-0 h-20 duration-500 transition-colors z-20'
       style={{
-        backgroundColor: isScrolled ? 'white' : 'transparent',
+        backgroundColor: staticHeader ? 'white' : isScrolled ? 'white' : 'transparent',
+        position: staticHeader ? 'static' : 'fixed',
       }}
     >
       <div className='w-full items-center flex justify-between px-primary h-full'>

@@ -32,6 +32,10 @@ export const footerLinks: LinkType[] = [
     href: '/privacy-policy',
   },
   {
+    name: 'Cookie Policy',
+    href: '/cookie-policy',
+  },
+  {
     name: 'Terms of Use',
     href: '/terms',
   },
