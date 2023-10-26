@@ -1,8 +1,30 @@
-import React from 'react';
-import pricing from './data';
+'use client';
+import React, { useEffect, useState } from 'react';
 import PricingCard from './PricingCard';
+import { SubscriptionType } from '@/types/data';
+import { appAxios } from '@/api/axios';
+import { sendCatchFeedback } from '@/functions/feedback';
+import LoadingIndicator from '@/common/LoadingIndicator';
 
 const Pricing = () => {
+  const [loading, setLoading] = useState(true);
+  const [plans, setPlans] = useState<SubscriptionType[] | undefined>(undefined);
+
+  useEffect(() => {
+    const getPlans = async () => {
+      try {
+        setLoading(true);
+        const response = await appAxios.get('/payment/fetch-subscription-plans');
+        setPlans(response.data.data);
+      } catch (error) {
+        sendCatchFeedback(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    getPlans();
+  }, []);
   return (
     <section
       id='pricing'
@@ -15,9 +37,13 @@ const Pricing = () => {
         Straight to the point pricing plans. No surprises or hidden charges. All is clear.
       </p>
       <div className='flex items-center justify-center gap-6 flex-wrap'>
-        {pricing.map((item) => (
-          <PricingCard key={item.title} pricing={item} />
-        ))}
+        {loading ? (
+          <LoadingIndicator />
+        ) : plans && plans.length > 0 ? (
+          plans.map((item) => <PricingCard key={item._id} pricing={item} />)
+        ) : (
+          <p className='text-sm text-white'>No plan found</p>
+        )}
       </div>
     </section>
   );
