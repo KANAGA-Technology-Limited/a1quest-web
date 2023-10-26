@@ -36,7 +36,7 @@ const Navbar = ({ staticHeader = false }: { staticHeader?: boolean }) => {
 
   return (
     <nav
-      className='w-full fixed top-0 left-0 right-0 h-20 duration-500 transition-colors z-20'
+      className='w-full fixed top-0 left-0 right-0 h-20 duration-200 transition-colors z-20'
       style={{
         backgroundColor: staticHeader ? 'white' : isScrolled ? 'white' : 'transparent',
         position: staticHeader ? 'static' : 'fixed',
