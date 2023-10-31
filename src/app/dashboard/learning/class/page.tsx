@@ -3,7 +3,7 @@ import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
 import ClassTopics from '@/components/learning/ClassTopics';
 import React from 'react';
 
-const LearningClass = () => {
+const LearningClassPage = () => {
   return (
     <DashboardLayout>
       <BackComponent />
@@ -12,4 +12,4 @@ const LearningClass = () => {
   );
 };
 
-export default LearningClass;
+export default LearningClassPage;

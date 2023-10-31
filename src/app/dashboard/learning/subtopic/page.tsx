@@ -4,7 +4,7 @@ import SubTopicDetail from '@/components/learning/SubTopicDetail';
 import LessonList from '@/components/learning/LessonList';
 import React from 'react';
 
-const LearningSubtopics = () => {
+const LearningSubtopicsPage = () => {
   return (
     <DashboardLayout>
       <BackComponent />
@@ -14,4 +14,4 @@ const LearningSubtopics = () => {
   );
 };
 
-export default LearningSubtopics;
+export default LearningSubtopicsPage;
