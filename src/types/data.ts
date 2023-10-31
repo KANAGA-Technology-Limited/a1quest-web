@@ -29,3 +29,49 @@ export type SubscriptionType = {
   duration: number;
   createdAt: string;
 };
+
+export type ClassType = {
+  _id: string;
+  name: string;
+};
+
+export type TopicType = {
+  _id: string;
+  title: string;
+  description: string;
+  class_id: string;
+  sub_topics: string[];
+  created_by: string;
+  last_updated_by: string;
+  creation_date: string;
+  last_update_date: string;
+};
+
+export type SubTopicType = {
+  _id: string;
+  title: string;
+  description: string;
+  topic_id: string;
+  created_by: string;
+  last_updated_by: string;
+  creation_date: string;
+  last_update_date: string;
+};
+
+export type LessonType = {
+  _id: string;
+  title: string;
+  description: string;
+  topic_id: string;
+  sub_topic_id: string;
+  created_by: string;
+  last_updated_by: string;
+  creation_date: string;
+  last_update_date: string;
+  document_identifier: string;
+  document_url: string;
+  audio_identifier: string;
+  audio_url: string;
+  video_identifier: string;
+  video_url: string;
+};
