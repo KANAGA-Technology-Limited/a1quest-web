@@ -65,7 +65,7 @@ const LoginForm = () => {
 
       sendFeedback(response.data?.message, 'success');
       formik.resetForm();
-      return router.push('/dashboard');
+      return router.push('/dashboard/home');
     } catch (error: any) {
       sendCatchFeedback(error);
     } finally {

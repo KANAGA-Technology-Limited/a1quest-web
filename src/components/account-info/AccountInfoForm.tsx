@@ -12,7 +12,7 @@ const AccountInfoForm = ({
   conductCheck = true,
   containerClass,
   contentClass,
-  destination = '/dashboard',
+  destination = '/dashboard/home',
   showCancel = false,
 }: {
   conductCheck?: boolean;

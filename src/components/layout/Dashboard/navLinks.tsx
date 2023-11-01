@@ -20,7 +20,7 @@ interface NavLinkType {
 }
 
 const navLinks: NavLinkType[] = [
-  { label: 'Home', href: '/dashboard/', icon: <HomeIcon /> },
+  { label: 'Home', href: '/dashboard/home/', icon: <HomeIcon /> },
   { label: 'Leaderboard', href: '/dashboard/leaderboard/', icon: <LeaderboardIcon /> },
   {
     label: 'Report & Analytics',

@@ -47,7 +47,7 @@ const UserMenu = () => {
           </Link>
         </div>
         <div className='h-[0.6px] w-full bg-[#D0D5DD] mt-2 mb-5' />
-        <ul className='text-[#64748B] text-sm flex flex-col gap-5 md:gap-3 px-6 md:hidden'>
+        <ul className='text-[#64748B] text-sm flex flex-col gap-5 md:gap-3 px-6'>
           {navLinks
             .filter((item) => item.type !== 'divider')
             .map((item) => (
@@ -59,7 +59,7 @@ const UserMenu = () => {
               </Link>
             ))}
         </ul>
-        <div className='h-[0.6px] w-full bg-[#D0D5DD] my-5 md:hidden' />
+        <div className='h-[0.6px] w-full bg-[#D0D5DD] my-5' />
         <div className='text-[#64748B] text-sm flex flex-col gap-5 md:gap-3 px-6'>
           <button
             className='flex items-center gap-2 cursor-pointer'

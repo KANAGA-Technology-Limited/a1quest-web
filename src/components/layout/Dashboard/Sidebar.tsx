@@ -1,5 +1,5 @@
 'use client';
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import Logo from '@/assets/brand/logo.svg';
 import Image from 'next/image';
 import navLinks from './navLinks';
@@ -15,7 +15,7 @@ const Sidebar = () => {
 
   return (
     <aside className='bg-white border-[0.6px] rounded-br-[16px] border-[#B8C0CC] md:w-[35vw] lg:w-[30vw] xl:w-[20vw] px-5 py-8 h-screen overflow-y-auto customized-scrollbar sticky top-0 hidden md:flex md:flex-col'>
-      <Link href='/dashboard'>
+      <Link href='/dashboard/home'>
         <Image
           src={Logo}
           alt='A1 Quest Logo'
@@ -33,7 +33,7 @@ const Sidebar = () => {
               className={
                 link.disabled
                   ? 'duration-300 flex items-center p-3 gap-4 w-full rounded text-[#B8C0CC] pointer-events-none [&>svg>path]:fill-[#B8C0CC]'
-                  : pathname !== link.href
+                  : !pathname.includes(link.href)
                   ? 'duration-300 flex items-center p-3 gap-4 w-full rounded  text-[#4B5768] hover:bg-[#E8EDFB] '
                   : ' duration-300 flex items-center p-3 gap-4 w-full rounded text-primary font-semibold bg-[#E8EDFB] [&>svg>path]:fill-primary'
               }
