@@ -4,7 +4,7 @@ import navLinks from '../../navLinks';
 import Link from 'next/link';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import { getNameInitials } from '@/functions/stringManipulations';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { appAxios } from '@/api/axios';
 import { sendCatchFeedback } from '@/functions/feedback';
 import { signOut } from '@/store/features/user';
@@ -14,6 +14,7 @@ import Image from 'next/image';
 
 const UserMenu = () => {
   const { user } = useAppSelector((state) => state.user);
+  const pathname = usePathname();
 
   const [deleteModal, setDeleteModal] = useState(false);
   const [freezeModal, setFreezeModal] = useState(false);
@@ -47,12 +48,18 @@ const UserMenu = () => {
           </Link>
         </div>
         <div className='h-[0.6px] w-full bg-[#D0D5DD] mt-2 mb-5' />
-        <ul className='text-[#64748B] text-sm flex flex-col gap-5 md:gap-3 px-6'>
+        <ul className='text-[#64748B] text-sm flex flex-col'>
           {navLinks
-            .filter((item) => item.type !== 'divider')
+            .filter((item) => item.type !== 'divider' && !item.disabled)
             .map((item) => (
               <Link href={item.href} key={item.href}>
-                <li className='flex items-center gap-2'>
+                <li
+                  className={
+                    !pathname.includes(item.href)
+                      ? 'duration-300 flex items-center p-3 gap-4 w-full  text-[#4B5768] hover:bg-[#E8EDFB] '
+                      : ' duration-300 flex items-center p-3 gap-4 w-full text-primary font-semibold bg-[#E8EDFB] [&>svg>path]:fill-primary'
+                  }
+                >
                   {item.icon}
                   <span>{item.label}</span>
                 </li>
