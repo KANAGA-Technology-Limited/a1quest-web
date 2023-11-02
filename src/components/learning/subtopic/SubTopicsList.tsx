@@ -39,7 +39,7 @@ const SubTopicsList = () => {
       </h2>
       <div className='flex flex-col gap-6 w-full'>
         {loading ? (
-          <LoadingIndicator />
+          <LoadingIndicator size={20} />
         ) : subtopics && subtopics.length > 0 ? (
           subtopics.map((item) => <SubtopicCard key={item._id} subtopic={item} />)
         ) : (

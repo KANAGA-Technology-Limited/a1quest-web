@@ -2,49 +2,53 @@
 import { appAxios } from '@/api/axios';
 import LoadingIndicator from '@/common/LoadingIndicator';
 import { sendCatchFeedback } from '@/functions/feedback';
-import { SubTopicType } from '@/types/data';
+import { TopicType } from '@/types/data';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 
-const SubTopicDetail = () => {
-  const [subTopic, setSubTopic] = useState<SubTopicType | undefined>(undefined);
+const TopicDetail = () => {
+  const [topic, setTopic] = useState<TopicType | undefined>(undefined);
   const [loading, setLoading] = React.useState(true);
   const searchParams = useSearchParams();
-  const subtopicId = searchParams.get('id');
+  const topicId = searchParams.get('id');
 
   useEffect(() => {
-    const getData = async () => {
+    const getTopic = async () => {
       try {
         setLoading(true);
-        const response = await appAxios.get('/learning/view-sub-topic/' + subtopicId);
-        setSubTopic(response.data.data);
+        const response = await appAxios.get('/learning/view-topic/' + topicId);
+        setTopic(response.data.data);
       } catch (error) {
         sendCatchFeedback(error);
       } finally {
         setLoading(false);
       }
     };
-    if (subtopicId) {
-      getData();
+    if (topicId) {
+      getTopic();
     }
-  }, [subtopicId]);
+  }, [topicId]);
 
   return (
     <div className='w-full mt-10'>
       {loading ? (
-        <LoadingIndicator />
-      ) : subTopic ? (
+        <LoadingIndicator size={20} />
+      ) : topic ? (
         <div className='bg-white rounded-[10px] px-6 py-8 w-full'>
-          <p className='text-[#06102B] font-semibold mb-[6px]'>{subTopic.title}</p>
+          <p className='text-[#06102B] font-semibold mb-[6px]'>{topic.title}</p>
           <p className='text[#64748B] text-sm font-light  mb-[6px]'>
-            {subTopic.description}
+            {topic.description}
+          </p>
+          <p className='text[#64748B] text-sm font-normal'>
+            {topic.sub_topics.length}{' '}
+            {`${topic.sub_topics.length > 1 ? 'subtopics' : 'subtopic'}`}
           </p>
         </div>
       ) : (
-        <p>Sub topic not found</p>
+        <p>Topic not found</p>
       )}
     </div>
   );
 };
 
-export default SubTopicDetail;
+export default TopicDetail;

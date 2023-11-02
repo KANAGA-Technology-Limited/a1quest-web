@@ -7,7 +7,7 @@ import { useAppSelector } from '@/store/hooks';
 import { ClassType, TopicType } from '@/types/data';
 import Link from 'next/link';
 import React, { useEffect, useState } from 'react';
-import TopicCard from '../learning/TopicCard';
+import TopicCard from '../learning/topic/TopicCard';
 
 const PopularTopics = () => {
   const { user } = useAppSelector((state) => state.user);

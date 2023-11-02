@@ -5,7 +5,7 @@ import { sendCatchFeedback } from '@/functions/feedback';
 import { TopicType } from '@/types/data';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
-import TopicCard from './TopicCard';
+import TopicCard from '../topic/TopicCard';
 
 const ClassTopics = () => {
   const searchParams = useSearchParams();
