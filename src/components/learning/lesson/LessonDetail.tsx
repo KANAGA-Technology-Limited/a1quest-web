@@ -1,17 +1,22 @@
 'use client';
 import { appAxios } from '@/api/axios';
 import LoadingIndicator from '@/common/LoadingIndicator';
-import { sendCatchFeedback } from '@/functions/feedback';
+import { sendCatchFeedback, sendFeedback } from '@/functions/feedback';
 import { LessonType } from '@/types/data';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import LessonNavigation from './LessonNavigation';
+import TabSwitch from '@/common/TabSwitch';
+import { getPdfText } from '@/functions/pdfOperations';
 
 const LessonDetail = () => {
   const [lesson, setLesson] = useState<LessonType | undefined>(undefined);
   const [loading, setLoading] = React.useState(true);
   const searchParams = useSearchParams();
   const lessonId = searchParams.get('id');
+  const [selectedTab, setSelectedTab] = useState<string>('Video');
+  const [convertedText, setConvertedText] = useState('');
+  const [conversionLoading, setConversionLoading] = useState(true);
 
   useEffect(() => {
     const getLesson = async () => {
@@ -29,6 +34,24 @@ const LessonDetail = () => {
       getLesson();
     }
   }, [lessonId]);
+
+  useEffect(() => {
+    const convertFile = async () => {
+      try {
+        setConversionLoading(true);
+        const response = await getPdfText(lesson!.document_url);
+        setConvertedText(response || '');
+      } catch (error) {
+        sendFeedback("Couldn't convert file", 'error');
+      } finally {
+        setConversionLoading(false);
+      }
+    };
+
+    if (lesson && lesson.document_url) {
+      convertFile();
+    }
+  }, [lesson]);
 
   if (!lesson) return null;
 
@@ -53,8 +76,17 @@ const LessonDetail = () => {
           {/* Selected Format */}
 
           {/* Tab Switch to select format */}
+          <TabSwitch
+            tabs={['Video', 'Audio']}
+            selectedTab={selectedTab}
+            setSelectedTab={setSelectedTab}
+          />
 
           {/* Lesson Notes */}
+          <p className='mt-8 text-[#4B5768] font-normal'>
+            <p className='text-sm mb-2 font-semibold'>Transcript:</p>
+            {conversionLoading ? <LoadingIndicator size={20} /> : convertedText}
+          </p>
         </>
       ) : (
         <p>Lesson not found</p>

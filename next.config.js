@@ -5,6 +5,11 @@ const nextConfig = {
     unoptimized: true,
   },
   skipTrailingSlashRedirect: true,
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+
+    return config;
+  },
 };
 
-module.exports = nextConfig
+module.exports = nextConfig;
