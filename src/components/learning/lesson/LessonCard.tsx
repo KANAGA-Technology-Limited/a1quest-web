@@ -1,3 +1,4 @@
+'use client';
 import { LessonType } from '@/types/data';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -26,6 +27,7 @@ const LessonCard = ({ lesson }: { lesson: LessonType }) => {
         <Image
           src={bookmarked ? BookmarkAddedIcon : BookmarkIcon}
           alt='bookmark'
+          className='cursor-pointer'
           onClick={(e) => {
             e.stopPropagation();
             setBookmarked((old) => !old);
