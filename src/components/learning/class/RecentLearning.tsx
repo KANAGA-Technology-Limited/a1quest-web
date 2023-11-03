@@ -41,7 +41,7 @@ const RecentLearning = () => {
 
   return (
     <div className='mb-10 flex flex-col w-full gap-6'>
-      {topics.map((topic) => (
+      {topics.slice(0, 2).map((topic) => (
         <RecentTopicCard key={topic._id} topic={topic} />
       ))}
     </div>
