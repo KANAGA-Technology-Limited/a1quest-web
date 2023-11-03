@@ -11,7 +11,7 @@ const RecentTopicCard = ({ topic }: { topic: RecentTopicType }) => {
 
   return (
     <div className='bg-white rounded-[10px] px-6 py-8 w-full flex items-center justify-between flex-wrap gap-5'>
-      <div className='w-full md:w-[70%]'>
+      <div className='w-full md:w-[60%]'>
         <p className='text-primary text-lg font-semibold mb-[6px]'>
           {topic.topic_id.title}
         </p>
