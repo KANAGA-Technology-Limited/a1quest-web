@@ -75,3 +75,23 @@ export type LessonType = {
   video_identifier: string;
   video_url: string;
 };
+
+export type RecentTopicType = {
+  _id: string;
+  user_id: string;
+  topic_id: {
+    _id: string;
+    title: string;
+    description: string;
+    class_id: string;
+    sub_topics: string[];
+    num_of_enrollments: number;
+    created_by: string;
+    last_updated_by: string;
+    creation_date: string;
+    last_update_date: string;
+  };
+  progress_rate: number;
+  enrollment_date: string;
+  last_viewed_at: string;
+};

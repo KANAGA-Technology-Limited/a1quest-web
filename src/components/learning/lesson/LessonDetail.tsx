@@ -63,6 +63,20 @@ const LessonDetail = () => {
     }
   }, [lesson]);
 
+  // Enroll for this topic
+  useEffect(() => {
+    const enrollForTopic = async () => {
+      try {
+        await appAxios.post(`/learning/${lesson?.topic_id}/enroll`);
+      } catch (error) {
+        sendCatchFeedback(error);
+      }
+    };
+    if (lesson?.topic_id) {
+      enrollForTopic();
+    }
+  }, [lesson?.topic_id]);
+
   if (!lesson) return null;
 
   return (
