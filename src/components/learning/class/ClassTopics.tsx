@@ -6,6 +6,7 @@ import { TopicType } from '@/types/data';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import TopicCard from '../topic/TopicCard';
+import RecentLearning from './RecentLearning';
 
 const ClassTopics = () => {
   const searchParams = useSearchParams();
@@ -40,6 +41,7 @@ const ClassTopics = () => {
       <h1 className='text-[#323A46] text-xl md:text-2xl font-semibold my-10'>
         {className}
       </h1>
+      <RecentLearning />
       <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-10'>
         {loading ? (
           <LoadingIndicator />
