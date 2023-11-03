@@ -13,7 +13,7 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
     const sessionDetails = getSessionDetails();
     if (user || sessionDetails) {
       sendFeedback('You are already logged in');
-      redirect('/dashboard');
+      redirect('/dashboard/home');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

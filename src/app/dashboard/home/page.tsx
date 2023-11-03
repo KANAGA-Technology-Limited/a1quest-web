@@ -1,10 +1,13 @@
+import PopularTopics from '@/components/dashboard/PopularTopics';
+import WelcomeBar from '@/components/dashboard/WelcomeBar';
 import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
 import React from 'react';
 
 const DashboardPage = () => {
   return (
     <DashboardLayout pageTitle='Home'>
-      <h1>Dashboard</h1>
+      <WelcomeBar />
+      <PopularTopics />
     </DashboardLayout>
   );
 };

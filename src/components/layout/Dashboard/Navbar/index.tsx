@@ -28,7 +28,7 @@ const Navbar = ({
             </button>
           )}
 
-          <Link href='/dashboard' className='md:hidden'>
+          <Link href='/dashboard/home' className='md:hidden'>
             <Image src={Logo} alt='A1Quest Logo' className='h-8 w-8 object-contain' />
           </Link>
           <p className='text-lg lg:text-[25px] font-semibold text-[#191D23]'>

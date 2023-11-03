@@ -36,8 +36,8 @@ module.exports = {
         secondary: ['var(--font-mulish)'],
       },
       padding: {
-        primary: '5vw',
-        secondary: '3vw',
+        primary: '4vw',
+        secondary: '2vw',
       },
       minHeight: {
         main: 'calc(100vh - 72px)',
