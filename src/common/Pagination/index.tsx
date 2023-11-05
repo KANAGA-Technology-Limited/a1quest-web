@@ -17,7 +17,7 @@ export default function Pagination({
   if (!totalResults && !defaultTotalPages) return null;
 
   return (
-    <aside className='flex justify-between w-full items-center px-[30px] mt-[27px] flex-wrap z-30'>
+    <aside className='flex justify-between w-full items-center px-[30px] mt-[27px] flex-wrap'>
       <span className='text-sm text-[#344054] font-medium'>
         Page <span className='text-black'>{page}</span> of {totalPages}
       </span>

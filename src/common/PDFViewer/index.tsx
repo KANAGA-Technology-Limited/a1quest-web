@@ -18,8 +18,8 @@ const PDFViewer = ({ file }: { file: string }) => {
 
   return (
     <>
-      <div className='h-full'>
-        <SizeMe monitorHeight={true}>
+      <div className='h-full print:hidden'>
+        <SizeMe>
           {({ size }) => (
             <Document
               file={file}
@@ -27,7 +27,20 @@ const PDFViewer = ({ file }: { file: string }) => {
               externalLinkTarget='_blank'
               loading='Please wait...'
             >
-              <Page pageNumber={pageNumber} width={size.width ? size.width : 1} />
+              {/* Show all pages at once */}
+              {/* {Array.apply(null, Array(numPages))
+                .map((x, i) => i + 1)
+                .map((page) => (
+                  <Page pageNumber={page} />
+                ))} */}
+              <Page
+                pageNumber={pageNumber}
+                width={size.width ? size.width : 1}
+                renderTextLayer={false}
+                renderAnnotationLayer={false}
+                // customTextRenderer={<></>}
+                onContextMenu={(e) => e.preventDefault()}
+              />
             </Document>
           )}
         </SizeMe>
