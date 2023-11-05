@@ -7,10 +7,10 @@ import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import LessonNavigation from './LessonNavigation';
 import TabSwitch from '@/common/TabSwitch';
-import { getPdfText } from '@/functions/pdfOperations';
 import LessonVideo from './LessonVideo';
 import LessonAudio from './LessonAudio';
 import autoAnimate from '@formkit/auto-animate';
+import PDFViewer from '@/common/PDFViewer';
 
 const LessonDetail = () => {
   const [lesson, setLesson] = useState<LessonType | undefined>(undefined);
@@ -18,8 +18,6 @@ const LessonDetail = () => {
   const searchParams = useSearchParams();
   const lessonId = searchParams.get('id');
   const [selectedTab, setSelectedTab] = useState<string>('Video');
-  const [convertedText, setConvertedText] = useState('');
-  const [conversionLoading, setConversionLoading] = useState(true);
   const parentRef = useRef(null);
 
   useEffect(() => {
@@ -44,24 +42,6 @@ const LessonDetail = () => {
       getLesson();
     }
   }, [lessonId]);
-
-  useEffect(() => {
-    const convertFile = async () => {
-      try {
-        setConversionLoading(true);
-        const response = await getPdfText(lesson!.document_url);
-        setConvertedText(response || '');
-      } catch (error) {
-        sendFeedback("Couldn't convert file", 'error');
-      } finally {
-        setConversionLoading(false);
-      }
-    };
-
-    if (lesson && lesson.document_url) {
-      convertFile();
-    }
-  }, [lesson]);
 
   // Enroll for this topic
   useEffect(() => {
@@ -112,8 +92,8 @@ const LessonDetail = () => {
 
           {/* Lesson Notes */}
           <div className='mt-8 text-[#4B5768] font-normal'>
-            <p className='text-sm mb-2 font-semibold'>Transcript:</p>
-            {conversionLoading ? <LoadingIndicator size={20} /> : convertedText}
+            <p className='text-sm mb-2 font-semibold'>Notes:</p>
+            <PDFViewer file={lesson.document_url} />
           </div>
         </>
       ) : (
