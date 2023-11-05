@@ -8,6 +8,10 @@ import 'reactjs-popup/dist/index.css';
 import { SFPro } from '@/assets/fonts';
 import GetUserSession from '@/components/layout/AppLayout/GetUserSession';
 
+// React PDF
+import 'react-pdf/dist/Page/AnnotationLayer.css';
+import 'react-pdf/dist/Page/TextLayer.css';
+
 export const metadata: Metadata = {
   title: 'A1Quest',
   description: 'Learn challenging maths topics and take tests to assess your knowledge',
