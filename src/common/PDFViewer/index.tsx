@@ -31,14 +31,7 @@ const PDFViewer = ({ file }: { file: string }) => {
             </Document>
           )}
         </SizeMe>
-        {/* <Document
-        file={file}
-        onLoadSuccess={onDocumentLoadSuccess}
-        externalLinkTarget='_blank'
-        loading='Please wait...'
-      >
-        <Page pageNumber={pageNumber} className='h-[700px] max-h-full max-w-full' />
-      </Document> */}
+
         <Pagination
           page={pageNumber}
           setPage={setPageNumber}
