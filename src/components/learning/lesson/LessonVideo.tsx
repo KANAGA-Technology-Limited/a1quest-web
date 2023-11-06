@@ -4,6 +4,7 @@ import BookmarkIcon from '@/assets/icons/learning/bookmark_white.svg';
 import BookmarkAddedIcon from '@/assets/icons/learning/bookmark_added_white.svg';
 import Image from 'next/image';
 import { sendFeedback } from '@/functions/feedback';
+import VideoPlayer from '@/common/VideoPlayer';
 
 const LessonVideo = ({ url }: { url: string }) => {
   const [bookmarked, setBookmarked] = useState(false);
@@ -12,7 +13,16 @@ const LessonVideo = ({ url }: { url: string }) => {
 
   return (
     <div className='relative w-full h-[482px] '>
-      <video
+      <VideoPlayer
+        videoId={url}
+        sources={[
+          {
+            src: url,
+            type: 'video/mp4',
+          },
+        ]}
+      />
+      {/* <video
         width='100%'
         height='100%'
         controls
@@ -21,7 +31,7 @@ const LessonVideo = ({ url }: { url: string }) => {
       >
         <source src={url} type='video/mp4' />
         Your browser does not support the video tag.
-      </video>
+      </video> */}
       <div className='absolute right-6 top-6 cursor-pointer'>
         <Image
           src={bookmarked ? BookmarkAddedIcon : BookmarkIcon}
