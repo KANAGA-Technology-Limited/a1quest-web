@@ -22,7 +22,7 @@ const VideoTrack = ({
 }) => {
   const [show, setShow] = useState(showControls);
   useEffect(() => {
-    let timeout;
+    let timeout: string | number | NodeJS.Timeout | undefined;
     if (!showControls) {
       timeout = setTimeout(() => {
         setShow(false);

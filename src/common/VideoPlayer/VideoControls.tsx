@@ -32,18 +32,21 @@ const VideoControls = ({
   };
 
   return (
-    <div className='absolute top-0 bottom-0 right-0 left-0 flex items-center justify-center rounded-2xl flex-col'>
-      {/* Play Icons */}
-      {showControls &&
-        (videoPlaying ? (
-          <button onClick={pauseVideo} className='outline-none border-none group'>
-            <PauseIcon className='group-hover:[&>*]:fill-secondary duration-300' />
-          </button>
-        ) : (
-          <button onClick={playVideo} className='outline-none border-none group'>
-            <PlayIcon className='group-hover:[&>*]:fill-secondary duration-300' />
-          </button>
-        ))}
+    <div className='absolute top-0 bottom-0 right-0 left-0 rounded-2xl '>
+      {showControls && (
+        <div className='bg-[#00000030] absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center flex-col rounded-2xl '>
+          {/* Play Icons */}
+          {videoPlaying ? (
+            <button onClick={pauseVideo} className='outline-none border-none group'>
+              <PauseIcon className='group-hover:[&>*]:fill-secondary duration-300' />
+            </button>
+          ) : (
+            <button onClick={playVideo} className='outline-none border-none group'>
+              <PlayIcon className='group-hover:[&>*]:fill-secondary duration-300' />
+            </button>
+          )}
+        </div>
+      )}
 
       {/* Track */}
       <VideoTrack
