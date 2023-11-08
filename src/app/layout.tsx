@@ -12,6 +12,9 @@ import GetUserSession from '@/components/layout/AppLayout/GetUserSession';
 import 'react-pdf/dist/Page/AnnotationLayer.css';
 import 'react-pdf/dist/Page/TextLayer.css';
 
+// Video JS
+import 'video.js/dist/video-js.css';
+
 export const metadata: Metadata = {
   title: 'A1Quest',
   description: 'Learn challenging maths topics and take tests to assess your knowledge',
