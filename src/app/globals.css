@@ -1,5 +1,6 @@
 @import url("../styles/backgrounds.css");
 @import url("../styles/table.css");
+@import url("../styles/customVideo.css");
 
 @tailwind base;
 @tailwind components;

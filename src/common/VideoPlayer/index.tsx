@@ -63,7 +63,7 @@ const VideoPlayer = ({
   return (
     <div
       data-vjs-player
-      className='relative'
+      className='relative w-full h-full'
       onMouseEnter={() => setShowControls(true)}
       onMouseLeave={() => setShowControls(false)}
       ref={parentRef}
