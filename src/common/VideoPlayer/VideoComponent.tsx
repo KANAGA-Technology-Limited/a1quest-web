@@ -37,7 +37,7 @@ const VideoComponent = ({
       onLoadedMetadata={(e: any) => {
         updateVideoTiming(e.target.duration, e.target.currentTime);
       }}
-      className='video-js object-contain rounded-2xl h-full w-full max-h-screen max-w-full [&::-webkit-media-controls-enclosure]:!hidden'
+      className='video-js object-contain rounded-2xl !h-full !w-full [&::-webkit-media-controls-enclosure]:!hidden'
     >
       {children}
       Your browser does not support the video tag.
