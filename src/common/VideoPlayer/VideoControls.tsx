@@ -32,7 +32,7 @@ const VideoControls = ({
   };
 
   return (
-    <div className='absolute top-0 bottom-0 right-0 left-0 rounded-2xl '>
+    <div className='absolute top-0 bottom-0 right-0 left-0 rounded-2xl custom-video-controls'>
       {showControls && (
         <div className='bg-[#00000030] absolute top-0 right-0 left-0 bottom-0 flex items-center justify-center flex-col rounded-2xl '>
           {/* Play Icons */}
