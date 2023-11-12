@@ -53,3 +53,10 @@
   background-size: cover;
   background-position: center;
 }
+
+.audio-bg {
+  background-image: url(../assets/backgrounds/audio-bg.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
