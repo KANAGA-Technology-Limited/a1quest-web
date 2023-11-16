@@ -7,9 +7,11 @@ const AudioControls = ({
   audioRef,
   currentTime,
   duration,
+  allowSkip,
 }: {
   audioRef: React.RefObject<HTMLAudioElement>;
   duration: number;
+  allowSkip?: boolean;
   currentTime: number;
 }) => {
   const [audioPlaying, setAudioPlaying] = React.useState(false);
@@ -67,6 +69,7 @@ const AudioControls = ({
         setAudioPlaying={setAudioPlaying}
         currentTime={currentTime}
         duration={duration}
+        allowSkip={allowSkip}
       />
     </div>
   );

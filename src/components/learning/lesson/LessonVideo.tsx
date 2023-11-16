@@ -9,7 +9,13 @@ import { BookMarkType, LessonType } from '@/types/data';
 import { appAxios } from '@/api/axios';
 import LoadingIndicator from '@/common/LoadingIndicator';
 
-const LessonVideo = ({ lesson }: { lesson: LessonType }) => {
+const LessonVideo = ({
+  lesson,
+  allowSkip,
+}: {
+  lesson: LessonType;
+  allowSkip: boolean;
+}) => {
   const [loading, setLoading] = React.useState(true);
   const [selectedBookmark, setSelectedBookmark] = useState<BookMarkType | undefined>(
     undefined
@@ -61,11 +67,27 @@ const LessonVideo = ({ lesson }: { lesson: LessonType }) => {
     }
   };
 
+  const trackProgress = async () => {
+    try {
+      await appAxios.post('/learning/track-progress-rate', {
+        topic_id: lesson.topic_id,
+        type: 'lesson',
+        lesson_id: lesson._id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (!lesson.video_url) return <p className='text-error'>No video file attached</p>;
 
   return (
     <div className='relative w-full h-[482px] '>
-      <VideoPlayer videoId={lesson.video_url || ''}>
+      <VideoPlayer
+        videoId={lesson.video_url || ''}
+        onEnded={trackProgress}
+        allowSkip={allowSkip}
+      >
         <source src={lesson.video_url} type='video/mp4' />
       </VideoPlayer>
 

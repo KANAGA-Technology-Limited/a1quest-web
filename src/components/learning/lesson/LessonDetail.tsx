@@ -12,6 +12,7 @@ import LessonAudio from './LessonAudio';
 import autoAnimate from '@formkit/auto-animate';
 import PDFViewer from '@/common/PDFViewer';
 import EnrollForTopic from './EnrollForTopic';
+import AllowLessonSkip from './AllowLessonSkip';
 
 const LessonDetail = () => {
   const [lesson, setLesson] = useState<LessonType | undefined>(undefined);
@@ -20,6 +21,7 @@ const LessonDetail = () => {
   const lessonId = searchParams.get('id');
   const [selectedTab, setSelectedTab] = useState<string>('Video');
   const parentRef = useRef(null);
+  const [allowSkip, setAllowSkip] = useState(false);
 
   useEffect(() => {
     if (parentRef.current) {
@@ -67,8 +69,12 @@ const LessonDetail = () => {
 
             {/* Selected Format */}
             <div ref={parentRef} className='mb-[46px] w-full'>
-              {selectedTab === 'Video' && <LessonVideo lesson={lesson} />}
-              {selectedTab === 'Audio' && <LessonAudio lesson={lesson} />}
+              {selectedTab === 'Video' && (
+                <LessonVideo lesson={lesson} allowSkip={allowSkip} />
+              )}
+              {selectedTab === 'Audio' && (
+                <LessonAudio lesson={lesson} allowSkip={allowSkip} />
+              )}
             </div>
 
             {/* Tab Switch to select format */}
@@ -89,6 +95,7 @@ const LessonDetail = () => {
         )}
       </div>
       <EnrollForTopic lesson={lesson} />
+      <AllowLessonSkip lesson={lesson} setAllowSkip={setAllowSkip} />
     </>
   );
 };

@@ -6,12 +6,14 @@ const VideoComponent = ({
   videoId,
   videoRef,
   updateVideoTiming,
+  onEnded,
 }: {
   videoId: string;
   videoRef: RefObject<HTMLVideoElement>;
   setVideoPlaying: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
   updateVideoTiming: (duration: number, currentTime: number) => void;
+  onEnded?: () => void;
 }) => {
   return (
     <video
@@ -28,7 +30,7 @@ const VideoComponent = ({
         setVideoPlaying(false);
       }}
       onEnded={() => {
-        // Send complete notification
+        onEnded ? onEnded() : null;
         setVideoPlaying(false);
       }}
       onTimeUpdate={(e: any) => {

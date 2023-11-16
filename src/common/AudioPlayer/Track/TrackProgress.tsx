@@ -5,10 +5,12 @@ const TrackProgress = ({
   audioRef,
   currentTime,
   duration,
+  allowSkip,
 }: {
   audioRef: RefObject<HTMLAudioElement>;
   duration: number;
   currentTime: number;
+  allowSkip?: boolean;
 }) => {
   const progress = useMemo(
     () => ((currentTime || 0) / (duration || 1)) * 100,
@@ -28,7 +30,7 @@ const TrackProgress = ({
           const currentTime = audioRef.current?.currentTime || 0;
           if (audioRef.current) {
             // Disable forward seeking
-            if (selectedTime > currentTime) {
+            if (!allowSkip && selectedTime > currentTime) {
               sendFeedback('Cannot skip forward');
             } else {
               audioRef.current.currentTime = selectedTime;

@@ -9,7 +9,13 @@ import { BookMarkType, LessonType } from '@/types/data';
 import LoadingIndicator from '@/common/LoadingIndicator';
 import { appAxios } from '@/api/axios';
 
-const LessonAudio = ({ lesson }: { lesson: LessonType }) => {
+const LessonAudio = ({
+  lesson,
+  allowSkip,
+}: {
+  lesson: LessonType;
+  allowSkip: boolean;
+}) => {
   const [loading, setLoading] = React.useState(true);
   const [selectedBookmark, setSelectedBookmark] = useState<BookMarkType | undefined>(
     undefined
@@ -60,11 +66,23 @@ const LessonAudio = ({ lesson }: { lesson: LessonType }) => {
       setLoading(false);
     }
   };
+
+  const trackProgress = async () => {
+    try {
+      await appAxios.post('/learning/track-progress-rate', {
+        topic_id: lesson.topic_id,
+        type: 'lesson',
+        lesson_id: lesson._id,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
   if (!lesson.audio_url) return <p className='text-error'>No audio file attached</p>;
 
   return (
     <div className='relative w-full h-[200px] flex items-center justify-center rounded-2xl audio-bg'>
-      <AudioPlayer>
+      <AudioPlayer onEnded={trackProgress} allowSkip={allowSkip}>
         <source src={lesson.audio_url} type='audio/mpeg' />
       </AudioPlayer>
       <audio className='w-[80%] object-cover' controlsList='nodownload'>

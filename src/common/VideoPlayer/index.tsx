@@ -9,8 +9,10 @@ import videoOptions from './options';
 const VideoPlayer = ({
   videoId,
   children,
+  onEnded,
 }: {
   videoId: string;
+  onEnded?: () => void;
   children: React.ReactNode;
 }) => {
   const videoRef = React.useRef<HTMLVideoElement>(null);
@@ -73,6 +75,7 @@ const VideoPlayer = ({
         videoId={videoId}
         videoRef={videoRef}
         updateVideoTiming={updateVideoTiming}
+        onEnded={onEnded}
       >
         {children}
       </VideoComponent>
