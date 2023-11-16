@@ -7,6 +7,7 @@ const VideoComponent = ({
   videoRef,
   updateVideoTiming,
   onEnded,
+  setBuffering,
 }: {
   videoId: string;
   videoRef: RefObject<HTMLVideoElement>;
@@ -14,6 +15,7 @@ const VideoComponent = ({
   children: React.ReactNode;
   updateVideoTiming: (duration: number, currentTime: number) => void;
   onEnded?: () => void;
+  setBuffering: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
   return (
     <video
@@ -41,6 +43,8 @@ const VideoComponent = ({
       }}
       onContextMenu={(e) => e.preventDefault()}
       className='video-js object-contain rounded-2xl !h-full !w-full'
+      onWaiting={() => setBuffering(true)}
+      onPlaying={() => setBuffering(false)}
     >
       {children}
       Your browser does not support the video tag.
