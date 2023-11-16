@@ -1,14 +1,21 @@
-import { BackwardIcon, PauseIcon, PlayIcon } from '@/common/VideoPlayer/icons';
+import {
+  BackwardIcon,
+  ForwardIcon,
+  PauseIcon,
+  PlayIcon,
+} from '@/common/VideoPlayer/icons';
 import React from 'react';
 
 const TrackControls = ({
   audioRef,
   audioPlaying,
   setAudioPlaying,
+  allowSkip,
 }: {
   audioRef: React.RefObject<HTMLAudioElement>;
   audioPlaying: boolean;
   setAudioPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  allowSkip?: boolean;
 }) => {
   const calculateAudioDuration = (audioDuration: number) => {
     // Convert and format the duration
@@ -72,6 +79,27 @@ const TrackControls = ({
         >
           <BackwardIcon className='group-hover:[&>*]:fill-secondary duration-300' />
         </button>
+
+        {/* Forward Button */}
+        {allowSkip && (
+          <button
+            className='outline-none border-none group'
+            onClick={() => {
+              if (audioRef.current) {
+                const newTime = audioRef.current.currentTime + 10;
+
+                if (newTime < audioRef.current.duration) {
+                  audioRef.current.currentTime = Number(newTime);
+                } else {
+                  // Go to the beginning
+                  audioRef.current.currentTime = audioRef.current.duration;
+                }
+              }
+            }}
+          >
+            <ForwardIcon className='group-hover:[&>*]:fill-secondary duration-300' />
+          </button>
+        )}
       </div>
 
       {/* Timeline */}

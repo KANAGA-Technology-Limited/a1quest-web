@@ -47,6 +47,15 @@ export type TopicType = {
   last_update_date: string;
 };
 
+export type EnrolledTopicType = {
+  _id: string;
+  user_id: string;
+  topic_id: string;
+  progress_rate: number;
+  enrollment_date: string;
+  last_viewed_at: string;
+};
+
 export type SubTopicType = {
   _id: string;
   title: string;
@@ -74,6 +83,13 @@ export type LessonType = {
   audio_url: string;
   video_identifier: string;
   video_url: string;
+};
+
+export type BookMarkType = {
+  _id: string;
+  user_id: string;
+  lesson_id: LessonType;
+  creation_date: string;
 };
 
 export type RecentTopicType = {

@@ -13,14 +13,14 @@ module.exports = {
         primaryDark: '#0C1F56',
         secondary: '#F0AC27',
         success: '#059669',
-        error: '#EF4444',
+        error: '#DC2626',
       },
       backgroundColor: {
         primary: '#1D4ED8',
         primaryDark: '#0C1F56',
         secondary: '#F0AC27',
         success: '#059669',
-        error: '#EF4444',
+        error: '#DC2626',
       },
       borderColor: {
         primary: '#B8C0CC',

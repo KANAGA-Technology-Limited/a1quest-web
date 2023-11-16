@@ -2,7 +2,7 @@
 import { appAxios } from '@/api/axios';
 import LoadingIndicator from '@/common/LoadingIndicator';
 import { sendCatchFeedback, sendFeedback } from '@/functions/feedback';
-import { LessonType } from '@/types/data';
+import { EnrolledTopicType, LessonType, TopicType } from '@/types/data';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useRef, useState } from 'react';
 import LessonNavigation from './LessonNavigation';
@@ -11,6 +11,8 @@ import LessonVideo from './LessonVideo';
 import LessonAudio from './LessonAudio';
 import autoAnimate from '@formkit/auto-animate';
 import PDFViewer from '@/common/PDFViewer';
+import EnrollForTopic from './EnrollForTopic';
+import AllowLessonSkip from './AllowLessonSkip';
 
 const LessonDetail = () => {
   const [lesson, setLesson] = useState<LessonType | undefined>(undefined);
@@ -19,6 +21,7 @@ const LessonDetail = () => {
   const lessonId = searchParams.get('id');
   const [selectedTab, setSelectedTab] = useState<string>('Video');
   const parentRef = useRef(null);
+  const [allowSkip, setAllowSkip] = useState(false);
 
   useEffect(() => {
     if (parentRef.current) {
@@ -43,63 +46,57 @@ const LessonDetail = () => {
     }
   }, [lessonId]);
 
-  // Enroll for this topic
-  useEffect(() => {
-    const enrollForTopic = async () => {
-      try {
-        await appAxios.post(`/learning/${lesson?.topic_id}/enroll`);
-      } catch (error) {
-        sendCatchFeedback(error);
-      }
-    };
-    if (lesson?.topic_id) {
-      enrollForTopic();
-    }
-  }, [lesson?.topic_id]);
-
   if (!lesson) return null;
 
   return (
-    <div className='w-full'>
-      {loading ? (
-        <LoadingIndicator size={20} />
-      ) : lesson ? (
-        <>
-          {/* Navigation */}
-          <LessonNavigation
-            topicId={lesson.topic_id}
-            subTopicId={lesson.sub_topic_id}
-            lessonName={lesson.title}
-          />
+    <>
+      <div className='w-full'>
+        {loading ? (
+          <LoadingIndicator size={20} />
+        ) : lesson ? (
+          <>
+            {/* Navigation */}
+            <LessonNavigation
+              topicId={lesson.topic_id}
+              subTopicId={lesson.sub_topic_id}
+              lessonName={lesson.title}
+            />
 
-          {/* Title */}
-          <h1 className='text-[#06102B] mb-4 text-center md:text-left text-lg md:text-[28px] lg:text-[35px] font-semibold'>
-            {lesson.title}
-          </h1>
+            {/* Title */}
+            <h1 className='text-[#06102B] mb-4 text-center md:text-left text-lg md:text-[28px] lg:text-[35px] font-semibold'>
+              {lesson.title}
+            </h1>
 
-          {/* Selected Format */}
-          <div ref={parentRef} className='mb-[46px] w-full'>
-            {selectedTab === 'Video' && <LessonVideo url={lesson.video_url} />}
-            {selectedTab === 'Audio' && <LessonAudio url={lesson.audio_url} />}
-          </div>
+            {/* Selected Format */}
+            <div ref={parentRef} className='mb-[46px] w-full'>
+              {selectedTab === 'Video' && (
+                <LessonVideo lesson={lesson} allowSkip={allowSkip} />
+              )}
+              {selectedTab === 'Audio' && (
+                <LessonAudio lesson={lesson} allowSkip={allowSkip} />
+              )}
+            </div>
 
-          {/* Tab Switch to select format */}
-          <TabSwitch
-            tabs={['Video', 'Audio']}
-            selectedTab={selectedTab}
-            setSelectedTab={setSelectedTab}
-          />
+            {/* Tab Switch to select format */}
+            <TabSwitch
+              tabs={['Video', 'Audio']}
+              selectedTab={selectedTab}
+              setSelectedTab={setSelectedTab}
+            />
 
-          {/* Lesson Notes */}
-          <div className='mt-8 text-[#4B5768] font-normal'>
-            <p className='text-sm mb-2 font-semibold'>Notes:</p>
-            <PDFViewer file={lesson.document_url} />
-          </div>
-        </>
-      ) : (
-        <p>Lesson not found</p>
-      )}
-    </div>
+            {/* Lesson Notes */}
+            <div className='mt-8 text-[#4B5768] font-normal'>
+              <p className='text-sm mb-2 font-semibold'>Notes:</p>
+              <PDFViewer file={lesson.document_url} />
+            </div>
+          </>
+        ) : (
+          <p>Lesson not found</p>
+        )}
+      </div>
+      <EnrollForTopic lesson={lesson} />
+      <AllowLessonSkip lesson={lesson} setAllowSkip={setAllowSkip} />
+    </>
   );
 };
 

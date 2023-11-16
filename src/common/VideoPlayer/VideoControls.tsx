@@ -11,6 +11,7 @@ const VideoControls = ({
   videoRef,
   currentTime,
   duration,
+  allowSkip,
 }: {
   videoId: string;
   setVideoPlaying: React.Dispatch<React.SetStateAction<boolean>>;
@@ -18,6 +19,7 @@ const VideoControls = ({
   showControls: boolean;
   videoRef: RefObject<HTMLVideoElement>;
   duration: number;
+  allowSkip?: boolean;
   currentTime: number;
 }) => {
   const playVideo = () => {
@@ -57,6 +59,7 @@ const VideoControls = ({
         currentTime={currentTime}
         videoPlaying={videoPlaying}
         setVideoPlaying={setVideoPlaying}
+        allowSkip={allowSkip}
       />
     </div>
   );

@@ -11,6 +11,7 @@ const VideoTrack = ({
   duration,
   videoPlaying,
   setVideoPlaying,
+  allowSkip,
 }: {
   showControls: boolean;
   videoPlaying: boolean;
@@ -19,6 +20,7 @@ const VideoTrack = ({
   duration: number;
   currentTime: number;
   setVideoPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  allowSkip?: boolean;
 }) => {
   const [show, setShow] = useState(showControls);
   useEffect(() => {
@@ -45,6 +47,7 @@ const VideoTrack = ({
               videoRef={videoRef}
               duration={duration}
               currentTime={currentTime}
+              allowSkip={allowSkip}
             />
             <button
               className='outline-none border-none group'
@@ -58,6 +61,7 @@ const VideoTrack = ({
             videoPlaying={videoPlaying}
             setVideoPlaying={setVideoPlaying}
             videoId={videoId}
+            allowSkip={allowSkip}
           />
         </div>
       )}
