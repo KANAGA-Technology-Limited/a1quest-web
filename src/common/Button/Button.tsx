@@ -18,8 +18,8 @@ function Button({
       type={type}
       className={
         (variant === 'outlined'
-          ? 'w-fit h-[50px] border bg-transparent border-main text-primary rounded-lg py-3 px-8 hover:brightness-90 duration-300 font-medium disabled:bg-gray-300'
-          : 'w-fit h-[50px] bg-primary text-white rounded-lg py-3 px-8 hover:brightness-110 duration-300 font-medium disabled:bg-gray-300') +
+          ? 'w-fit h-[50px] border bg-transparent border-main text-primary rounded-lg py-3 px-8 hover:brightness-90 duration-300 font-medium disabled:bg-gray-300 flex items-center justify-center'
+          : 'w-fit h-[50px] bg-primary text-white rounded-lg py-3 px-8 hover:brightness-110 duration-300 font-medium disabled:bg-gray-300 flex items-center justify-center') +
         ' ' +
         className
       }

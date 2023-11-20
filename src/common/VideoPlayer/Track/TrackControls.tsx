@@ -1,5 +1,5 @@
 import React from 'react';
-import { BackwardIcon, PauseIcon, PlayIcon } from '../icons';
+import { BackwardIcon, ForwardIcon, PauseIcon, PlayIcon } from '../icons';
 import videojs from 'video.js';
 
 const TrackControls = ({
@@ -7,11 +7,13 @@ const TrackControls = ({
   videoPlaying,
   setVideoPlaying,
   videoId,
+  allowSkip,
 }: {
   videoRef: React.RefObject<HTMLVideoElement>;
   videoId: string;
   videoPlaying: boolean;
   setVideoPlaying: React.Dispatch<React.SetStateAction<boolean>>;
+  allowSkip?: boolean;
 }) => {
   const calculateVideoDuration = (videoDuration: number) => {
     // Convert and format the duration
@@ -71,6 +73,27 @@ const TrackControls = ({
         >
           <BackwardIcon className='group-hover:[&>*]:fill-secondary duration-300' />
         </button>
+
+        {/* Forward Button */}
+        {allowSkip && (
+          <button
+            className='outline-none border-none group'
+            onClick={() => {
+              if (videoRef.current) {
+                const newTime = videoRef.current.currentTime + 10;
+
+                if (newTime < videoRef.current.duration) {
+                  videoRef.current.currentTime = Number(newTime);
+                } else {
+                  // Go to the beginning
+                  videoRef.current.currentTime = videoRef.current.duration;
+                }
+              }
+            }}
+          >
+            <ForwardIcon className='group-hover:[&>*]:fill-secondary duration-300' />
+          </button>
+        )}
       </div>
 
       {/* Timeline */}

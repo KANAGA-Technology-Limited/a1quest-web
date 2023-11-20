@@ -5,10 +5,12 @@ const TrackProgress = ({
   videoRef,
   currentTime,
   duration,
+  allowSkip,
 }: {
   videoRef: RefObject<HTMLVideoElement>;
   duration: number;
   currentTime: number;
+  allowSkip?: boolean;
 }) => {
   const progress = useMemo(
     () => ((currentTime || 0) / (duration || 1)) * 100,
@@ -28,7 +30,7 @@ const TrackProgress = ({
           const currentTime = videoRef.current?.currentTime || 0;
           if (videoRef.current) {
             // Disable forward seeking
-            if (selectedTime > currentTime) {
+            if (!allowSkip && selectedTime > currentTime) {
               sendFeedback('Cannot skip forward');
             } else {
               videoRef.current.currentTime = selectedTime;
