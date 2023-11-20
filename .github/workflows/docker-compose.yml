@@ -40,6 +40,6 @@ jobs:
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker compose pull && docker compose up -d && exit"
         - name: delete images
-          run: docker image prune
+          run: docker image prune -f
         - name: cleanup
           run: rm -rf ~/.ssh
