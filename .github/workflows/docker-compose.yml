@@ -31,7 +31,7 @@ jobs:
 
         steps:
         - name: install ssh keys
-          # check this thread to understand why its needed:
+          # check this thread to understand why its needed:ok
           # <https://stackoverflow.com/a/70447517>
           run: |
             install -m 600 -D /dev/null ~/.ssh/id_rsa
@@ -39,5 +39,7 @@ jobs:
             ssh-keyscan -H ${{ secrets.SSH_HOST }} > ~/.ssh/known_hosts
         - name: connect and pull
           run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "cd ${{ secrets.WORK_DIR }} && docker compose pull && docker compose up -d && exit"
+        - name: prune unused Docker images
+          run: ssh ${{ secrets.SSH_USER }}@${{ secrets.SSH_HOST }} "docker image prune --force"
         - name: cleanup
           run: rm -rf ~/.ssh

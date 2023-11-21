@@ -1,5 +1,5 @@
 # Use an official Node.js runtime as the base image
-FROM node:18-alpine
+FROM node:21-alpine3.18
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -9,13 +9,13 @@ COPY package*.json ./
 COPY yarn.lock ./
 
 # Install dependencies
-RUN yarn install
+RUN npm install
 
 # Copy the rest of the application code to the container
 COPY . .
 
 # Build the Next.js application
-RUN yarn run build
+RUN npm run build
 RUN npm install -g serve
 # Expose the port that the application will run on
 EXPOSE 3000
