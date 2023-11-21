@@ -18,6 +18,6 @@ COPY . .
 RUN npm run build
 RUN npm install -g serve
 # Expose the port that the application will run on
-EXPOSE 3000
+EXPOSE 3001
 # Start the Next.js application
-CMD ["npx", "serve", "out"]
+CMD ["npx", "serve", "out", "-p", "3001"]
