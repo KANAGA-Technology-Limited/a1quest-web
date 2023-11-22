@@ -7,6 +7,7 @@ import TestInitialization from './TestInitialization';
 import { TestCreationType, TestStage } from '@/types/test_mode';
 import { SubTopicType, TopicType } from '@/types/data';
 import TestProgress from './Progress/TestProgress';
+import autoAnimate from '@formkit/auto-animate';
 
 const TestModeModal = () => {
   const { open } = useAppSelector((state) => state.testMode);
@@ -16,7 +17,13 @@ const TestModeModal = () => {
   const [testTopic, setTestTopic] = useState<TopicType | undefined>(undefined);
   const [testSubtopic, setTestSubTopic] = useState<SubTopicType | undefined>(undefined);
   const [selectedQuestion, setSelectedQuestion] = useState(0);
+  const parentRef = useRef(null);
 
+  useEffect(() => {
+    if (parentRef.current) {
+      autoAnimate(parentRef.current);
+    }
+  }, [parentRef]);
   return (
     <CustomModal
       isOpen={open}
@@ -31,7 +38,7 @@ const TestModeModal = () => {
       borderRadius={1}
       backgroundColor='#F3F3F3'
     >
-      <div className='p-[3vw]'>
+      <div className='p-[3vw]' ref={parentRef}>
         {testStage === 'initialization' && (
           <TestInitialization
             setTestStage={setTestStage}
