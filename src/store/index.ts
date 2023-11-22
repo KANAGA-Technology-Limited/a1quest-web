@@ -2,11 +2,13 @@ import { configureStore } from '@reduxjs/toolkit';
 import { userApi } from './services/userApi';
 import { setupListeners } from '@reduxjs/toolkit/dist/query';
 import { userSlice } from './features/user';
+import { testModeSlice } from './features/testMode';
 
 export const store = configureStore({
   reducer: {
     [userApi.reducerPath]: userApi.reducer,
     [userSlice.name]: userSlice.reducer,
+    [testModeSlice.name]: testModeSlice.reducer,
   },
   devTools: process.env.NODE_ENV !== 'production',
   middleware: (getDefaultMiddleware) =>

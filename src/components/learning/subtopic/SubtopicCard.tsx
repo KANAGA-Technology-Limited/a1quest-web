@@ -5,10 +5,13 @@ import { SubTopicType } from '@/types/data';
 import React, { useEffect, useRef, useState } from 'react';
 import LessonList from '../lesson/LessonList';
 import autoAnimate from '@formkit/auto-animate';
+import Button from '@/common/Button/Button';
+import { enterTestMode } from '@/store/features/testMode';
+import { useAppDispatch } from '@/store/hooks';
 
 const SubtopicCard = ({ subtopic }: { subtopic: SubTopicType }) => {
   const [open, setOpen] = useState(false);
-
+  const dispatch = useAppDispatch();
   const parentRef = useRef(null);
 
   useEffect(() => {
@@ -39,6 +42,21 @@ const SubtopicCard = ({ subtopic }: { subtopic: SubTopicType }) => {
           >
             {subtopic.description}
           </p>
+          <Button
+            className='mt-5'
+            onClick={(e) => {
+              e.stopPropagation();
+              dispatch(
+                enterTestMode({
+                  open: true,
+                  subtopicId: subtopic._id,
+                  topicId: subtopic.topic_id,
+                })
+              );
+            }}
+          >
+            Take Test
+          </Button>
         </div>
         <DropdownIcon
           className={open ? 'duration-500 rotate-180' : 'duration-500 rotate-0'}
