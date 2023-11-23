@@ -4,14 +4,17 @@ import Button from '@/common/Button/Button';
 import CustomModal from '@/common/CustomModal/CustomModal';
 import { exitTestMode } from '@/store/features/testMode';
 import { useAppDispatch } from '@/store/hooks';
+import { TestStage } from '@/types/test_mode';
 import React from 'react';
 
 const CancellationWarningModal = ({
   onClose,
   open,
+  setTestStage,
 }: {
   open: boolean;
   onClose: () => void;
+  setTestStage: React.Dispatch<React.SetStateAction<TestStage>>;
 }) => {
   const dispatch = useAppDispatch();
   return (
@@ -29,12 +32,15 @@ const CancellationWarningModal = ({
           you&apos;ve made
         </p>
         <div className='flex flex-col gap-4'>
-          <Button className='w-[168px]' onClick={onClose}>
+          <Button className='!w-[168px]' onClick={onClose}>
             Continue test
           </Button>
           <Button
-            className='w-[168px] !bg-[#E6E6E6] !text-black hover:!bg-error hover:!text-white'
-            onClick={() => dispatch(exitTestMode())}
+            className='!w-[168px] !bg-[#E6E6E6] !text-black hover:!bg-error hover:!text-white'
+            onClick={() => {
+              dispatch(exitTestMode());
+              setTestStage('initialization');
+            }}
           >
             Exit test
           </Button>

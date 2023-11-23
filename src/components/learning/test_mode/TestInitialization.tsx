@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { sendCatchFeedback } from '@/functions/feedback';
 import { appAxios } from '@/api/axios';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
@@ -64,13 +64,10 @@ const TestInitialization = ({
   useEffect(() => {
     const getTopicDetails = async () => {
       try {
-        setLoading(true);
         const response = await appAxios.get('/learning/view-topic/' + topicId);
         setTestTopic(response.data.data);
       } catch (error) {
         sendCatchFeedback(error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -83,13 +80,10 @@ const TestInitialization = ({
   useEffect(() => {
     const getSubtopicDetails = async () => {
       try {
-        setLoading(true);
         const response = await appAxios.get('/learning/view-sub-topic/' + subtopicId);
         setTestSubTopic(response.data.data);
       } catch (error) {
         sendCatchFeedback(error);
-      } finally {
-        setLoading(false);
       }
     };
 
@@ -107,24 +101,44 @@ const TestInitialization = ({
         <BackIcon />
         <span>Back</span>
       </button>
-      <div className='flex w-full h-full justify-center items-center mt-[88px]'>
+      <div className='flex w-full justify-center mt-[55px]'>
         <div className='w-[575px] max-w-[full] bg-white rounded-xl p-[60px]'>
           {loading ? (
-            <LoadingIndicator size={60} />
+            <LoadingIndicator size={60} text='Creating Test' />
           ) : createdTest ? (
-            <>
-              <h3 className='text-xl md:text-2xl font-semibold mb-6'>
+            <div className='flex flex-col items-center w-full'>
+              <h3 className='text-xl md:text-2xl font-semibold mb-6 text-center'>
                 Test your knowledge on{' '}
                 {testSubtopic ? testSubtopic.title : testTopic?.title || 'this topic'}
               </h3>
-              {/* <p>INSTRUCTIONS</p>
-              {
-                testTopic.
-              } */}
+              {(testSubtopic?.test_duration || testTopic?.test_duration) && (
+                <div className='self-start'>
+                  <p className='text-[#0D0F11] text-lg md:text-xl font-medium mb-4'>
+                    INSTRUCTIONS
+                  </p>
+                  <ul className='list-inside list-disc flex flex-col gap-3 px-3'>
+                    <li>
+                      This test would last for{' '}
+                      {testSubtopic?.test_duration || testTopic?.test_duration} minutes
+                    </li>
+                    {(testSubtopic?.num_of_questions || testTopic?.num_of_questions) && (
+                      <li>
+                        There are{' '}
+                        {testSubtopic?.num_of_questions || testTopic?.num_of_questions}{' '}
+                        questions to be answered in this test
+                      </li>
+                    )}
+                    {(testSubtopic?.test_notice || testTopic?.test_notice) && (
+                      <li>{testSubtopic?.test_notice || testTopic?.test_notice}</li>
+                    )}
+                  </ul>
+                </div>
+              )}
+
               <Button onClick={() => setTestStage('progress')} className='mt-10'>
                 Begin
               </Button>
-            </>
+            </div>
           ) : (
             <div className='flex flex-col text-center items-center w-full'>
               <h3 className='text-xl md:text-2xl font-semibold mb-6'>

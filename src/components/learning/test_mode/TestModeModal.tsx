@@ -12,7 +12,7 @@ import autoAnimate from '@formkit/auto-animate';
 const TestModeModal = () => {
   const { open } = useAppSelector((state) => state.testMode);
   const dispatch = useAppDispatch();
-  const [testStage, setTestStage] = useState<TestStage>('progress');
+  const [testStage, setTestStage] = useState<TestStage>('initialization');
   const [createdTest, setCreatedTest] = useState<TestCreationType | undefined>(undefined);
   const [testTopic, setTestTopic] = useState<TopicType | undefined>(undefined);
   const [testSubtopic, setTestSubTopic] = useState<SubTopicType | undefined>(undefined);
@@ -37,8 +37,11 @@ const TestModeModal = () => {
       showTitle={false}
       borderRadius={1}
       backgroundColor='#F3F3F3'
+      paddingTop={0}
+      padding={0}
+      childrenClass='relative'
     >
-      <div className='p-[3vw]' ref={parentRef}>
+      <div ref={parentRef} className='h-screen relative'>
         {testStage === 'initialization' && (
           <TestInitialization
             setTestStage={setTestStage}
@@ -55,6 +58,7 @@ const TestModeModal = () => {
             createdTest={createdTest}
             selectedQuestion={selectedQuestion}
             setSelectedQuestion={setSelectedQuestion}
+            setTestStage={setTestStage}
           />
         )}
       </div>

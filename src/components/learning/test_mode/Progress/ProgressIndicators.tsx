@@ -11,7 +11,7 @@ const ProgressIndicators = ({
   setSelectedQuestion: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   const totalQuestions = React.useMemo(
-    () => createdTest?.questions?.length || 10,
+    () => createdTest?.questions?.length,
     [createdTest]
   );
 

@@ -13,8 +13,6 @@ const customStyles: ReactModal.Styles = {
     overflow: 'auto',
     width: '900px',
     maxWidth: '90vw',
-    padding: 32,
-    paddingTop: 16,
     maxHeight: '95vh',
     height: 'auto',
     backgroundColor: '#fff',
@@ -44,6 +42,9 @@ function CustomModal({
   borderRadius,
   backgroundColor,
   resizeBody = true,
+  paddingTop = 16,
+  padding = 32,
+  childrenClass,
   ...rest
 }: {
   title?: string;
@@ -55,10 +56,13 @@ function CustomModal({
   maxWidth?: string;
   height?: string;
   borderRadius?: number;
+  paddingTop?: number;
+  padding?: number;
   backgroundColor?: string;
   maxHeight?: string;
   showTitle?: boolean;
   resizeBody?: boolean;
+  childrenClass?: string;
 } & ReactModal.Props) {
   React.useEffect(() => {
     // Check if modal is open and prevent body from scrolling
@@ -92,6 +96,8 @@ function CustomModal({
           maxHeight: maxHeight || customStyles.content?.maxHeight,
           borderRadius: borderRadius || customStyles.content?.borderRadius,
           backgroundColor: backgroundColor || customStyles.content?.backgroundColor,
+          padding: padding,
+          paddingTop: paddingTop,
           opacity: isOpen ? 1 : 0,
         },
         overlay: customStyles.overlay,
@@ -119,7 +125,7 @@ function CustomModal({
         </div>
       )}
 
-      {children}
+      <div className={childrenClass}>{children}</div>
     </ReactModal>
   );
 }
