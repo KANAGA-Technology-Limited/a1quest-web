@@ -56,7 +56,6 @@ const SelectedQuestion = ({
                     id={option._id}
                     label={option.option_value}
                     key={option._id}
-                    className='capitalize'
                     onChange={() => null}
                   />
                 </li>
