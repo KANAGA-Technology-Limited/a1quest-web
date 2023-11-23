@@ -26,6 +26,7 @@ const SelectedQuestion = ({
           name={question._id}
           className='!w-full !h-[49px]'
           placeholder='Enter your answer'
+          type={question.question_input_type}
         />
       )}
       {question.question_type !== 'input' && (
