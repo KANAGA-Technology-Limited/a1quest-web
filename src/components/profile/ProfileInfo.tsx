@@ -1,8 +1,8 @@
 'use client';
 
 import LevelBadge from '@/common/LevelBadge';
-import { useAppSelector } from '@/store/hooks';
-import React, { useRef } from 'react';
+import { useAppDispatch, useAppSelector } from '@/store/hooks';
+import React, { useEffect, useRef } from 'react';
 import Image from 'next/image';
 import Button from '@/common/Button/Button';
 import shareIcon from '@/assets/icons/profile/share.svg';
@@ -10,9 +10,28 @@ import editIcon from '@/assets/icons/profile/edit.svg';
 import Link from 'next/link';
 import UserImage from './UserImage';
 import { DeleteIcon } from '../layout/Dashboard/navIcons';
+import { appAxios } from '@/api/axios';
+import { UserType } from '@/types/user';
+import { updateUser } from '@/store/features/user';
+import { sendCatchFeedback } from '@/functions/feedback';
 
 const ProfileInfo = () => {
   const { user } = useAppSelector((state) => state.user);
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    const getLatestProfileDetails = async () => {
+      try {
+        const accountResponse = await appAxios.get('/auth/profile');
+        const accountInfo: UserType = accountResponse.data.data;
+        dispatch(updateUser({ user: accountInfo }));
+      } catch (error: any) {
+        sendCatchFeedback(error);
+      }
+    };
+    getLatestProfileDetails();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!user) return null;
   return (

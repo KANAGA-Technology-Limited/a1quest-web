@@ -63,6 +63,11 @@ const LoginForm = () => {
         return router.push('/auth/account-info');
       }
 
+      // Check if subscription is running
+      if (!accountInfo.subscription?.running) {
+        return router.push('/dashboard/account/?tab=2');
+      }
+
       sendFeedback(response.data?.message, 'success');
       formik.resetForm();
       return router.push('/dashboard/home');
