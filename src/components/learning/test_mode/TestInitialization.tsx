@@ -93,7 +93,7 @@ const TestInitialization = ({
   }, [setTestSubTopic, subtopicId]);
 
   return (
-    <div className='w-full h-full'>
+    <div className='w-full h-full pt-[60px] px-primary'>
       <button
         className='flex items-center gap-4 text-lg md:text-xl font-medium'
         onClick={closeTest}
@@ -102,7 +102,7 @@ const TestInitialization = ({
         <span>Back</span>
       </button>
       <div className='flex w-full justify-center mt-[55px]'>
-        <div className='w-[575px] max-w-[full] bg-white rounded-xl p-[60px]'>
+        <div className='w-[575px] max-w-[full] bg-white rounded-xl px-[3.9vw] py-[60px]'>
           {loading ? (
             <LoadingIndicator size={60} text='Creating Test' />
           ) : createdTest ? (

@@ -8,6 +8,7 @@ import { TestCreationType, TestStage } from '@/types/test_mode';
 import { SubTopicType, TopicType } from '@/types/data';
 import TestProgress from './Progress/TestProgress';
 import autoAnimate from '@formkit/auto-animate';
+import TestSummary from './Summary/TestSummary';
 
 const TestModeModal = () => {
   const { open } = useAppSelector((state) => state.testMode);
@@ -59,6 +60,14 @@ const TestModeModal = () => {
             selectedQuestion={selectedQuestion}
             setSelectedQuestion={setSelectedQuestion}
             setTestStage={setTestStage}
+          />
+        )}
+        {testStage === 'concluded' && (
+          <TestSummary
+            createdTest={createdTest}
+            setTestStage={setTestStage}
+            testTopic={testTopic}
+            testSubtopic={testSubtopic}
           />
         )}
       </div>
