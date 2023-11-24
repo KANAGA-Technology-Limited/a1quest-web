@@ -7,7 +7,7 @@ import Link from 'next/link';
 import Streak from './Streak';
 import Notification from './Notification';
 import User from './User';
-import ArrowLeftIcon from '@/assets/icons/arrow_left.svg';
+import ArrowLeftIcon from '@/assets/icons/arrow_back.svg';
 import { useRouter } from 'next/navigation';
 
 const Navbar = ({
@@ -24,7 +24,7 @@ const Navbar = ({
         <div className='flex items-center gap-5'>
           {showBackButton && (
             <button onClick={() => router.back()}>
-              <Image src={ArrowLeftIcon} alt='Back' className='md:h-10 h-8 w-auto' />
+              <Image src={ArrowLeftIcon} alt='Back' className='h-6 w-auto' />
             </button>
           )}
 

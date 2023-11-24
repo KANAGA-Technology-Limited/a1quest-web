@@ -1,9 +1,13 @@
-import React from 'react'
+import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
+import TestReviewList from '@/components/report/TestReviewList';
+import React from 'react';
 
 const TestReviewPage = () => {
   return (
-    <div>TestReviewPage</div>
-  )
-}
+    <DashboardLayout showBackButton pageTitle='Review Test Performance'>
+      <TestReviewList />
+    </DashboardLayout>
+  );
+};
 
-export default TestReviewPage
+export default TestReviewPage;

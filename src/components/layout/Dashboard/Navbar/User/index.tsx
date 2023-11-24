@@ -19,8 +19,8 @@ const User = () => {
   }, [parentRef]);
   return (
     <ClickAwayListener onClickAway={() => setOpen(false)}>
-      <div className='flex items-center' ref={parentRef}>
-        <div className='relative'>
+      <div className='flex items-center min-w-fit' ref={parentRef}>
+        <div className='relative min-w-fit'>
           <button onClick={() => setOpen(true)} className='flex items-center relative'>
             {user?.profilePicture ? (
               <Image
