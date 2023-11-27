@@ -34,7 +34,7 @@ const ForgotPasswordForm = () => {
       });
       sendFeedback(response.data?.message, 'success');
       formik.resetForm();
-      router.push(`/auth/reset-password/${formik.values.email}`);
+      router.push(`/auth/reset-password`);
     } catch (error: any) {
       sendCatchFeedback(error);
     } finally {
