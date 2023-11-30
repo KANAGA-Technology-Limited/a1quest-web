@@ -11,6 +11,7 @@ import autoAnimate from '@formkit/auto-animate';
 import TestSummary from './Summary/TestSummary';
 import { sendCatchFeedback, sendFeedback } from '@/functions/feedback';
 import { appAxios } from '@/api/axios';
+import ForcedSubmissionModal from './Progress/ForcedSubmissionModal';
 
 const TestModeModal = () => {
   const { open } = useAppSelector((state) => state.testMode);
@@ -25,8 +26,7 @@ const TestModeModal = () => {
     undefined
   );
   const [submitLoading, setSubmitLoading] = useState(false);
-
-  console.log();
+  const [timerCount, setTimerCount] = useState(0);
 
   useEffect(() => {
     if (parentRef.current) {
@@ -46,8 +46,8 @@ const TestModeModal = () => {
     }
   }, [open]);
 
-  const submitTest = async () => {
-    if (confirm('Are you sure you want to submit this test')) {
+  const submitTest = (askCheck?: boolean) => {
+    const operation = async () => {
       try {
         setSubmitLoading(true);
         await appAxios.post(`/learning/tests/${createdTest?._id}/answers`, {
@@ -57,7 +57,7 @@ const TestModeModal = () => {
                 answer: questionList[question_id].answer,
               }))
             : [],
-          time: 8.9,
+          time: timerCount / 60, // collected in minutes
         });
         setTestStage('concluded');
         sendFeedback('Test Submitted', 'success');
@@ -66,6 +66,13 @@ const TestModeModal = () => {
       } finally {
         setSubmitLoading(false);
       }
+    };
+    if (askCheck) {
+      if (confirm('Are you sure you want to submit this test')) {
+        operation();
+      }
+    } else {
+      operation();
     }
   };
 
@@ -108,6 +115,10 @@ const TestModeModal = () => {
             questionList={questionList}
             submitTest={submitTest}
             submitLoading={submitLoading}
+            timerCount={timerCount}
+            setTimerCount={setTimerCount}
+            testSubtopic={testSubtopic}
+            testTopic={testTopic}
           />
         )}
         {testStage === 'concluded' && (
@@ -118,6 +129,13 @@ const TestModeModal = () => {
             testSubtopic={testSubtopic}
           />
         )}
+
+        <ForcedSubmissionModal
+          submitTest={submitTest}
+          timerCount={timerCount}
+          testDuration={testSubtopic?.test_duration || testTopic?.test_duration || 0}
+          testStage={testStage}
+        />
       </div>
     </CustomModal>
   );

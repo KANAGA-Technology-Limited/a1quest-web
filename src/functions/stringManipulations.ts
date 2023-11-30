@@ -36,3 +36,19 @@ export const getDateDifferenceInDays = (date2: string, date1: string) => {
 
   return Math.floor((utc2 - utc1) / millisecondsInOneDay);
 };
+
+export const formatTime = (audioDuration: number) => {
+  // Convert and format the duration
+  const h = Math.floor(audioDuration / 3600)
+    .toString()
+    .padStart(2, '0');
+  const m = Math.floor((audioDuration % 3600) / 60)
+    .toString()
+    .padStart(2, '0');
+  const s = Math.floor(audioDuration % 60)
+    .toString()
+    .padStart(2, '0');
+
+  const newFormat = Number(h) > 0 ? h + ':' + m + ':' + s : m + ':' + s;
+  return newFormat;
+};

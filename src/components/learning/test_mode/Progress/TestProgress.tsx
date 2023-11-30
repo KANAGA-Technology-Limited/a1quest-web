@@ -3,6 +3,7 @@ import ProgressHeader from './ProgressHeader';
 import { QuestionListType, TestCreationType, TestStage } from '@/types/test_mode';
 import TestQuestionPane from './TestQuestionPane';
 import ProgressControl from './ProgressControl';
+import { SubTopicType, TopicType } from '@/types/data';
 
 const TestProgress = ({
   createdTest,
@@ -13,6 +14,8 @@ const TestProgress = ({
   questionList,
   submitLoading,
   submitTest,
+  setTimerCount,
+  timerCount,testSubtopic,testTopic
 }: {
   createdTest: TestCreationType | undefined;
   selectedQuestion: number;
@@ -22,6 +25,10 @@ const TestProgress = ({
   questionList: QuestionListType | undefined;
   submitLoading: boolean;
   submitTest: () => void;
+  timerCount: number;
+  testTopic: TopicType | undefined;
+  testSubtopic: SubTopicType | undefined;
+  setTimerCount: React.Dispatch<React.SetStateAction<number>>;
 }) => {
   // Prevent page reload or exit without confirmation
   React.useEffect(() => {
@@ -57,9 +64,12 @@ const TestProgress = ({
         createdTest={createdTest}
         selectedQuestion={selectedQuestion}
         setSelectedQuestion={setSelectedQuestion}
-        setTestStage={setTestStage}
         submitTest={submitTest}
         submitLoading={submitLoading}
+        timerCount={timerCount}
+        setTimerCount={setTimerCount}
+        testSubtopic={testSubtopic}
+        testTopic={testTopic}
       />
     </>
   );
