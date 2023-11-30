@@ -6,6 +6,9 @@ import { TestReviewType } from '@/types/test_mode';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import QuestionCard from './QuestionCard';
+import { formatTime } from '@/functions/stringManipulations';
+import { MistakeIcon, ScoreIcon, TimeIcon } from '../learning/test_mode/Summary/icons';
+import PerformanceSummary from './PerformanceSummary';
 
 const TestReviewList = () => {
   const searchParams = useSearchParams();
@@ -36,16 +39,19 @@ const TestReviewList = () => {
       {loading ? (
         <LoadingIndicator text='Fetching Test Results' size={40} align='center' />
       ) : testReview ? (
-        <div className='flex flex-col w-full gap-10'>
-          {testReview.questions.map((question, index) => (
-            <>
-              <QuestionCard question={question} index={index} />
-              {index < testReview.questions.length - 1 && (
-                <div className='w-full bg-[#B5B5B5] h-[1px] ' />
-              )}
-            </>
-          ))}
-        </div>
+        <>
+          <PerformanceSummary testReview={testReview} />
+          <div className='flex flex-col w-full gap-10 mt-10'>
+            {testReview.questions.map((question, index) => (
+              <>
+                <QuestionCard question={question} index={index} />
+                {index < testReview.questions.length - 1 && (
+                  <div className='w-full bg-[#B5B5B5] h-[1px] ' />
+                )}
+              </>
+            ))}
+          </div>
+        </>
       ) : (
         <p>Couldn&apos;t find this test&apos;s report</p>
       )}

@@ -49,6 +49,7 @@ export type TestReviewQuestionType = {
   last_updated_by: string;
   last_update_date: Date;
   passed: boolean;
+  answer_provided: string[];
 };
 
 export interface TestReviewType {
