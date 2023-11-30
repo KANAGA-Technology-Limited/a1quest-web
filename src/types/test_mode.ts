@@ -68,3 +68,10 @@ export interface QuestionListType {
     answer: string[] | number[];
   };
 }
+
+export interface TestPerformanceType {
+  questions: number;
+  time: number;
+  correct: number;
+  mistakes: number;
+}
