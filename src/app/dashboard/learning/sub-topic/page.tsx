@@ -1,15 +1,15 @@
 import BackComponent from '@/common/BackComponent';
 import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
-import ClassTopics from '@/components/learning/class/ClassTopics';
+import SubtopicDetail from '@/components/learning/subtopic/SubtopicDetail';
 import React from 'react';
 
-const LearningClassPage = () => {
+const SubTopicPage = () => {
   return (
-    <DashboardLayout pageTitle='Class Topics'>
+    <DashboardLayout pageTitle='Sub-Topic Details'>
       <BackComponent />
-      <ClassTopics />
+      <SubtopicDetail />
     </DashboardLayout>
   );
 };
 
-export default LearningClassPage;
+export default SubTopicPage;
