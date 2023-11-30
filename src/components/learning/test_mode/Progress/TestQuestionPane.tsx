@@ -1,14 +1,18 @@
 import React, { useEffect, useRef } from 'react';
 import autoAnimate from '@formkit/auto-animate';
 import SelectedQuestion from './SelectedQuestion';
-import { TestCreationType } from '@/types/test_mode';
+import { QuestionListType, TestCreationType } from '@/types/test_mode';
 
 const TestQuestionPane = ({
   createdTest,
   selectedQuestion,
+  setQuestionList,
+  questionList,
 }: {
   createdTest: TestCreationType | undefined;
   selectedQuestion: number;
+  setQuestionList: React.Dispatch<React.SetStateAction<QuestionListType | undefined>>;
+  questionList: QuestionListType | undefined;
 }) => {
   const parentRef = useRef(null);
 
@@ -29,6 +33,8 @@ const TestQuestionPane = ({
         <SelectedQuestion
           question={createdTest.questions[selectedQuestion]}
           selectedQuestion={selectedQuestion}
+          setQuestionList={setQuestionList}
+          questionList={questionList}
         />
       </div>
     </div>

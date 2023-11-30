@@ -1,6 +1,6 @@
 import React from 'react';
 import ProgressHeader from './ProgressHeader';
-import { TestCreationType, TestStage } from '@/types/test_mode';
+import { QuestionListType, TestCreationType, TestStage } from '@/types/test_mode';
 import TestQuestionPane from './TestQuestionPane';
 import ProgressControl from './ProgressControl';
 
@@ -9,11 +9,19 @@ const TestProgress = ({
   selectedQuestion,
   setSelectedQuestion,
   setTestStage,
+  setQuestionList,
+  questionList,
+  submitLoading,
+  submitTest,
 }: {
   createdTest: TestCreationType | undefined;
   selectedQuestion: number;
   setSelectedQuestion: React.Dispatch<React.SetStateAction<number>>;
   setTestStage: React.Dispatch<React.SetStateAction<TestStage>>;
+  setQuestionList: React.Dispatch<React.SetStateAction<QuestionListType | undefined>>;
+  questionList: QuestionListType | undefined;
+  submitLoading: boolean;
+  submitTest: () => void;
 }) => {
   // Prevent page reload or exit without confirmation
   React.useEffect(() => {
@@ -39,12 +47,19 @@ const TestProgress = ({
         setSelectedQuestion={setSelectedQuestion}
         setTestStage={setTestStage}
       />
-      <TestQuestionPane createdTest={createdTest} selectedQuestion={selectedQuestion} />
+      <TestQuestionPane
+        createdTest={createdTest}
+        selectedQuestion={selectedQuestion}
+        setQuestionList={setQuestionList}
+        questionList={questionList}
+      />
       <ProgressControl
         createdTest={createdTest}
         selectedQuestion={selectedQuestion}
         setSelectedQuestion={setSelectedQuestion}
         setTestStage={setTestStage}
+        submitTest={submitTest}
+        submitLoading={submitLoading}
       />
     </>
   );

@@ -4,11 +4,13 @@ import { exitTestMode } from '@/store/features/testMode';
 import { useAppDispatch, useAppSelector } from '@/store/hooks';
 import React, { useEffect, useRef, useState } from 'react';
 import TestInitialization from './TestInitialization';
-import { TestCreationType, TestStage } from '@/types/test_mode';
+import { QuestionListType, TestCreationType, TestStage } from '@/types/test_mode';
 import { SubTopicType, TopicType } from '@/types/data';
 import TestProgress from './Progress/TestProgress';
 import autoAnimate from '@formkit/auto-animate';
 import TestSummary from './Summary/TestSummary';
+import { sendCatchFeedback, sendFeedback } from '@/functions/feedback';
+import { appAxios } from '@/api/axios';
 
 const TestModeModal = () => {
   const { open } = useAppSelector((state) => state.testMode);
@@ -19,12 +21,54 @@ const TestModeModal = () => {
   const [testSubtopic, setTestSubTopic] = useState<SubTopicType | undefined>(undefined);
   const [selectedQuestion, setSelectedQuestion] = useState(0);
   const parentRef = useRef(null);
+  const [questionList, setQuestionList] = useState<QuestionListType | undefined>(
+    undefined
+  );
+  const [submitLoading, setSubmitLoading] = useState(false);
+
+  console.log();
 
   useEffect(() => {
     if (parentRef.current) {
       autoAnimate(parentRef.current);
     }
   }, [parentRef]);
+
+  // Reset on close
+  useEffect(() => {
+    if (!open) {
+      setSelectedQuestion(0);
+      setCreatedTest(undefined);
+      setTestSubTopic(undefined);
+      setTestTopic(undefined);
+      setTestStage('initialization');
+      setQuestionList(undefined);
+    }
+  }, [open]);
+
+  const submitTest = async () => {
+    if (confirm('Are you sure you want to submit this test')) {
+      try {
+        setSubmitLoading(true);
+        await appAxios.post(`/learning/tests/${createdTest?._id}/answers`, {
+          answers: questionList
+            ? Object.keys(questionList).map((question_id) => ({
+                question_id,
+                answer: questionList[question_id].answer,
+              }))
+            : [],
+          time: 8.9,
+        });
+        setTestStage('concluded');
+        sendFeedback('Test Submitted', 'success');
+      } catch (error) {
+        sendCatchFeedback(error);
+      } finally {
+        setSubmitLoading(false);
+      }
+    }
+  };
+
   return (
     <CustomModal
       isOpen={open}
@@ -60,6 +104,10 @@ const TestModeModal = () => {
             selectedQuestion={selectedQuestion}
             setSelectedQuestion={setSelectedQuestion}
             setTestStage={setTestStage}
+            setQuestionList={setQuestionList}
+            questionList={questionList}
+            submitTest={submitTest}
+            submitLoading={submitLoading}
           />
         )}
         {testStage === 'concluded' && (

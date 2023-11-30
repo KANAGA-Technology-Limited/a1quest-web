@@ -62,3 +62,9 @@ export interface TestReviewType {
   mistakes: number;
   creation_date: Date;
 }
+
+export interface QuestionListType {
+  [question_id: string]: {
+    answer: string[] | number[];
+  };
+}

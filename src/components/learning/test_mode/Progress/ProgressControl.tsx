@@ -7,11 +7,15 @@ const ProgressControl = ({
   selectedQuestion,
   setSelectedQuestion,
   setTestStage,
+  submitLoading,
+  submitTest,
 }: {
   createdTest: TestCreationType | undefined;
   selectedQuestion: number;
   setSelectedQuestion: React.Dispatch<React.SetStateAction<number>>;
   setTestStage: React.Dispatch<React.SetStateAction<TestStage>>;
+  submitLoading: boolean;
+  submitTest: () => void;
 }) => {
   return (
     <div className='bg-white absolute left-0 bottom-0 right-0 px-primary py-[33px]'>
@@ -31,11 +35,8 @@ const ProgressControl = ({
         )}
         {selectedQuestion + 1 >= (createdTest?.questions?.length || 0) ? (
           <Button
-            onClick={() => {
-              if (confirm('Are you sure you want to submit this test')) {
-                setTestStage('concluded');
-              }
-            }}
+            onClick={submitTest}
+            loading={submitLoading}
           >
             Submit Test
           </Button>
