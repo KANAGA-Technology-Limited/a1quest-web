@@ -66,7 +66,7 @@ export interface TestReviewType {
 
 export interface QuestionListType {
   [question_id: string]: {
-    answer: string[] | number[];
+    answer: string[];
   };
 }
 

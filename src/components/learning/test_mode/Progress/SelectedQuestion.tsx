@@ -18,9 +18,7 @@ const SelectedQuestion = ({
     (value: string) => {
       let answer: string | undefined = undefined;
       if (questionList && questionList[question._id]) {
-        answer = questionList[question._id].answer.find(
-          (item) => item === value
-        ) as string;
+        answer = questionList[question._id].answer.find((item) => item === value);
       }
       return answer;
     },
@@ -53,7 +51,7 @@ const SelectedQuestion = ({
               [question._id]: {
                 answer:
                   question.question_input_type === 'number'
-                    ? [Number(e.target.value)]
+                    ? [Number(e.target.value) as any]
                     : [e.target.value],
               },
             }))
@@ -118,7 +116,7 @@ const SelectedQuestion = ({
                         [question._id]: {
                           answer: questionList[question._id].answer.filter(
                             (item) => item !== option._id
-                          ) as string[],
+                          ),
                         },
                       }));
                     } else {
@@ -131,7 +129,7 @@ const SelectedQuestion = ({
                                   ? questionList[question._id].answer
                                   : []),
                                 option._id,
-                              ] as string[],
+                              ],
                             },
                           }))
                         : setQuestionList((old) => ({
