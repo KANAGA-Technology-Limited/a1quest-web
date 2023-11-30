@@ -43,6 +43,8 @@ const TestModeModal = () => {
       setTestTopic(undefined);
       setTestStage('initialization');
       setQuestionList(undefined);
+      setTimerCount(0);
+      setSubmitLoading(false);
     }
   }, [open]);
 

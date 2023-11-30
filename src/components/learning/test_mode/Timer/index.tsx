@@ -1,7 +1,7 @@
 'use client';
 
 import { formatTime } from '@/functions/stringManipulations';
-import React, {  useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 const Timer = ({
   setTimerCount,
@@ -39,7 +39,7 @@ const Timer = ({
         color:
           remainingPercentage < 30 && remainingPercentage > 10
             ? '#ff8c00'
-            : remainingPercentage < 10
+            : remainingPercentage <= 10
             ? '#DC2626'
             : '#000',
       }}
