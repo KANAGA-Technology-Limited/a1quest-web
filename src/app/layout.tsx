@@ -14,6 +14,7 @@ import 'react-pdf/dist/Page/TextLayer.css';
 
 // Video JS
 import 'video.js/dist/video-js.css';
+import TestModeModal from '@/components/learning/test_mode/TestModeModal';
 
 export const metadata: Metadata = {
   title: 'A1Quest',
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <ToastProvider>
             <GetUserSession />
             {children}
+            <TestModeModal />
           </ToastProvider>
         </Providers>
         <div id='modals' />

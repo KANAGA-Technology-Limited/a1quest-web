@@ -45,6 +45,11 @@ export type TopicType = {
   last_updated_by: string;
   creation_date: string;
   last_update_date: string;
+  num_of_enrollments: number;
+  num_of_questions?: number;
+  test_duration?: number;
+  test_notice?: string;
+  can_take_test: boolean;
 };
 
 export type EnrolledTopicType = {
@@ -65,6 +70,10 @@ export type SubTopicType = {
   last_updated_by: string;
   creation_date: string;
   last_update_date: string;
+  num_of_questions?: number;
+  test_duration?: number;
+  test_notice?: string;
+  can_take_test: boolean;
 };
 
 export type LessonType = {

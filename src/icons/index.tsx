@@ -52,3 +52,47 @@ export const DeleteIconAlt = () => (
     />
   </svg>
 );
+
+export const FailedIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+  >
+    <circle cx='12' cy='12' r='12' fill='#DC2626' />
+    <path
+      d='M16.55 7L7 16.55M7.00001 7L16.55 16.55'
+      stroke='white'
+      strokeLinecap='round'
+      strokeLinejoin='round'
+    />
+  </svg>
+);
+
+export const PassedIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='24'
+    height='24'
+    viewBox='0 0 24 24'
+    fill='none'
+  >
+    <g clipPath='url(#clip0_491_17)'>
+      <path
+        d='M12 24C18.6274 24 24 18.6274 24 12C24 5.37258 18.6274 0 12 0C5.37258 0 0 5.37258 0 12C0 18.6274 5.37258 24 12 24Z'
+        fill='#059669'
+      />
+      <path
+        d='M10.7949 17.1113L6.44336 13.7123L7.36661 12.5303L10.4551 14.9423L15.4681 7.56006L16.7086 8.40231L10.7949 17.1113Z'
+        fill='white'
+      />
+    </g>
+    <defs>
+      <clipPath id='clip0_491_17'>
+        <rect width='24' height='24' fill='white' />
+      </clipPath>
+    </defs>
+  </svg>
+);

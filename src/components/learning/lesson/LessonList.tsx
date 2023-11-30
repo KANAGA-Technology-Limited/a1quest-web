@@ -31,10 +31,10 @@ const LessonList = ({ subtopicId, topicId }: { subtopicId: string; topicId: stri
   }, [topicId, subtopicId]);
 
   return (
-    <div>
-      <div className='mb-5 pb-1 border-b w-full flex items-center justify-between'>
-        <h4 className='text-[#4B5768] font-bold'>Lessons</h4>
-        <p className='text-sm text-[#4B5768]'>
+    <div className='mt-12'>
+      <div className='pb-1 border-b w-full flex items-center justify-between mb-7'>
+        <h2 className='text-[#4B5768] text-xl md:text-2xl font-semibold  '>Lessons</h2>
+        <p className='text-[#4B5768]'>
           {!loading &&
             data &&
             data.length > 0 &&

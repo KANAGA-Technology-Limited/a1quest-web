@@ -8,7 +8,7 @@ const LoadingIndicator = ({
 }: {
   text?: string;
   size?: number;
-  align?: 'flex-start' | 'flex-end' | 'end';
+  align?: 'flex-start' | 'flex-end' | 'center';
 }) => {
   return (
     <div
