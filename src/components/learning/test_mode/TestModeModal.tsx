@@ -14,7 +14,7 @@ import { appAxios } from '@/api/axios';
 import ForcedSubmissionModal from './Progress/ForcedSubmissionModal';
 
 const TestModeModal = () => {
-  const { open } = useAppSelector((state) => state.testMode);
+  const { open, subtopicId, topicId } = useAppSelector((state) => state.testMode);
   const dispatch = useAppDispatch();
   const [testStage, setTestStage] = useState<TestStage>('initialization');
   const [createdTest, setCreatedTest] = useState<TestCreationType | undefined>(undefined);
@@ -63,6 +63,13 @@ const TestModeModal = () => {
         });
         setTestStage('concluded');
         sendFeedback('Test Submitted', 'success');
+
+        // Track test completion
+        await appAxios.post('/learning/track-progress-rate', {
+          topic_id: topicId,
+          type: 'test',
+          test_id: subtopicId ? subtopicId : topicId,
+        });
       } catch (error) {
         sendCatchFeedback(error);
       } finally {
