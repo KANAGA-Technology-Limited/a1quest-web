@@ -29,9 +29,7 @@ const PerformanceSummary = ({ testReview }: { testReview: TestReviewType }) => {
           <span className='text-[#06102B] font-semibold'>{testReview.mistakes || 0}</span>
         </div>
 
-        <span className='text-primary underline underline-offset-2 cursor-pointer text-sm font-normal'>
-          Mistakes
-        </span>
+        <span className='text-[#4B5768] text-sm font-normal'>Mistakes</span>
       </div>
 
       {/* Score */}
@@ -43,9 +41,7 @@ const PerformanceSummary = ({ testReview }: { testReview: TestReviewType }) => {
             {testReview.correct || 0}/{testReview.questions?.length || 0}
           </span>
         </div>
-        <span className='text-primary underline underline-offset-2 cursor-pointer text-sm font-normal'>
-          Score
-        </span>
+        <span className='text-[#4B5768] text-sm font-normal'>Score</span>
       </div>
 
       {/* Time Spent */}
