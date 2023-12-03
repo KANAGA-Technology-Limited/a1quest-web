@@ -19,7 +19,7 @@ RUN npm run build
 RUN npm install -g serve
 # Expose the port that the application will run on
 ENV NEXT_PUBLIC_API_URL=https://a1quest-api-production.up.railway.app/api/v1
-ENV NEXT_PUBLIC_SESSION_NAME=A1Quest User
+ENV NEXT_PUBLIC_SESSION_NAME=A1Quest_User
 ENV NEXT_PUBLIC_SESSION_KEY=A1_QUE_US_KEY
 ENV NEXT_PUBLIC_TOKEN_NAME=A1Quest
 ENV NEXT_PUBLIC_TOKEN_KEY=A1_QUE_TOK_KEY
