@@ -102,7 +102,7 @@ const SelectedQuestion = ({
               return (
                 <li
                   key={option._id}
-                  className='border border-[#4B5768] rounded-md bg-white transition-colors duration-300 cursor-pointer p-4'
+                  className='border border-[#4B5768] rounded-md bg-white transition-colors duration-300 cursor-pointer p-4 flex items-center gap-2'
                   style={{
                     borderColor: selectedAnswer(option._id)
                       ? 'var(--primary)'
@@ -145,10 +145,12 @@ const SelectedQuestion = ({
                     checked={selectedAnswer(option._id) ? true : false}
                     value={option.option_value}
                     id={option._id}
-                    label={option.option_value}
+                    // removed label because I wasn't using the onchange
+                    // label={option.option_value}
                     key={option._id}
                     onChange={() => null}
                   />
+                  <span className='font-medium text-gray-900'>{option.option_value}</span>
                 </li>
               );
             }
