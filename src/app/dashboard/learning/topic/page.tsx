@@ -6,7 +6,7 @@ import React from 'react';
 
 const LearningTopicsPage = () => {
   return (
-    <DashboardLayout>
+    <DashboardLayout pageTitle='Topic Details'>
       <BackComponent />
       <TopicDetail />
       <SubTopicsList />

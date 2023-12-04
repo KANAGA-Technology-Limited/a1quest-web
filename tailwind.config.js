@@ -30,6 +30,7 @@ module.exports = {
         primary: '#1D4ED8',
         primaryDark: '#0C1F56',
         secondary: '#F0AC27',
+        error: '#DC2626',
       },
       fontFamily: {
         primary: ['var(--font-primary)'],

@@ -13,9 +13,8 @@ const customStyles: ReactModal.Styles = {
     overflow: 'auto',
     width: '900px',
     maxWidth: '90vw',
-    padding: 32,
-    paddingTop: 16,
     maxHeight: '95vh',
+    height: 'auto',
     backgroundColor: '#fff',
     color: '#000',
     transition: 'all 0.3s',
@@ -36,6 +35,16 @@ function CustomModal({
   children,
   shouldCloseOnOverlayClick = true,
   width,
+  height,
+  maxWidth,
+  maxHeight,
+  showTitle = true,
+  borderRadius,
+  backgroundColor,
+  resizeBody = true,
+  paddingTop = 16,
+  padding = 32,
+  childrenClass,
   ...rest
 }: {
   title?: string;
@@ -44,10 +53,20 @@ function CustomModal({
   children: React.ReactNode;
   shouldCloseOnOverlayClick?: boolean;
   width?: string;
+  maxWidth?: string;
+  height?: string;
+  borderRadius?: number;
+  paddingTop?: number;
+  padding?: number;
+  backgroundColor?: string;
+  maxHeight?: string;
+  showTitle?: boolean;
+  resizeBody?: boolean;
+  childrenClass?: string;
 } & ReactModal.Props) {
   React.useEffect(() => {
     // Check if modal is open and prevent body from scrolling
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined' && resizeBody) {
       const body = document.body;
       ReactModal.setAppElement('#modals');
 
@@ -60,7 +79,7 @@ function CustomModal({
         body.style.height = 'auto';
       }
     }
-  }, [isOpen]);
+  }, [isOpen, resizeBody]);
 
   return (
     <ReactModal
@@ -72,6 +91,13 @@ function CustomModal({
         content: {
           ...customStyles.content,
           width: width || customStyles.content?.width,
+          maxWidth: maxWidth || customStyles.content?.maxWidth,
+          height: height || customStyles.content?.height,
+          maxHeight: maxHeight || customStyles.content?.maxHeight,
+          borderRadius: borderRadius || customStyles.content?.borderRadius,
+          backgroundColor: backgroundColor || customStyles.content?.backgroundColor,
+          padding: padding,
+          paddingTop: paddingTop,
           opacity: isOpen ? 1 : 0,
         },
         overlay: customStyles.overlay,
@@ -80,23 +106,26 @@ function CustomModal({
       shouldCloseOnOverlayClick={shouldCloseOnOverlayClick}
       {...rest}
     >
-      <div
-        className={styles.modalTitleContainer}
-        style={{
-          justifyContent: title ? 'space-between' : 'flex-end',
-        }}
-      >
-        {title && <h1>{title}</h1>}
-        <button
-          onClick={onRequestClose}
+      {showTitle && (
+        <div
+          className={styles.modalTitleContainer}
           style={{
-            backgroundColor: 'transparent',
+            justifyContent: title ? 'space-between' : 'flex-end',
           }}
         >
-          &#x2715;
-        </button>
-      </div>
-      {children}
+          {title && <h1>{title}</h1>}
+          <button
+            onClick={onRequestClose}
+            style={{
+              backgroundColor: 'transparent',
+            }}
+          >
+            &#x2715;
+          </button>
+        </div>
+      )}
+
+      <div className={childrenClass}>{children}</div>
     </ReactModal>
   );
 }
