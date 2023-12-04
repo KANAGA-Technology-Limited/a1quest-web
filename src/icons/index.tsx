@@ -96,3 +96,15 @@ export const PassedIcon = () => (
     </defs>
   </svg>
 );
+
+export const DotIcon = () => (
+  <svg
+    xmlns='http://www.w3.org/2000/svg'
+    width='3'
+    height='3'
+    viewBox='0 0 3 3'
+    fill='none'
+  >
+    <circle cx='1.5' cy='1.5' r='1.5' fill='#4B5768' />
+  </svg>
+);
