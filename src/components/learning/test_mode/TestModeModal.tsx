@@ -34,6 +34,23 @@ const TestModeModal = () => {
     }
   }, [parentRef]);
 
+  // set question list
+  useEffect(() => {
+    if (createdTest) {
+      const questionsToBeSet = createdTest.questions.reduce(
+        (a, b) => ({
+          ...a,
+          [b._id]: {
+            answer: [],
+          },
+        }),
+        {}
+      );
+
+      setQuestionList(questionsToBeSet);
+    }
+  }, [createdTest]);
+
   // Reset on close
   useEffect(() => {
     if (!open) {
@@ -56,7 +73,10 @@ const TestModeModal = () => {
           answers: questionList
             ? Object.keys(questionList).map((question_id) => ({
                 question_id,
-                answer: questionList[question_id].answer,
+                answer:
+                  questionList[question_id].answer.length > 0
+                    ? questionList[question_id].answer
+                    : [null],
               }))
             : [],
           time: timerCount / 60, // collected in minutes
