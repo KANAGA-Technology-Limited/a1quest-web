@@ -52,3 +52,38 @@ export const formatTime = (audioDuration: number) => {
   const newFormat = Number(h) > 0 ? h + ':' + m + ':' + s : m + ':' + s;
   return newFormat;
 };
+
+export const getMonthString = (date: Date, full?: boolean) => {
+  const monthStrings = [
+    'Jan',
+    'Feb',
+    'Mar',
+    'Apr',
+    'May',
+    'Jun',
+    'Jul',
+    'Aug',
+    'Sept',
+    'Oct',
+    'Nov',
+    'Dec',
+  ];
+
+  const fullMonthStrings = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+  return full
+    ? fullMonthStrings[new Date(date).getUTCMonth()]
+    : monthStrings[new Date(date).getUTCMonth()];
+};

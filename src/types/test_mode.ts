@@ -76,3 +76,19 @@ export interface TestPerformanceType {
   correct: number;
   mistakes: number;
 }
+
+export interface TestListType {
+  _id: string;
+  topic_id: {
+    _id: string;
+    title: string;
+  };
+  sub_topic_id: {
+    _id: string;
+    title: string;
+  };
+  user_id: string;
+  questions: TestQuestionType[];
+  completed: boolean;
+  creation_date: Date;
+}

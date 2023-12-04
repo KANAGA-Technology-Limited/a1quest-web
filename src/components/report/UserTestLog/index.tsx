@@ -1,7 +1,12 @@
 import React from 'react';
+import TestList from './TestList';
 
 const UserTestLog = () => {
-  return <div>UserTestLog</div>;
+  return (
+    <>
+      <TestList />
+    </>
+  );
 };
 
 export default UserTestLog;
