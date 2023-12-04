@@ -28,7 +28,10 @@ jobs:
         needs: publish
         name: deploy image
         runs-on: ubuntu-latest
-
+        env:
+          NEXT_PUBLIC_API_URL: https://a1quest-api-production.up.railway.app/
+          NEXT_PUBLIC_TOKEN_NAME: A1Quest
+          NEXT_PUBLIC_TOKEN_KEY: A1_QUE_TOK_KEY
         steps:
         - name: install ssh keys
 
