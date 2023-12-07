@@ -28,17 +28,17 @@ const PricingPage = () => {
     getPlans();
   }, []);
   return (
-    <AppLayout staticHeader>
+    <AppLayout staticHeader backgroundColor='#F5F5F5'>
       <header className='px-primary py-[100px] text-center lg:text-left'>
-        <h1 className='max-w-2xl font-extrabold font-secondary text-[40px] md:text-[50px] lg:text-[60px] text-primaryDark mb-[10px]'>
+        <h1 className='max-w-3xl font-extrabold font-secondary text-[40px] md:text-[50px] lg:text-[60px] text-primaryDark mb-[10px]'>
           We&apos;ve got a plan that&apos;s perfect for you
         </h1>
-        <p className='max-w-2xl text-[#5B5B5B]'>
+        <p className='max-w-3xl text-[#5B5B5B]'>
           Choose the plan that works best for you and feel free to contact us if you need
           more details
         </p>
       </header>
-      <div className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-[60px] w-full px-[8vw] mb-[100px]'>
+      <div className='flex flex-col lg:flex-row gap-10 w-full pb-[100px] px-primary'>
         {loading ? (
           <LoadingIndicator />
         ) : plans && plans.length > 0 ? (

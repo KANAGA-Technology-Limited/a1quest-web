@@ -11,7 +11,7 @@ import { useRouter } from 'next/navigation';
 import React from 'react';
 import * as yup from 'yup';
 
-const HelpForm = () => {
+const HelpForm = ({ showHeader = true }: { showHeader?: boolean }) => {
   const dispatch = useAppDispatch();
   const router = useRouter();
   const [loading, setLoading] = React.useState(false);
@@ -55,12 +55,16 @@ const HelpForm = () => {
 
   return (
     <div>
-      <h1 className='font-semibold text-xl md:text-[28px] mb-2 text-primary'>
-        Need help? Get in touch
-      </h1>
-      <p className='mb-9 text-[#797979]'>
-        Any question or remarks? You can write us a message!
-      </p>
+      {showHeader && (
+        <>
+          <h1 className='font-semibold text-xl md:text-[28px] mb-2 text-primary'>
+            Need help? Get in touch
+          </h1>
+          <p className='mb-9 text-[#797979]'>
+            Any question or remarks? You can write us a message!
+          </p>
+        </>
+      )}
       <form onSubmit={formik.handleSubmit} className='w-full '>
         <LabelInput formik={formik} name='name' label='Your Name' className='mb-10' />
         <LabelInput
