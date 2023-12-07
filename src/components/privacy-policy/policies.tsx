@@ -336,8 +336,7 @@ export const Policies: PolicyType[] = [
         You may file a complaint with us if you believe that any provision of this Policy
         or your privacy rights have been violated or if your access to our services have
         been compromised, to enable us to take the necessary steps towards ensuring the
-        security of your personal data. All complaints should be emailed to
-        <MailText />
+        security of your personal data. All complaints should be emailed to <MailText />
         . Please note that you can also file a complaint at Nigeria Data Protection
         Commission.
         <br />
@@ -346,7 +345,7 @@ export const Policies: PolicyType[] = [
         Commission within 72 hours of being aware of such breaches. You may also seek
         redress in a court of competent jurisdiction. We would, however, appreciate the
         chance to deal with your concerns before you approach the data protection
-        authorities. Kindly contact us in the first instance by sending an email to
+        authorities. Kindly contact us in the first instance by sending an email to{' '}
         <MailText />.
       </>
     ),
