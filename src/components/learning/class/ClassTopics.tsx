@@ -38,7 +38,7 @@ const ClassTopics = () => {
 
   return (
     <div>
-      <h1 className='text-[#323A46] text-xl md:text-2xl font-semibold my-10'>
+      <h1 className='text-[#323A46] text-xl md:text-2xl font-semibold mb-10'>
         {className}
       </h1>
       <RecentLearning />

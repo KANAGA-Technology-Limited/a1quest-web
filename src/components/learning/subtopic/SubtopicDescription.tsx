@@ -15,7 +15,7 @@ const SubtopicDescription = ({ subTopic }: { subTopic: SubTopicType }) => {
   const dispatch = useAppDispatch();
 
   return (
-    <div className='rounded-lg bg-white px-6 py-8 w-full flex gap-10 justify-between mt-10'>
+    <div className='rounded-lg bg-white px-6 py-8 w-full flex gap-10 justify-between'>
       <div>
         <p className='text-[#06102B] font-normal text-lg mb-[6px]'>{subTopic.title}</p>
         <p className='text-[#64748B] font-normal text-sm line-clamp-6'>

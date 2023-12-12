@@ -1,3 +1,4 @@
+import PageTitle from '@/common/PageTitle';
 import StyledTabs from '@/common/StyledTabs';
 import AccountSettings from '@/components/account/settings';
 import AccountSubscription from '@/components/account/subscription';
@@ -14,9 +15,10 @@ const panels = [
 
 const AccountPage = () => {
   return (
-    <DashboardLayout pageTitle='Account'>
+    <>
+      <PageTitle title='Account' />
       <StyledTabs tabs={tabs} panels={panels} />
-    </DashboardLayout>
+    </>
   );
 };
 

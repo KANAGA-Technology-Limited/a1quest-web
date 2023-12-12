@@ -5,10 +5,12 @@ import TwitterIcon from '@/assets/icons/help/twitter.svg';
 import FacebookIcon from '@/assets/icons/help/facebook.svg';
 import InstagramIcon from '@/assets/icons/help/instagram.svg';
 import Image from 'next/image';
+import PageTitle from '@/common/PageTitle';
 
 const HelpPage = () => {
   return (
-    <DashboardLayout pageTitle='Help & Support'>
+    <>
+      <PageTitle title='Help & Support' />
       <div className='bg-white pb-[43px] p-5 md:pb-[63px] md:p-10 rounded-2xl grid grid-cols-1 lg:grid-cols-2 items-center gap-[62px]'>
         <HelpForm />
         <div className='help-bg rounded-lg flex flex-col p-5 md:p-10 h-full min-h-[500px]'>
@@ -45,7 +47,7 @@ const HelpPage = () => {
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 

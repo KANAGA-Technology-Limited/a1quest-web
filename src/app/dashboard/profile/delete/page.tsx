@@ -1,5 +1,5 @@
 'use client';
-import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
+import PageTitle from '@/common/PageTitle';
 import DeleteModal from '@/components/layout/Dashboard/Navbar/Modals/DeleteModal';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
@@ -9,7 +9,9 @@ const DeleteProfilePage = () => {
   const router = useRouter();
 
   return (
-    <DashboardLayout pageTitle='Delete Account'>
+    <>
+      <PageTitle title='Delete Profile' showBackButton />
+
       <DeleteModal
         open={deleteModal}
         onClose={() => {
@@ -17,7 +19,7 @@ const DeleteProfilePage = () => {
           router.push('/dashboard/profile');
         }}
       />
-    </DashboardLayout>
+    </>
   );
 };
 
