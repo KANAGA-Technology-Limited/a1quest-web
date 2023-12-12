@@ -1,14 +1,15 @@
+import PageTitle from '@/common/PageTitle';
 import TopicSection from '@/components/dashboard/TopicSection';
 import WelcomeBar from '@/components/dashboard/WelcomeBar';
-import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
 import React from 'react';
 
 const DashboardPage = () => {
   return (
-    <DashboardLayout pageTitle='Home'>
+    <>
+      <PageTitle title='Home' />
       <WelcomeBar />
       <TopicSection />
-    </DashboardLayout>
+    </>
   );
 };
 

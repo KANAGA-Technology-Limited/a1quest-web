@@ -1,8 +1,14 @@
-import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
+import PageTitle from '@/common/PageTitle';
+
 import React from 'react';
 
 const LeaderboardPage = () => {
-  return <DashboardLayout pageTitle='Leaderboard'>LeaderboardPage</DashboardLayout>;
+  return (
+    <>
+      <PageTitle title='Leaderboard' />
+      LeaderboardPage
+    </>
+  );
 };
 
 export default LeaderboardPage;

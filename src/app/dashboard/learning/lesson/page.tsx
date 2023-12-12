@@ -1,12 +1,13 @@
-import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
+import PageTitle from '@/common/PageTitle';
 import LessonDetail from '@/components/learning/lesson/LessonDetail';
 import React from 'react';
 
 const LessonPage = () => {
   return (
-    <DashboardLayout>
+    <>
+      <PageTitle title='Lesson Details' showBackButton />
       <LessonDetail />
-    </DashboardLayout>
+    </>
   );
 };
 

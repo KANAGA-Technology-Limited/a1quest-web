@@ -1,3 +1,4 @@
+import PageTitle from '@/common/PageTitle';
 import StyledTabs from '@/common/StyledTabs';
 import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
 import Achievements from '@/components/profile/Achievements';
@@ -14,9 +15,10 @@ const panels = [
 
 const ProfilePage = () => {
   return (
-    <DashboardLayout pageTitle='Profile'>
+    <>
+      <PageTitle title='Profile' />
       <StyledTabs tabs={tabs} panels={panels} />
-    </DashboardLayout>
+    </>
   );
 };
 

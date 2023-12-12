@@ -9,15 +9,12 @@ import Notification from './Notification';
 import User from './User';
 import ArrowLeftIcon from '@/assets/icons/arrow_back.svg';
 import { useRouter } from 'next/navigation';
+import { useAppSelector } from '@/store/hooks';
 
-const Navbar = ({
-  pageTitle,
-  showBackButton = false,
-}: {
-  pageTitle?: string;
-  showBackButton?: boolean;
-}) => {
+const Navbar = () => {
   const router = useRouter();
+  const { pageTitle , showBackButton} = useAppSelector((state) => state.layout);
+
   return (
     <nav className='h-[72px] flex w-full items-center justify-stretch py-[13px] px-secondary shadow-sm bg-white'>
       <div className='flex items-center justify-between w-full'>
@@ -32,7 +29,7 @@ const Navbar = ({
             <Image src={Logo} alt='A1Quest Logo' className='h-8 w-8 object-contain' />
           </Link>
           <p className='text-lg lg:text-[25px] font-semibold text-[#191D23]'>
-            {pageTitle || 'A1 Quest'}
+            {pageTitle}
           </p>
         </div>
         <div className='flex items-center justify-end md:gap-8 gap-4'>
