@@ -25,7 +25,7 @@ const ContactPage = () => {
             </h2>
             <div className='flex flex-col gap-2'>
               <span className='text-white text-lg md:text-2xl font-semibold'>
-                a1quest@gmail.com
+                support@a1quest.com
               </span>
               <span className='text-[#DADADA]'>
                 You can send a mail directly to us and we&apos;ll get in touch in no time.

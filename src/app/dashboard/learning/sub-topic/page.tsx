@@ -1,14 +1,13 @@
-import BackComponent from '@/common/BackComponent';
-import DashboardLayout from '@/components/layout/Dashboard/DashboardLayout';
+import PageTitle from '@/common/PageTitle';
 import SubtopicDetail from '@/components/learning/subtopic/SubtopicDetail';
 import React from 'react';
 
 const SubTopicPage = () => {
   return (
-    <DashboardLayout pageTitle='Sub-Topic Details'>
-      <BackComponent />
+    <>
+      <PageTitle title='Sub-Topic Details' showBackButton />
       <SubtopicDetail />
-    </DashboardLayout>
+    </>
   );
 };
 

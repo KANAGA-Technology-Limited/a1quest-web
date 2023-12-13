@@ -30,7 +30,7 @@ const TopicDetail = () => {
   }, [topicId]);
 
   return (
-    <div className='w-full mt-10'>
+    <div className='w-full'>
       {loading ? (
         <LoadingIndicator size={20} />
       ) : topic ? (

@@ -5,10 +5,12 @@ import TwitterIcon from '@/assets/icons/help/twitter.svg';
 import FacebookIcon from '@/assets/icons/help/facebook.svg';
 import InstagramIcon from '@/assets/icons/help/instagram.svg';
 import Image from 'next/image';
+import PageTitle from '@/common/PageTitle';
 
 const HelpPage = () => {
   return (
-    <DashboardLayout pageTitle='Help & Support'>
+    <>
+      <PageTitle title='Help & Support' />
       <div className='bg-white pb-[43px] p-5 md:pb-[63px] md:p-10 rounded-2xl grid grid-cols-1 lg:grid-cols-2 items-center gap-[62px]'>
         <HelpForm />
         <div className='help-bg rounded-lg flex flex-col p-5 md:p-10 h-full min-h-[500px]'>
@@ -17,7 +19,7 @@ const HelpPage = () => {
           </h2>
           <div className='flex flex-col gap-2'>
             <span className='text-white text-lg md:text-2xl font-semibold'>
-              a1quest@gmail.com
+              support@a1quest.com
             </span>
             <span className='text-[#DADADA]'>
               You can send a mail directly to us and we&apos;ll get in touch in no time.
@@ -45,7 +47,7 @@ const HelpPage = () => {
           </div>
         </div>
       </div>
-    </DashboardLayout>
+    </>
   );
 };
 
