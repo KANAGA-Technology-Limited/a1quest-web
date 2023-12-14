@@ -15,12 +15,12 @@ const UniquenessSection = () => {
         Why we&apos;re better than our competitors
       </h2>
       <div className='competition-bg px-primary w-full'>
-        <div className='flex justify-between gap-10 items-center flex-col md:flex-row w-full mb-[100px] md:pl-[5.6vw]'>
+        <div className='flex justify-between gap-10 items-center flex-col md:flex-row w-full mb-[100px] lg:pl-[5.6vw]'>
           {dataList.slice(0, 2).map((item) => (
             <UniquenessCard key={item.title} item={item} />
           ))}
         </div>
-        <div className='flex justify-between gap-10 items-center flex-col md:flex-row w-full mb-10 md:pr-[5.6vw]'>
+        <div className='flex justify-between gap-10 items-center flex-col md:flex-row w-full mb-10 lg:pr-[5.6vw]'>
           {dataList.slice(2).map((item) => (
             <UniquenessCard key={item.title} item={item} />
           ))}
