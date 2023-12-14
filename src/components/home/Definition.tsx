@@ -2,6 +2,7 @@ import React from 'react';
 import DefinitionImage from '@/assets/images/home/definition.webp';
 import Image from 'next/image';
 import Button from '@/common/Button/Button';
+import Link from 'next/link';
 
 const Definition = () => {
   return (
@@ -13,20 +14,21 @@ const Definition = () => {
         <Image
           src={DefinitionImage}
           alt=''
-          className='w-full h-full object-cover rounded-[10px] max-h-[602px]'
+          className='w-full h-full object-contain rounded-[10px] max-h-[602px]'
         />
       </div>
-      <div className='flex flex-col gap-5 lg:flex-[50%]'>
-        <h2 className='text-[32px] md:text-[48px] lg:text-[56px] font-bold'>
+      <div className='flex flex-col lg:flex-[50%] items-center lg:items-start text-center lg:text-left'>
+        <h2 className='text-[32px] md:text-[48px] lg:text-[56px] font-bold mb-5'>
           What is A1Quest?
         </h2>
-        <p className='text-[#E6E6E6]'>
-          Lorem ipsum dolor sit amet consectetur. Tristique interdum id tempor erat et est
-          pellentesque. Mauris lectus tempor et non blandit lacus donec lectus ac. Nibh
-          sed egestas amet feugiat eu. Proin dictumst quam aliquet odio odio est.
-          Scelerisque magna suscipit.
+        <p className='text-[#CECECE] mb-10'>
+          A1 Quest is a game-changer for both parents and students, transforming the world
+          of mathematics education into a thrilling adventure. Our innovative approach not
+          only simplifies the learning process but also makes it incredibly engaging.
         </p>
-        <Button className='!text-primary !bg-white'>Button</Button>
+        <Link href='/about'>
+          <Button className='!text-primary !bg-white'>Learn more</Button>
+        </Link>
       </div>
     </section>
   );
