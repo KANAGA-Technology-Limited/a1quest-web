@@ -8,7 +8,8 @@ env:
   # Use docker.io for Docker Hub if empty. Actor now lowercase
   REGISTRY: ghcr.io
   IMAGE_NAME: ajykee/a1questweb:latest
-
+  PAYSTACK_KEY: ${{ secret.PAYSTACK_KEY }}
+  FLUTTERWAVE_KEY: ${{ secret.FLUTTERWAVE_KEY }}
 jobs:
     publish:
         name: publish image
