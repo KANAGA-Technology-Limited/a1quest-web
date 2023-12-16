@@ -5,7 +5,7 @@ on:
     branches: [ "development" ]
 
 env:
-  # Use docker.io for Docker Hub if empty.
+  # Use docker.io for Docker Hub if empty. ok
   REGISTRY: ghcr.io
   IMAGE_NAME: ajykee/a1questweb:latest
   PAYSTACK_KEY: ${{ secrets.PAYSTACK_KEY }}
