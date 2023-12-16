@@ -15,7 +15,7 @@ RUN npm install
 COPY . .
 
 # Set environment variables
-ENV NEXT_PUBLIC_API_URL=http://api-dev.a1quest.com/api/v1
+ENV NEXT_PUBLIC_API_URL=http://api.a1quest.com/api/v1
 ENV NEXT_PUBLIC_SESSION_NAME="A1Quest User"
 ENV NEXT_PUBLIC_SESSION_KEY=A1_QUE_US_KEY
 ENV NEXT_PUBLIC_TOKEN_NAME=A1Quest
