@@ -2,13 +2,14 @@ name: publish
 
 on:
   push:
-    branches: [ "development" ]
+    branches: [ "main" ]
 
 env:
-  # Use docker.io for Docker Hub if empty. Actor now lowercase
+  # Use docker.io for Docker Hub if empty. ok
   REGISTRY: ghcr.io
   IMAGE_NAME: ajykee/a1questweb:latest
-
+  PAYSTACK_KEY: ${{ secrets.PAYSTACK_KEY }}
+  FLUTTERWAVE_KEY: ${{ secrets.FLUTTERWAVE_KEY }}
 jobs:
     publish:
         name: publish image
@@ -28,10 +29,7 @@ jobs:
         needs: publish
         name: deploy image
         runs-on: ubuntu-latest
-        env:
-          NEXT_PUBLIC_API_URL: https://a1quest-api-production.up.railway.app/
-          NEXT_PUBLIC_TOKEN_NAME: A1Quest
-          NEXT_PUBLIC_TOKEN_KEY: A1_QUE_TOK_KEY
+
         steps:
         - name: install ssh keys
 

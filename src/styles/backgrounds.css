@@ -60,3 +60,10 @@
   background-size: cover;
   background-position: center;
 }
+
+.competition-bg {
+  background-image: url(../assets/backgrounds/competition.webp);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
