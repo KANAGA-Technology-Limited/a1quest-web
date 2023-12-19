@@ -19,6 +19,7 @@ const Sidebar = () => {
         <Image
           src={Logo}
           alt='A1 Quest Logo'
+          height={50}
           className='max-w-[80%] h-auto object-contain mb-5'
         />
       </Link>

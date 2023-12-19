@@ -50,10 +50,12 @@ const Navbar = ({ staticHeader = false }: { staticHeader?: boolean }) => {
             <Image
               src={Logo}
               alt='A1 Quest Logo'
+              height={50}
               className='w-auto h-[50px] object-contain hidden md:block'
             />
             <Image
               src={LogoSmall}
+              height={50}
               alt='A1 Quest Logo'
               className='w-auto h-[50px] object-contain md:hidden'
             />

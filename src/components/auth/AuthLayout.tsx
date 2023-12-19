@@ -17,7 +17,12 @@ const AuthLayout = ({
       <div className='flex lg:flex-nowrap flex-wrap items-center justify-between lg:h-screen '>
         <div className='px-primary py-10 flex flex-col md:min-h-full md:max-h-screen items-center lg:items-start text-center lg:text-left overflow-y-auto lg:flex-[50%] w-full'>
           <Link href='/'>
-            <Image src={Logo} alt='A1Quest Logo' className=' w-[200px] h-auto mb-32' />
+            <Image
+              src={Logo}
+              alt='A1Quest Logo'
+              className=' w-[200px] h-auto mb-32'
+              height={50}
+            />
           </Link>
           {children}
         </div>
