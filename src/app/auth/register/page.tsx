@@ -1,7 +1,7 @@
 import AuthLayout from '@/components/auth/AuthLayout';
 import RegisterForm from '@/components/auth/RegisterForm';
 import React from 'react';
-import FormImage from '@/assets/images/auth/register.webp';
+import FormImage from '@/assets/images/auth/register.svg';
 
 const RegisterPage = () => {
   return (

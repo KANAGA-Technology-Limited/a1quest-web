@@ -132,6 +132,66 @@ textarea:focus {
   background: #999999;
 }
 
+
+/* Floating Input styles */
+.floatingInputContainer {
+  position: relative;
+}
+
+.floatingInputContainer>label {
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  color: #64748B;
+}
+
+.floatingInputContainer>label>span {
+
+  font-weight: 500;
+  font-size: 14px;
+  /* identical to box height, or 200% */
+
+  color: #64748B;
+}
+
+.floatingInputContainer>* input,
+textarea {
+  padding: 12px;
+  font-size: 1rem;
+  font-family: var(--font-primary);
+  border: 1px solid #D0D5DD;
+  border-radius: 5px;
+  width: 100%;
+  color: var(--black);
+}
+
+.floatingInputContainer>* input::placeholder,
+textarea::placeholder {
+  color: #B8C0CC;
+}
+
+.floatingInputContainer>* input:focus,
+textarea:focus {
+  outline: 1px solid var(--primary) !important;
+  border: 1px solid var(--primary) !important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: inset 0 0 20px 20px #ffffff;
+}
+
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+textarea:-webkit-autofill:active {
+  box-shadow: inset 0 0 20px 20px #ffffff;
+}
+
 @media (max-width:1000px) {
   .inputContainer>label {
     font-size: 16px;
@@ -148,5 +208,14 @@ textarea:focus {
     font-weight: 600;
     margin-top: 39.87px;
     /* margin-bottom: 9px; */
+  }
+
+  .floatingInputContainer>label {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .floatingInputContainer>label>span {
+    font-size: 16px;
   }
 }
