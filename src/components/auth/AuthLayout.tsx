@@ -1,6 +1,6 @@
 import Image, { StaticImageData } from 'next/image';
 import React from 'react';
-import LoginImage from '@/assets/images/auth/login.webp';
+import LoginImage from '@/assets/images/auth/login.svg';
 import Logo from '@/assets/brand/logo.svg';
 import Link from 'next/link';
 import ProtectedRoute from './routeChecker/ProtectedRoute';
@@ -26,11 +26,13 @@ const AuthLayout = ({
           </Link>
           {children}
         </div>
-        <Image
-          src={image || LoginImage}
-          alt='Welcome to A1Quest'
-          className='hidden lg:block lg:h-screen w-auto object-cover lg:flex-[50%]'
-        />
+        <div className='hidden lg:block lg:h-screen w-full lg:flex-[50%]'>
+          <Image
+            src={image || LoginImage}
+            alt='Welcome to A1Quest'
+            className='lg:h-screen w-full object-cover max-w-full'
+          />
+        </div>
       </div>
     </ProtectedRoute>
   );
