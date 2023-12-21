@@ -6,8 +6,6 @@ import { TestReviewType } from '@/types/test_mode';
 import { useSearchParams } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
 import QuestionCard from './QuestionCard';
-import { formatTime } from '@/functions/stringManipulations';
-import { MistakeIcon, ScoreIcon, TimeIcon } from '../learning/test_mode/Summary/icons';
 import PerformanceSummary from './PerformanceSummary';
 
 const TestReviewList = () => {

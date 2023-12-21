@@ -92,3 +92,20 @@ export interface TestListType {
   completed: boolean;
   creation_date: Date;
 }
+
+export interface LessonReportType {
+  _id: string;
+  title: string;
+  allLessons: number;
+  takenLessons: number;
+}
+
+export interface SingleLessonReportType {
+  sub_topics: {
+    title: string;
+    time: number;
+  }[];
+  total_time: number;
+  allLessons: number;
+  takenLessons: number;
+}
