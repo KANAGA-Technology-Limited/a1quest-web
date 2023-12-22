@@ -10,7 +10,7 @@ import { useAppSelector } from '@/store/hooks';
 const WelcomeBar = () => {
   const { user } = useAppSelector((state) => state.user);
   return (
-    <header className='bg-[#F7D593] rounded-xl flex items-center flex-wrap md:flex-nowrap justify-center md:justify-between text-center md:text-left'>
+    <header className='bg-[#F7D593] rounded-xl flex items-center flex-wrap md:flex-nowrap justify-center md:justify-between text-center md:text-left mb-[60px]'>
       <div className='px-10 py-7'>
         <h1 className='flex items-center gap-[13px] text-lg md:text-xl lg:text-2xl font-semibold text-[#50390D] mb-2 justify-center md:justify-start'>
           <span>

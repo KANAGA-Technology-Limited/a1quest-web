@@ -37,7 +37,7 @@ export const getDateDifferenceInDays = (date2: string, date1: string) => {
   return Math.floor((utc2 - utc1) / millisecondsInOneDay);
 };
 
-export const formatTime = (audioDuration: number) => {
+export const formatTime = (audioDuration: number, addIndicators?: boolean) => {
   // Convert and format the duration
   const h = Math.floor(audioDuration / 3600)
     .toString()
@@ -49,7 +49,13 @@ export const formatTime = (audioDuration: number) => {
     .toString()
     .padStart(2, '0');
 
-  const newFormat = Number(h) > 0 ? h + ':' + m + ':' + s : m + ':' + s;
+  const newFormat = addIndicators
+    ? Number(h) > 0
+      ? h + 'h ' + m + 'm ' + s
+      : m + 'm ' + s + 's '
+    : Number(h) > 0
+    ? h + ':' + m + ':' + s
+    : m + ':' + s;
   return newFormat;
 };
 

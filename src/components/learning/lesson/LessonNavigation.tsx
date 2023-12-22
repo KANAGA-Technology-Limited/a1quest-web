@@ -63,7 +63,7 @@ const LessonNavigation = ({
       {/* Sub Topic Link */}
       {subTopic && topic && (
         <Link
-          href={`/dashboard/learning/topic/?id=${topic?._id}#${subTopic._id}`}
+          href={`/dashboard/learning/sub-topic/?id=${subTopic._id}`}
           className='text-sm md:text-base lg:text-lg text-primary font-semibold'
         >
           {subTopic.title}
