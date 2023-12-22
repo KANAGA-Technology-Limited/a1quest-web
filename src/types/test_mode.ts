@@ -109,3 +109,24 @@ export interface SingleLessonReportType {
   allLessons: number;
   takenLessons: number;
 }
+
+export interface TopicPerformanceType {
+  numOfTests: number;
+  questionsGotten: number;
+  averageTimePerQuestion: number;
+  tests: [
+    {
+      topic: string;
+      sub_topic: string;
+      percentage: number;
+      expert: boolean;
+    },
+    {
+      topic: string;
+      sub_topic: string;
+      percentage: number;
+      intermediate: boolean;
+    }
+  ];
+  averagePercentageScore: number;
+}
