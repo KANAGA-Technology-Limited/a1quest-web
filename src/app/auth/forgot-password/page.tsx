@@ -1,7 +1,7 @@
 import AuthLayout from '@/components/auth/AuthLayout';
 import ForgotPasswordForm from '@/components/auth/ForgotPasswordForm';
 import React from 'react';
-import FormImage from '@/assets/images/auth/forgot-password.webp';
+import FormImage from '@/assets/images/auth/forgot-password.svg';
 
 const ForgotPasswordPage = () => {
   return (

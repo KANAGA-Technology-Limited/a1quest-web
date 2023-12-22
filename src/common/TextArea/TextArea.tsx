@@ -1,4 +1,6 @@
-import { HTMLProps, useState } from 'react';
+import { HTMLProps } from 'react';
+import StandardTextArea from './StandardTextArea';
+import OutlinedTextArea from './OutlinedTextArea';
 
 interface Props {
   label?: string;
@@ -14,78 +16,17 @@ interface Props {
   error?: string;
   required?: boolean;
   [x: string]: any;
+  variant?: 'outlined' | 'standard';
 }
 
 function TextArea({
-  label = '',
-  formik,
-  name,
-  className = '',
-  placeholder,
-  hint,
-  useFormik = true,
-  onChange,
-  value,
-  showError = false,
-  error,
-  required,
-  ...rest
+  variant = 'outlined',
+  ...props
 }: Props & HTMLProps<HTMLTextAreaElement>) {
-  return (
-    <div className={'inputContainer ' + className}>
-      {useFormik ? (
-        <>
-          {label && (
-            <label
-              htmlFor={name}
-              className={` ${
-                formik.touched[name] && formik.errors[name] ? 'errorText' : ''
-              }`}
-            >
-              {label}
-            </label>
-          )}
-
-          {hint && <div className='font-light text-xs italic text-gray-400'>{hint}</div>}
-          <div className='relative'>
-            <textarea
-              name={name}
-              id={name}
-              placeholder={placeholder}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              className={formik.touched[name] && formik.errors[name] ? 'inputError' : ''}
-              {...rest}
-            ></textarea>
-          </div>
-
-          {formik.touched[name] && formik.errors[name] && (
-            <div className='error'>{formik.errors[name]}</div>
-          )}
-        </>
-      ) : (
-        <div className={'inputContainer ' + className}>
-          <label htmlFor={name} className={` ${showError ? 'errorText' : ''}`}>
-            {label}
-          </label>
-          {hint && <div className='font-light text-xs italic text-gray-400'>{hint}</div>}
-          <div className='relative'>
-            <textarea
-              name={name}
-              id={name}
-              placeholder={placeholder}
-              value={value}
-              onChange={onChange}
-              required={required}
-              {...rest}
-            ></textarea>
-          </div>
-
-          {showError && <div className='error'>{error}</div>}
-        </div>
-      )}
-    </div>
+  return variant === 'standard' ? (
+    <StandardTextArea {...props} />
+  ) : (
+    <OutlinedTextArea {...props} />
   );
 }
 

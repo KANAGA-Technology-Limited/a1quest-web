@@ -38,6 +38,7 @@ const SelectedQuestion = ({
       {question.question_type === 'input' && (
         <LabelInput
           useFormik={false}
+          variant='standard'
           value={
             questionList
               ? questionList[question._id]?.answer
