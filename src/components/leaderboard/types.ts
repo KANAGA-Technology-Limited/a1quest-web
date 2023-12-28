@@ -1,0 +1,1 @@
+export type TimeFilterType = 'daily' | 'weekly' | 'monthly' | 'yearly';

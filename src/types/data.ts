@@ -120,3 +120,11 @@ export type RecentTopicType = {
   enrollment_date: string;
   last_viewed_at: string;
 };
+
+export interface LeaderboardType {
+  user_id: string;
+  userName: string;
+  firstName: string;
+  lastName: string;
+  average_score: number;
+}

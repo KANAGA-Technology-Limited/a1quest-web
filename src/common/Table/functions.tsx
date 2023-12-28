@@ -15,6 +15,12 @@ export const formatTableValue = ({
     return value ? 'Yes' : 'No';
   }
 
+  // Function Check
+  if (typeof value === 'function') {
+    const component: any = value;
+    return component();
+  }
+
   // Capitalize Check
   if (['email'].includes(headerName)) {
     // should not be capitalized
