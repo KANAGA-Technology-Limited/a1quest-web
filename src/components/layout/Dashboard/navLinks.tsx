@@ -29,7 +29,12 @@ const navLinks: NavLinkType[] = [
   },
   { label: '', href: '', type: 'divider' },
   { label: 'My Learning', href: '/dashboard/learning/', icon: <LearningIcon /> },
-  { label: 'Assignment', href: '/dashboard/assignment/', icon: <AssignmentIcon /> },
+  {
+    label: 'Assignment',
+    href: '/dashboard/assignment/',
+    icon: <AssignmentIcon />,
+    disabled: true,
+  },
   { label: 'Bookmarks', href: '/dashboard/bookmarks/', icon: <BookmarkIcon /> },
   {
     label: 'Community',

@@ -49,12 +49,14 @@ const ProfileInfo = () => {
           </div>
         </div>
         <div className='gap-5 flex items-center justify-end'>
-          <Button>
-            <div className='gap-2 flex items-center flex-wrap justify-center'>
-              <Image alt='' src={shareIcon} />
-              <span>Share</span>
-            </div>
-          </Button>
+          <a href='/dashboard/profile/?tab=1'>
+            <Button>
+              <div className='gap-2 flex items-center flex-wrap justify-center'>
+                <Image alt='' src={shareIcon} />
+                <span>Share</span>
+              </div>
+            </Button>
+          </a>
           <Link href='/dashboard/profile/edit'>
             <Button variant='outlined'>
               <div className='gap-2 flex items-center flex-wrap justify-center'>
