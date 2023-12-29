@@ -33,7 +33,7 @@ const LeaderboardTable = () => {
       endDate = addDayToDate(new Date(), 1);
     }
     if (timeFilter === 'yearly') {
-      startDate = addDayToDate(new Date(), -365);
+      startDate = addDayToDate(new Date(), -366);
       endDate = addDayToDate(new Date(), 1);
     }
 
